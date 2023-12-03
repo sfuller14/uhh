@@ -1,12 +1,28 @@
 # Useful stuff
 
+---
+---
+
+## bash
+
+### Zipping
+
+* General unzip: `unzip path/to/your/file.zip`
+* Unzip to specific path: `unzip path/to/your/file.zip -d path/to/destination/folder`
+
+---
+
 ## gh CLI
 
 * `gh repo create ___ --private`
 
+---
+
 ## git
 
 * `git rm --cached FILE_OR_DIR_NAME`
+
+---
 
 ## numpy
 
@@ -51,3 +67,7 @@ So for example:
   * ACTUALLY np is comparing:  
     * A.shape -- (2,3)  
     * b.shape -- (1,1)
+
+---
+
+## 
