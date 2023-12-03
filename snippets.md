@@ -3,7 +3,7 @@
 ---
 ---
 
-## bash
+## ▫️ bash
 
 ### Zipping
 
@@ -12,19 +12,26 @@
 
 ---
 
-## gh CLI
+## ▫️ **git**
 
-* `gh repo create ___ --private`
+### ghh CLI
 
+* Create new repo: `gh repo create ___ --private`
+
+### Commands
+
+* Remove local already-pushed file from remote:
+
+  ```git
+  git rm --cached FILE_OR_DIR_NAME
+  git commit -m "Removed FILE_OR_DIR_NAME from repository"
+  git push origin master
+  ```
+
+<!-- *  -->
 ---
 
-## git
-
-* `git rm --cached FILE_OR_DIR_NAME`
-
----
-
-## numpy
+## ▫️ numpy
 
 * RESHAPING
   * The reshape() function takes a single tuple argument that specifies the new shape of the array
@@ -70,4 +77,4 @@ So for example:
 
 ---
 
-## 
+<!-- ##  -->
