@@ -1,18 +1,71 @@
-# Useful stuff
+- [Snippets](#snippets)
+  - [▫️ **BASH**](#️-bash)
+    - [Zipping](#zipping)
+    - [tmux](#tmux)
+      - [Pane Management](#pane-management)
+      - [Window Management](#window-management)
+      - [Session Management](#session-management)
+      - [Resizing Panes](#resizing-panes)
+      - [Miscellaneous](#miscellaneous)
+  - [▫️ **GIT**](#️-git)
+    - [ghh CLI](#ghh-cli)
+    - [Commands](#commands)
+  - [▫️ **NUMPY**](#️-numpy)
+    - [RESHAPING](#reshaping)
+    - [BROADCASTING](#broadcasting)
+
+# Snippets
 
 ---
 ---
 
-## ▫️ bash
+## ▫️ **BASH**
 
 ### Zipping
 
 * General unzip: `unzip path/to/your/file.zip`
 * Unzip to specific path: `unzip path/to/your/file.zip -d path/to/destination/folder`
 
+### tmux
+
+#### Pane Management
+
+* Split Pane Horizontally: `Ctrl + b, then "`
+* Split Pane Vertically: `Ctrl + b, then %`
+* Switch to x Pane: `Ctrl + b, then x-arrow`
+* Close Current Pane: `Ctrl + b, then x (then press y to confirm)`
+* (Switch to Next Pane: `Ctrl + b, then o)`
+
+#### Window Management
+
+* Create New Window: `Ctrl + b, then c`
+* Switch to Next Window: `Ctrl + b, then n`
+* Switch to Previous Window: `Ctrl + b, then p`
+* List Windows: `Ctrl + b, then w`
+* Rename Current Window: `Ctrl + b, then ,`
+
+#### Session Management
+
+* Detach from Session: `Ctrl + b, then d`
+* List Sessions: `tmux ls (outside of tmux)`
+* Attach to a Session: `tmux attach-session -t [session-name]`
+
+#### Resizing Panes
+
+* Resize Pane Up: `Ctrl + b:resize-pane -U 10`
+* Resize Pane Down: `Ctrl + b:resize-pane -D 10`
+* Resize Pane Left: `Ctrl + b:resize-pane -L 10`
+* Resize Pane Right: `Ctrl + b:resize-pane -R 10`
+
+#### Miscellaneous
+
+* Scroll Mode: `Ctrl + b, then [ (use arrow keys to scroll, q to exit scroll mode)`
+* Copy Mode: `Ctrl + b, then [ (enter copy mode for text selection)`
+* Paste from Buffer: `Ctrl + b, then ]`
+
 ---
 
-## ▫️ **git**
+## ▫️ **GIT**
 
 ### ghh CLI
 
@@ -28,12 +81,13 @@
   git push origin master
   ```
 
-<!-- *  -->
+* get git remote origin's url: `git config --get remote.origin.url`
+
 ---
 
-## ▫️ numpy
+## ▫️ **NUMPY**
 
-## RESHAPING
+### RESHAPING
 
 * The reshape() function takes a single tuple argument that specifies the new shape of the array
   * Used frequently to _add_ a dimension of when for libs like sklearn and keras (to the END of the shape tuple -- i.e. **right-padding with 1s**)
