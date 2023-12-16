@@ -73,6 +73,14 @@ git push origin master
 ```
 
 * (same patter for folder)
+* list all files on remote master:
+  
+  ```git
+  git fetch origin
+  git ls-tree -r master --name-only
+  ```
+
+* add and commit all changes: `git commit -am "commit message"`
 
 ---
 
