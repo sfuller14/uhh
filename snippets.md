@@ -50,27 +50,27 @@
 * undo most recent _local_ commit (to unstaged): `git reset --mixed HEAD~1`
 * delete file from remote and local:
 
-```git
-git rm file_to_delete
-git commit -m "removed file_to_delete"
-git push origin master
-```
+  ```git
+  git rm file_to_delete
+  git commit -m "removed file_to_delete"
+  git push origin master
+  ```
 
 * delete folder from remote and local:
 
-```git
-git rm -r folder_to_delete
-git commit -m "removed folder_to_delete"
-git push origin master
-```
+  ```git
+  git rm -r folder_to_delete
+  git commit -m "removed folder_to_delete"
+  git push origin master
+  ```
 
 * delete file from remote only:
 
-```git
-git rm --cached file_to_delete
-git commit -m "removed file_to_delete"
-git push origin master
-```
+  ```git
+  git rm --cached file_to_delete
+  git commit -m "removed file_to_delete"
+  git push origin master
+  ```
 
 * (same patter for folder)
 * list all files on remote master:
