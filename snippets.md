@@ -82,6 +82,9 @@
   ```
 
 * get git remote origin's url: `git config --get remote.origin.url`
+* force-update local repo state to match remote branch (**overwrites** -- stash): `git reset --hard --force`
+* undo most recent _local_ commit (to staging): `git reset --soft HEAD~1`
+* undo most recent _local_ commit (to unstaged): `git reset --mixed HEAD~1`
 
 ---
 
