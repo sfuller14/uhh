@@ -81,6 +81,14 @@
   ```
 
 * add and commit all changes: `git commit -am "commit message"`
+* force-remove untracked files: `git clean -f`
+* force-remove untracked directories: `git clean -fd`
+* force-remove subdirectory's sub-git repo:
+  
+  ```git
+  cd subdirectory
+  sudo rm -rf .git
+  ```
 
 ---
 
