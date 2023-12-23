@@ -1,6 +1,7 @@
 - [Snippets](#snippets)
   - [▫️ **BASH**](#️-bash)
     - [Zipping](#zipping)
+  - [▫️ **OpenAI API**](#️-openai-api)
   - [▫️ **GIT**](#️-git)
     - [ghh CLI](#ghh-cli)
     - [Commands](#commands)
@@ -25,6 +26,23 @@
 
 * General unzip: `unzip path/to/your/file.zip`
 * Unzip to specific path: `unzip path/to/your/file.zip -d path/to/destination/folder`
+
+---
+
+## ▫️ **OpenAI API**
+
+* Context window equivalents:
+  * 1 token --> 4 characters
+  * 128,000 tokens --> 512,000 characters
+  * Natural Language:
+    * 6 characters per English word on average (5 char + 1 space)
+    * 512,000 characters / 6 characters per word ≈ 85,333 words
+    * 85,333 words / 250 words per page using 12pt Times New Roman ≈ 341 double-spaced pages (170 single-spaced pages)
+    * **So 128,000 tokens is roughly equivalent to 170 single-spaced pages of text**
+  * Code:
+    * 50 characters per line on average
+    * 512,000 characters / 50 characters per line ≈ 10,240 lines of code
+    * **So 128,000 tokens is roughly equivalent to 10,240 lines of code**
 
 ---
 
