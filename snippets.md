@@ -1,58 +1,34 @@
 - [Snippets](#snippets)
-  - [▫️ **BASH**](#️-bash)
-    - [Zipping](#zipping)
-  - [▫️ **OpenAI API**](#️-openai-api)
-  - [▫️ **GIT**](#️-git)
-    - [ghh CLI](#ghh-cli)
-    - [Commands](#commands)
-  - [▫️ **NUMPY**](#️-numpy)
-    - [RESHAPING](#reshaping)
-    - [BROADCASTING](#broadcasting)
-  - [tmux](#tmux)
-    - [Pane Management](#pane-management)
-    - [Window Management](#window-management)
-    - [Session Management](#session-management)
-    - [Resizing Panes](#resizing-panes)
-    - [Miscellaneous](#miscellaneous)
+  - [SHELL](#shell)
+    - [git](#git)
+      - [Commands](#commands)
+      - [ghh CLI](#ghh-cli)
+    - [bash](#bash)
+      - [Zipping](#zipping)
+  - [PYTHON](#python)
+    - [OpenAI API](#openai-api)
+      - [Token Counts](#token-counts)
+    - [numpy](#numpy)
+      - [Reshaping](#reshaping)
+      - [Broadcasting](#broadcasting)
+  - [RARELY USED](#rarely-used)
+    - [tmux](#tmux)
+      - [Pane Management](#pane-management)
+      - [Window Management](#window-management)
+      - [Session Management](#session-management)
+      - [Resizing Panes](#resizing-panes)
+      - [Miscellaneous](#miscellaneous)
 
 # Snippets
 
 ---
 ---
 
-## ▫️ **BASH**
+## SHELL
 
-### Zipping
+### git
 
-* General unzip: `unzip path/to/your/file.zip`
-* Unzip to specific path: `unzip path/to/your/file.zip -d path/to/destination/folder`
-
----
-
-## ▫️ **OpenAI API**
-
-* Context window equivalents:
-  * 1 token --> 4 characters
-  * 128,000 tokens --> 512,000 characters
-  * Natural Language:
-    * 6 characters per English word on average (5 char + 1 space)
-    * 512,000 characters / 6 characters per word ≈ 85,333 words
-    * 85,333 words / 250 words per page using 12pt Times New Roman ≈ 341 double-spaced pages (170 single-spaced pages)
-    * **So 128,000 tokens is roughly equivalent to 170 single-spaced pages of text**
-  * Code:
-    * 50 characters per line on average
-    * 512,000 characters / 50 characters per line ≈ 10,240 lines of code
-    * **So 128,000 tokens is roughly equivalent to 10,240 lines of code**
-
----
-
-## ▫️ **GIT**
-
-### ghh CLI
-
-* Create new repo: `gh repo create ___ --private`
-
-### Commands
+#### Commands
 
 * Remove local already-pushed file from remote:
 
@@ -108,11 +84,45 @@
   sudo rm -rf .git
   ```
 
+#### ghh CLI
+
+* Create new repo: `gh repo create ___ --private`
+
 ---
 
-## ▫️ **NUMPY**
+### bash
 
-### RESHAPING
+#### Zipping
+
+* General unzip: `unzip path/to/your/file.zip`
+* Unzip to specific path: `unzip path/to/your/file.zip -d path/to/destination/folder`
+
+---
+
+## PYTHON
+
+### OpenAI API
+
+#### Token Counts
+
+* Context window equivalents:
+  * 1 token --> 4 characters
+  * 128,000 tokens --> 512,000 characters
+  * Natural Language:
+    * 6 characters per English word on average (5 char + 1 space)
+    * 512,000 characters / 6 characters per word ≈ 85,333 words
+    * 85,333 words / 250 words per page using 12pt Times New Roman ≈ 341 double-spaced pages (170 single-spaced pages)
+    * **So 128,000 tokens is roughly equivalent to 170 single-spaced pages of text**
+  * Code:
+    * 50 characters per line on average
+    * 512,000 characters / 50 characters per line ≈ 10,240 lines of code
+    * **So 128,000 tokens is roughly equivalent to 10,240 lines of code**
+
+---
+
+### numpy
+
+#### Reshaping
 
 * The reshape() function takes a single tuple argument that specifies the new shape of the array
   * Used frequently to _add_ a dimension of when for libs like sklearn and keras (to the END of the shape tuple -- i.e. **right-padding with 1s**)
@@ -122,7 +132,7 @@
     * `data = data.reshape( (m_old, n_new)  )`
       * `data.shape == (m_old, n_new)` (e.g. `(1000, 1)`)
 
-### BROADCASTING
+#### Broadcasting
 
 In formal LinAlg, arithmetic can only be performed when:  
 
@@ -159,9 +169,11 @@ So for example:
 
 ---
 
-## tmux
+## RARELY USED
 
-### Pane Management
+### tmux
+
+#### Pane Management
 
 * Split Pane Horizontally: `Ctrl + b, then "`
 * Split Pane Vertically: `Ctrl + b, then %`
@@ -169,7 +181,7 @@ So for example:
 * Close Current Pane: `Ctrl + b, then x (then press y to confirm)`
 * (Switch to Next Pane: `Ctrl + b, then o)`
 
-### Window Management
+#### Window Management
 
 * Create New Window: `Ctrl + b, then c`
 * Switch to Next Window: `Ctrl + b, then n`
@@ -177,20 +189,20 @@ So for example:
 * List Windows: `Ctrl + b, then w`
 * Rename Current Window: `Ctrl + b, then ,`
 
-### Session Management
+#### Session Management
 
 * Detach from Session: `Ctrl + b, then d`
 * List Sessions: `tmux ls (outside of tmux)`
 * Attach to a Session: `tmux attach-session -t [session-name]`
 
-### Resizing Panes
+#### Resizing Panes
 
 * Resize Pane Up: `Ctrl + b:resize-pane -U 10`
 * Resize Pane Down: `Ctrl + b:resize-pane -D 10`
 * Resize Pane Left: `Ctrl + b:resize-pane -L 10`
 * Resize Pane Right: `Ctrl + b:resize-pane -R 10`
 
-### Miscellaneous
+#### Miscellaneous
 
 * Scroll Mode: `Ctrl + b, then [ (use arrow keys to scroll, q to exit scroll mode)`
 * Copy Mode: `Ctrl + b, then [ (enter copy mode for text selection)`
