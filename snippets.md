@@ -1,10 +1,14 @@
 - [Snippets](#snippets)
+  - [GIT](#git)
+    - [Commands](#commands)
+    - [ghh CLI](#ghh-cli)
   - [SHELL](#shell)
-    - [git](#git)
-      - [Commands](#commands)
-      - [ghh CLI](#ghh-cli)
-    - [bash](#bash)
-      - [Zipping](#zipping)
+    - [Shortcuts (zsh)](#shortcuts-zsh)
+    - [Core Commands](#core-commands)
+    - [Chaining Commands](#chaining-commands)
+    - [Explanation of `grep`](#explanation-of-grep)
+    - [Piping Commands](#piping-commands)
+    - [Help](#help)
   - [PYTHON](#python)
     - [OpenAI API](#openai-api)
       - [Token Counts](#token-counts)
@@ -24,11 +28,9 @@
 ---
 ---
 
-## SHELL
+## GIT
 
-### git
-
-#### Commands
+### Commands
 
 * Remove local already-pushed file from remote:
 
@@ -84,18 +86,106 @@
   sudo rm -rf .git
   ```
 
-#### ghh CLI
+### ghh CLI
 
 * Create new repo: `gh repo create ___ --private`
 
 ---
 
-### bash
+## SHELL
 
-#### Zipping
+### Shortcuts (zsh)
+| Key/Command | Description |
+| --- | --- |
+| `Ctrl + A` | Go to the beginning of the line you are currently typing on. This also works for most text input fields system wide. |
+| `Ctrl + E` | Go to the end of the line you are currently typing on. This also works for most text input fields system wide. |
+| `Ctrl + L` | Clears the Screen |
+| `Cmd + K` | Clears the Screen |
+| `Ctrl + U` | Cut everything backwards to beginning of line |
+| `Ctrl + K` | Cut everything forward to end of line |
+| `Ctrl + W` | Cut one word backwards using white space as delimiter |
+| `Ctrl + Y` | Paste whatever was cut by the last cut command |
+| `Ctrl + H` | Same as backspace |
+| `Ctrl + C` | Kill whatever you are running. Also clears everything on current line |
+| `Ctrl + D` | Exit the current shell when no process is running, or send EOF to a the running process |
+| `Ctrl + Z` | Puts whatever you are running into a suspended background process. fg restores it |
+| `Ctrl + T` | Swap the last two characters before the cursor |
+| `Ctrl + _` | Undo the last command. |
+| `Ctrl + F` | Move cursor one character forward |
+| `Ctrl + B` | Move cursor one character backward |
+| `Option + →` | Move cursor one word forward |
+| `Option + ←` | Move cursor one word backward |
+| `Esc + T` | Move cursor one word backward |
+| `Esc + Backspace` | Swap the last two words before the cursor |
+| `Tab` | Cut one word backwards using none alphabetic characters as delimiters |
 
-* General unzip: `unzip path/to/your/file.zip`
-* Unzip to specific path: `unzip path/to/your/file.zip -d path/to/destination/folder`
+### Core Commands
+
+| Command | Description |
+| --- | --- |
+| `cd [folder]` | Change directory e.g. cd Documents |
+| `cd` | Home directory |
+| `cd /` | Root of drive |
+| `cd -` | Previous directory |
+| `ls` | Short listing |
+| `ls -l` | Long listing |
+| `ls -a` | Listing including hidden files |
+| `ls -lh` | Long listing with human-readable file sizes |
+| `ls -R` | Entire content of folder recursively |
+| `sudo [command]` | Run command with the security privileges of the superuser (Super User DO) |
+| `open [file]` | Opens a file (as if you double-clicked it) |
+| `top` | Displays active processes. Press q to quit |
+| `nano [file]` | Opens the file using the nano editor |
+| `vim [file]` | Opens the file using the vim editor |
+| `clear` | Clears the screen |
+| `reset` | Resets the terminal display |
+| `unzip path/to/your/file.zip` | General unzip |
+| `unzip path/to/your/file.zip -d path/to/destination/folder` | Unzip to specific path |
+| `zip -r compressed_filename.zip foldername` | General zip |
+
+### Chaining Commands
+| Command | Description |
+| --- | --- |
+| [command-a]; [command-b] | Run command A and then B, regardless of the success of A |
+| [command-a] && [command-b] | Run command B if A succeeded |
+| [command-a] || [command-b] | Run command B if A failed |
+| [command-a] & | Run command A in the background |
+
+### Explanation of `grep` 
+* `grep` is a command-line utility for searching plain-text data sets for lines that match a regular expression.
+* `grep` searches the named input FILEs (or standard input if no files are named, or the file name - is given) for lines containing a match to the given PATTERN.
+* By default, `grep` prints the matching lines.
+* `egrep` or `grep -E` is the same as `grep`, but uses extended regular expressions instead of basic regular expressions.
+  * Example: `egrep 'foo|bar'` is the same as `grep -E 'foo|bar'`
+* `fgrep` or `grep -F` is the same as `grep`, but interprets PATTERN as a list of fixed strings (instead of regular expressions), separated by newlines, any of which is to be matched.
+  * This is different from normal `grep` which interprets PATTERN as a regular expression.
+  * Example: `fgrep 'foo'` is the same as `grep -F 'foo'`
+  * Example: `fgrep -f file1 file2` is the same as `grep -F -f file1 file2`
+* To obtain the opposite effect of `grep`, use the `-v` or `--invert-match` option.
+  * Example: `grep -v 'foo'` will match all lines that do not contain the string 'foo'
+* Output grep results to a file using the `>` operator.
+  * Example: `grep 'foo' file.txt > output.txt`
+
+### Piping Commands
+| Command | Description |
+| --- | --- |
+| find [dir] -name [search_pattern] | Search for files, e.g., find /Users -name "file.txt" |
+| grep [search_pattern] [file] | Search for all lines that contain the pattern, e.g., grep "Tom" file.txt |
+| grep -r [search_pattern] [dir] | Recursively search in all files in the specified directory for all lines that contain the pattern |
+| grep -v [search_pattern] [file] | Search for all lines that do NOT contain the pattern |
+| grep -i [search_pattern] [file] | Search for all lines that contain the case-insensitive pattern |
+| mdfind [search_pattern] | Spotlight search for files (names, content, other metadata), e.g., mdfind skateboard |
+| mdfind -onlyin [dir] -name [pattern] | Spotlight search for files named like pattern in the given directory |
+
+### Help
+| Command | Description |
+| --- | --- |
+| [command] -h | Offers help |
+| [command] -help | Offers help |
+| info [command] | Offers help |
+| man [command] | Show the help manual for [command] |
+| whatis [command] | Gives a one-line description of [command] |
+| apropos [search-pattern] | Searches for command with keywords in description |
 
 ---
 
