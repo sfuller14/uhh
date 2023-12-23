@@ -32,63 +32,38 @@
 
 ### Commands
 
-* Remove local already-pushed file from remote:
-
-  ```git
-  git rm --cached FILE_OR_DIR_NAME
-  git commit -m "Removed FILE_OR_DIR_NAME from repository"
-  git push origin master
-  ```
-
-* get git remote origin's url: `git config --get remote.origin.url`
-* force-update local repo state to match remote branch (**overwrites** -- stash): `git reset --hard --force`
-* undo most recent _local_ commit (to staging): `git reset --soft HEAD~1`
-* undo most recent _local_ commit (to unstaged): `git reset --mixed HEAD~1`
-* delete file from remote and local:
-
-  ```git
-  git rm file_to_delete
-  git commit -m "removed file_to_delete"
-  git push origin master
-  ```
-
-* delete folder from remote and local:
-
-  ```git
-  git rm -r folder_to_delete
-  git commit -m "removed folder_to_delete"
-  git push origin master
-  ```
-
-* delete file from remote only:
-
-  ```git
-  git rm --cached file_to_delete
-  git commit -m "removed file_to_delete"
-  git push origin master
-  ```
-
-* (same patter for folder)
-* list all files on remote master:
-  
-  ```git
-  git fetch origin
-  git ls-tree -r master --name-only
-  ```
-
-* add and commit all changes: `git commit -am "commit message"`
-* force-remove untracked files: `git clean -f`
-* force-remove untracked directories: `git clean -fd`
-* force-remove subdirectory's sub-git repo:
-  
-  ```git
-  cd subdirectory
-  sudo rm -rf .git
-  ```
+| Command | Description |
+| :------ | :----------- |
+| `git rm --cached FILE_OR_DIR_NAME`<br>`git commit -m "Removed FILE_OR_DIR_NAME from repository"`<br>`git push origin master` | Remove local already-pushed file from remote. |
+| `git config --get remote.origin.url` | Get git remote origin's URL. |
+| `git reset --hard --force` | Force-update local repo state to match remote branch (**overwrites** -- stash). |
+| `git reset --soft HEAD~1` | Undo most recent _local_ commit (to staging). |
+| `git reset --mixed HEAD~1` | Undo most recent _local_ commit (to unstaged). |
+| `git rm file_to_delete`<br>`git commit -m "removed file_to_delete"`<br>`git push origin master` | Delete file from remote and local. |
+| `git rm -r folder_to_delete`<br>`git commit -m "removed folder_to_delete"`<br>`git push origin master` | Delete folder from remote and local. |
+| `git rm --cached file_to_delete`<br>`git commit -m "removed file_to_delete"`<br>`git push origin master` | Delete file from remote only. |
+| `git fetch origin`<br>`git ls-tree -r master --name-only` | List all files on remote master. |
+| `git commit -am "commit message"` | Add and commit all changes. |
+| `git clean -f` | Force-remove untracked files. |
+| `git clean -fd` | Force-remove untracked directories. |
+| `cd subdirectory`<br>`sudo rm -rf .git` | Force-remove subdirectory's sub-git repo. |
+| `git branch new-branch`<br>`git checkout new-branch`<br>[make changes]<br>`git add -A`<br>`git commit -m "commit message"`<br>`git push origin new-branch`<br>`git branch -d new-branch` | Create new branch, make changes, push, and delete branch locally. |
 
 ### ghh CLI
 
-* Create new repo: `gh repo create ___ --private`
+| Command | Description |
+| :------ | :----------- |
+| `gh repo create ___ --private` | Create new repo (private). |
+| `gh repo clone ___` | Clone repo. |
+| `gh repo view --web` | Open repo in browser. |
+| `gh repo delete ___` | Delete repo. |
+| `gh repo list` | List all repos. |
+| `gh repo rename old-name new-name` | Rename repo. |
+| `gh repo transfer ___ new-owner` | Transfer repo to new owner. |
+| `gh repo fork ___` | Fork repo. |
+| `gh repo fork --clone ___` | Fork repo and clone locally. |
+| `gh repo fork --clone ___ --remote` | Fork repo and clone locally with remote origin. |
+| `gh repo fork --clone ___ --remote --remote-name=upstream` | Fork repo and clone locally with remote origin and upstream. |
 
 ---
 
@@ -148,7 +123,7 @@
 | --- | --- |
 | [command-a]; [command-b] | Run command A and then B, regardless of the success of A |
 | [command-a] && [command-b] | Run command B if A succeeded |
-| [command-a] || [command-b] | Run command B if A failed |
+| [command-a] \|\| [command-b] | Run command B if A failed |
 | [command-a] & | Run command A in the background |
 
 ### Explanation of `grep` 
