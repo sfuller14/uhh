@@ -8,14 +8,102 @@
     - [Simple Example Webpage with HTML, CSS, and JavaScript](#simple-example-webpage-with-html-css-and-javascript)
   - [JavaScript](#javascript)
     - [JavaScript Basics](#javascript-basics)
-    - [Some useful JavaScript Built-in Functions](#some-useful-javascript-built-in-functions)
+      - [Printing, Variables, Arrays, Functions](#printing-variables-arrays-functions)
+        - [Printing to the Console](#printing-to-the-console)
+        - [Variable Declaration and Assignment](#variable-declaration-and-assignment)
+        - [Array Declaration and Manipulation](#array-declaration-and-manipulation)
+        - [Function Declaration and Calling](#function-declaration-and-calling)
+      - [If-Statement syntax  in JavaScript](#if-statement-syntax--in-javascript)
+        - [Syntax](#syntax)
+        - [If-else syntax:](#if-else-syntax)
+        - [If-else-if syntax:](#if-else-if-syntax)
+        - [Boolean Values in JavaScript](#boolean-values-in-javascript)
+        - [Comparison Operators in JavaScript](#comparison-operators-in-javascript)
+        - [Ternary Operator](#ternary-operator)
+        - [Switch Statements](#switch-statements)
+        - [Return Early Pattern for Functions](#return-early-pattern-for-functions)
+      - [JavaScript Objects](#javascript-objects)
+        - [Updating Object Properties](#updating-object-properties)
+        - [Add New Properties to a JavaScript Object](#add-new-properties-to-a-javascript-object)
+        - [Delete Properties from a JavaScript Object](#delete-properties-from-a-javascript-object)
+        - [Using Objects for Lookups](#using-objects-for-lookups)
+        - [Testing Objects for Properties](#testing-objects-for-properties)
+        - [Nested Objects](#nested-objects)
+        - [Accessing Nested Arrays](#accessing-nested-arrays)
+      - [Looping](#looping)
+        - [While Loops](#while-loops)
+        - [For Loops](#for-loops)
+        - [Iterate Through an Array with a For Loop](#iterate-through-an-array-with-a-for-loop)
+        - [Nesting For Loops](#nesting-for-loops)
+        - [Do...While Loops](#dowhile-loops)
+        - [Profile Lookup](#profile-lookup)
+      - [Constructor Functions](#constructor-functions)
+        - [Purpose](#purpose)
+        - [Syntax](#syntax-1)
+        - [Invoking a Constructor Function](#invoking-a-constructor-function)
+        - [Extending Constructors to Receive Arguments](#extending-constructors-to-receive-arguments)
+        - [Verify an Object's Constructor with instanceof](#verify-an-objects-constructor-with-instanceof)
+        - [Understand Own Properties](#understand-own-properties)
+        - [Use Prototype Properties to Reduce Duplicate Code](#use-prototype-properties-to-reduce-duplicate-code)
+        - [Iterate Over All Properties](#iterate-over-all-properties)
+      - [Methods](#methods)
+        - [Methods](#methods-1)
+        - [Example](#example)
+      - [Built-In Functions: Random Numbers \& Int-to-String Conversion](#built-in-functions-random-numbers--int-to-string-conversion)
+        - [Generate Random Fractions with JavaScript](#generate-random-fractions-with-javascript)
+        - [Generate Random Whole Numbers with JavaScript](#generate-random-whole-numbers-with-javascript)
+        - [Generate Random Whole Numbers within a Range](#generate-random-whole-numbers-within-a-range)
+        - [Use the parseInt Function](#use-the-parseint-function)
+        - [Use the parseInt Function with a Radix](#use-the-parseint-function-with-a-radix)
+      - [Recursion](#recursion)
+        - [Using recursion to create a countdown](#using-recursion-to-create-a-countdown)
+        - [Using recursion to create a range of numbers](#using-recursion-to-create-a-range-of-numbers)
+    - [Useful JavaScript Built-in Functions](#useful-javascript-built-in-functions)
     - [ES6](#es6)
+      - [Use Arrow Functions to Write Concise Anonymous Functions](#use-arrow-functions-to-write-concise-anonymous-functions)
+      - [Write Arrow Functions with Parameters](#write-arrow-functions-with-parameters)
+      - [Set Default Parameters for Your Functions](#set-default-parameters-for-your-functions)
+      - [Compare Scopes of the var and let Keywords](#compare-scopes-of-the-var-and-let-keywords)
+      - [Mutate an Array Declared with const](#mutate-an-array-declared-with-const)
+      - [Prevent Object Mutation](#prevent-object-mutation)
+      - [Use the Rest Parameter with Function Parameters](#use-the-rest-parameter-with-function-parameters)
+      - [Use the Spread Operator to Evaluate Arrays In-Place](#use-the-spread-operator-to-evaluate-arrays-in-place)
+      - [Use Destructuring Assignment to Extract Values from Objects](#use-destructuring-assignment-to-extract-values-from-objects)
+      - [Use Destructuring Assignment to Assign Variables from Objects](#use-destructuring-assignment-to-assign-variables-from-objects)
+      - [Use Destructuring Assignment to Assign Variables from Arrays](#use-destructuring-assignment-to-assign-variables-from-arrays)
+      - [Destructuring via rest elements](#destructuring-via-rest-elements)
+      - [Use Destructuring Assignment to Pass an Object as a Function's Parameters](#use-destructuring-assignment-to-pass-an-object-as-a-functions-parameters)
+      - [Create Strings using Template Literals](#create-strings-using-template-literals)
+      - [Write Concise Object Literal Declarations Using Object Property Shorthand](#write-concise-object-literal-declarations-using-object-property-shorthand)
+      - [Write Concise Declarative Functions with ES6](#write-concise-declarative-functions-with-es6)
+      - [Use class Syntax to Define a Constructor Function](#use-class-syntax-to-define-a-constructor-function)
+      - [Use getters and setters to Control Access to an Object](#use-getters-and-setters-to-control-access-to-an-object)
+      - [Create a Module Script](#create-a-module-script)
+      - [Use export to Share a Code Block](#use-export-to-share-a-code-block)
+      - [Reuse JavaScript Code Using import](#reuse-javascript-code-using-import)
+      - [Use \* to Import Everything from a File](#use--to-import-everything-from-a-file)
+      - [Create an Export Fallback with export default](#create-an-export-fallback-with-export-default)
+      - [Import a Default Export](#import-a-default-export)
+      - [Create a JavaScript Promise](#create-a-javascript-promise)
+      - [Complete a Promise with resolve and reject](#complete-a-promise-with-resolve-and-reject)
+      - [Handle a Fulfilled Promise with then](#handle-a-fulfilled-promise-with-then)
+      - [Handle a Rejected Promise with catch](#handle-a-rejected-promise-with-catch)
+      - [Use catch to Handle Asynchronous Operations](#use-catch-to-handle-asynchronous-operations)
+  - [The DOM](#the-dom)
+    - [Theory of the DOM](#theory-of-the-dom)
+    - [Tree Details](#tree-details)
+    - [Common Usage Patterns (JavaScript Interaction)](#common-usage-patterns-javascript-interaction)
   - [jQuery](#jquery)
+    - [Raison Detre](#raison-detre)
     - [Common Usage Patterns](#common-usage-patterns)
   - [Async Programming in JavaScript](#async-programming-in-javascript)
     - [Theory of Async Programming](#theory-of-async-programming)
     - [Promises](#promises)
-      - [Syntax and Basic Usage](#syntax-and-basic-usage)
+      - [Understanding Promises](#understanding-promises)
+      - [Syntax and Usage](#syntax-and-usage)
+      - [Promise States](#promise-states)
+      - [Promise Methods](#promise-methods)
+      - [Promise.all()](#promiseall)
       - [Chaining Promises](#chaining-promises)
     - [Async/Await](#asyncawait)
       - [Async Function](#async-function)
@@ -23,7 +111,7 @@
     - [Common Usage Patterns](#common-usage-patterns-1)
     - [Callbacks](#callbacks)
       - [Understanding Callbacks](#understanding-callbacks)
-      - [Syntax and Basic Usage](#syntax-and-basic-usage-1)
+      - [Syntax and Basic Usage](#syntax-and-basic-usage)
       - [Callback Hell and Its Avoidance](#callback-hell-and-its-avoidance)
     - [Event Loop](#event-loop)
       - [Understanding the Event Loop](#understanding-the-event-loop)
@@ -263,7 +351,15 @@ Tag
 
 ### JavaScript Basics
 
-* Variable Declaration and Assignment
+#### Printing, Variables, Arrays, Functions
+  
+##### Printing to the Console
+
+  ```javascript
+  console.log("Hello World!");
+  ```
+
+##### Variable Declaration and Assignment
 
   ```javascript
   var myName = "John"; // DONT' USE - var is used throughout the program
@@ -278,14 +374,8 @@ Tag
   myValue *= 5;
   myValue /= 5;
   ```
-  
-* Printing to the Console
 
-  ```javascript
-  console.log("Hello World!");
-  ```
-
-* Array Declaration and Manipulation
+##### Array Declaration and Manipulation
   * 1-D:
   
     ```javascript
@@ -308,7 +398,7 @@ Tag
     myArray[0] = "Super random value"; // arrays can hold any type of value
     ```
 
-* Function Declaration and Calling
+##### Function Declaration and Calling
 
   ```javascript
   // Print function
@@ -348,33 +438,36 @@ Tag
   console.log(sum); // 8
   ```
 
-* If-Statement syntax  in JavaScript
-  * One then-statement: 
-  
-      ```if (condition) statement;```
-      
-      OR
+#### If-Statement syntax  in JavaScript
 
-      ```javascript
-      if (condition) {
-        statement;
-      }
-      ```
+##### Syntax
 
-  * Multiple then-statements: 
-  
-      ```if (condition) { statement1; statement2; }```
-      
-      OR
+* One then-statement: 
 
-      ```javascript
-      if (condition) {
-        statement1;
-        statement2;
-      }
-      ```
+    ```if (condition) statement;```
+    
+    OR
 
-* If-else syntax: 
+    ```javascript
+    if (condition) {
+      statement;
+    }
+    ```
+
+* Multiple then-statements: 
+
+    ```if (condition) { statement1; statement2; }```
+    
+    OR
+
+    ```javascript
+    if (condition) {
+      statement1;
+      statement2;
+    }
+    ```
+##### If-else syntax: 
+
 
     ```javascript
     if (condition) {
@@ -384,7 +477,7 @@ Tag
     }
     ```
 
-* If-else-if syntax: 
+##### If-else-if syntax: 
 
     ```javascript
     if (condition1) {
@@ -396,7 +489,7 @@ Tag
     }
     ```
 
-* Boolean Values in JavaScript
+##### Boolean Values in JavaScript
 
   ```javascript
   function trueOrFalse(wasThatTrue) {
@@ -410,7 +503,8 @@ Tag
   console.log(trueOrFalse(false)); // No, that was false
   ```
 
-* Comparison Operators in JavaScript
+##### Comparison Operators in JavaScript
+
   * `&&` - and
   * `||` - or
   * `==` - equal to
@@ -424,7 +518,38 @@ Tag
       * `if (!(a && b)) { ... }`
   * rest are same as python
 
-* Switch Statements
+##### Ternary Operator
+
+  * Syntax:
+
+    ```javascript
+    condition ? statement-if-true : statement-if-false;
+    ```
+
+  * Example:
+
+    ```javascript
+    function checkEqual(a, b) {
+      return a === b ? true : false;
+    }
+
+    console.log(checkEqual(1, 2)); // false
+    ```
+
+  * This is like python's `a if condition else b` syntax
+  * Multiple ternary operators can be chained together:
+  
+      ```javascript
+      function checkSign(num) {
+        return num > 0 ? "positive" : num < 0 ? "negative" : "zero";
+      }
+  
+      console.log(checkSign(10)); // positive
+      ```
+    
+    * In python this would be `a if condition else b if condition else c`
+
+##### Switch Statements
   * Simpler syntax for single variable value comparison
   * Equivalent to python 3.10+ match-case statement
   * Uses strict equality (`===`) in comparisons
@@ -478,7 +603,7 @@ Tag
     // obvious how this works with, e.g., console.log(sequentialSizes(1));
     ```
 
-* Return Early Pattern for Functions
+##### Return Early Pattern for Functions
   * Example:
 
     ```javascript
@@ -496,7 +621,8 @@ Tag
     console.log(abTest(2, 8)); // 18
     ```
 
-* JavaScript Objects
+#### JavaScript Objects
+
   * Objects are more similar to python dictionaries than to python objects
   * They are similar to JavaScript arrays except that the index keys ("properties") are strings
   * Simmple example:
@@ -518,28 +644,28 @@ Tag
     console.log(myDog[nameToCheck]); // Spot
     ```
 
-* Updating Object Properties
+##### Updating Object Properties
 
   ```javascript
   myDog.name = "Happy Spot";
   console.log(myDog.name); // Happy Spot
   ```
 
-* Add New Properties to a JavaScript Object
+##### Add New Properties to a JavaScript Object
 
   ```javascript
   myDog.bark = "woof";
   console.log(myDog.bark); // woof
   ```
 
-* Delete Properties from a JavaScript Object
+##### Delete Properties from a JavaScript Object
 
   ```javascript
   delete myDog.bark;
   console.log(myDog.bark); // undefined
   ```
 
-* Using Objects for Lookups
+##### Using Objects for Lookups
 
   ```javascript
   // Can be used like a switch statement (keys must be strings)
@@ -562,7 +688,7 @@ Tag
   }
   ```
 
-* Testing Objects for Properties
+##### Testing Objects for Properties
 
   ```javascript
   // Similar to python's `in` operator
@@ -575,7 +701,7 @@ Tag
   }
   ```
 
-* Nested Objects
+##### Nested Objects
 
   ```javascript
   let myStorage = {
@@ -594,7 +720,7 @@ Tag
   console.log(gloveBoxContents); // maps
   ```
 
-* Accessing Nested Arrays
+##### Accessing Nested Arrays
 
   ```javascript
   let myPlants = [
@@ -612,7 +738,9 @@ Tag
   console.log(secondTree); // pine
   ```
 
-* While Loops
+#### Looping
+
+##### While Loops
 
   ```javascript
   let myArray = [];
@@ -624,7 +752,7 @@ Tag
   console.log(myArray); // [ 0, 1, 2, 3, 4 ]
   ```
 
-* For Loops
+##### For Loops
 
   ```javascript
   let myArray = [];
@@ -634,7 +762,7 @@ Tag
   console.log(myArray); // [ 0, 1, 2, 3, 4 ]
   ```
 
-* Iterate Through an Array with a For Loop
+##### Iterate Through an Array with a For Loop
 
   ```javascript
   let myArr = [2, 3, 4, 5, 6];
@@ -645,7 +773,7 @@ Tag
   console.log(total); // 20
   ```
 
-* Nesting For Loops
+##### Nesting For Loops
 
   ```javascript
   function multiplyAll(arr) {
@@ -667,7 +795,7 @@ Tag
   console.log(product); // 5040
   ```
 
-* Do...While Loops
+##### Do...While Loops
 
   ```javascript
   let myArray = [];
@@ -683,7 +811,7 @@ Tag
   * So it will push `10` to `myArray` and increment `i` to `11` then exit the loop
   * This is useful when you want to run the loop at least once
 
-* Profile Lookup
+##### Profile Lookup
 
   ```javascript
   let contacts = [
@@ -731,7 +859,157 @@ Tag
   ```
 
   * Other falsy values in JavaScript are `false`, `0`, `""`, `null`, `undefined`, and `NaN`
-* Generate Random Fractions with JavaScript
+
+#### Constructor Functions
+
+##### Purpose
+
+As noted, JavaScript objects are similar to python dictionaries. However, they are not as flexible as python dictionaries. For example, you can't add a new key-value pair to a JavaScript object after it's been created. This is where constructor functions come in. They are used to create multiple objects of the same type. They are similar to classes in other languages.
+
+  * Constructor functions are used to create objects
+  * They are similar to classes in other languages
+  * They are used to create multiple objects of the same type
+  * They are used to create objects with the same properties but different values
+
+Long story short:
+
+* objects are like python dictionaries
+  * except once they're created you can't add new key-value pairs
+* constructor functions are like python class definitions
+* constructor functions are invoked to create objects
+
+So objects are like python dictionaries and constructor functions are like python class definitions.
+But objects created using constructor functions __ARE__ similar to python objects.
+* They are similar to python objects in that they can have methods and properties (and methods can be used to change properties)
+
+##### Syntax
+
+  ```javascript
+  function Dog() {
+    this.name = "Spot";
+    this.color = "brown";
+    this.numLegs = 4;
+  }
+  ```
+
+  * The `this` keyword is used to refer to the current object
+  * The `new` keyword is used to create a new object from the constructor function
+  * The `new` keyword creates an instance of the object
+
+##### Invoking a Constructor Function
+
+  ```javascript
+  let hound = new Dog();
+  console.log(hound); // Dog { name: 'Spot', color: 'brown', numLegs: 4 }
+  ```
+
+##### Extending Constructors to Receive Arguments
+
+  ```javascript
+  function Dog(name, color) {
+    this.name = name;
+    this.color = color;
+    this.numLegs = 4;
+  }
+
+  let hound = new Dog("Spot", "brown");
+  console.log(hound); // Dog { name: 'Spot', color: 'brown', numLegs: 4 }
+  ```
+
+##### Verify an Object's Constructor with instanceof
+
+  ```javascript
+  function House(numBedrooms) {
+    this.numBedrooms = numBedrooms;
+  }
+
+  let myHouse = new House(4);
+  console.log(myHouse instanceof House); // true
+  ```
+
+##### Understand Own Properties
+
+  ```javascript
+  function Bird(name) {
+    this.name = name;
+    this.numLegs = 2;
+  }
+
+  let canary = new Bird("Tweety");
+  let ownProps = [];
+  for (let property in canary) {
+    if (canary.hasOwnProperty(property)) {
+      ownProps.push(property);
+    }
+  }
+  console.log(ownProps); // [ 'name', 'numLegs' ]
+  ```
+
+##### Use Prototype Properties to Reduce Duplicate Code
+
+  ```javascript
+  function Dog(name) {
+    this.name = name;
+  }
+
+  Dog.prototype.numLegs = 4; // this is allowing all Dog objects to have the numLegs property (even though it's not defined in the constructor function)
+
+  let beagle = new Dog("Snoopy");
+  console.log(beagle.numLegs); // 4
+  ```
+
+##### Iterate Over All Properties
+
+  ```javascript
+  function Dog(name) {
+    this.name = name;
+  }
+
+  Dog.prototype.numLegs = 4;
+
+  let beagle = new Dog("Snoopy");
+
+  let ownProps = [];
+  let prototypeProps = [];
+
+  for (let property in beagle) {
+    if (beagle.hasOwnProperty(property)) {
+      ownProps.push(property);
+    } else {
+      prototypeProps.push(property);
+    }
+  }
+
+  console.log(ownProps); // [ 'name' ]
+  console.log(prototypeProps); // [ 'numLegs' ]
+  ```
+
+#### Methods
+
+##### Methods
+
+  * Methods are functions that are stored as object properties
+  * They are defined in the same way as regular functions
+  * They are invoked using the dot notation
+  * They can be used to change object properties
+
+##### Example
+
+  ```javascript
+  let dog = {
+    name: "Spot",
+    numLegs: 4,
+    sayLegs: function () {
+      return "This dog has " + dog.numLegs + " legs.";
+    },
+  };
+
+  console.log(dog.sayLegs()); // This dog has 4 legs.
+  ```
+
+#### Built-In Functions: Random Numbers & Int-to-String Conversion
+
+##### Generate Random Fractions with JavaScript
 
   ```javascript
   function randomFraction() {
@@ -741,7 +1019,7 @@ Tag
   console.log(randomFraction()); // 0.12345678901234567
   ```
 
-* Generate Random Whole Numbers with JavaScript
+##### Generate Random Whole Numbers with JavaScript
 
   ```javascript
   function randomWholeNum() {
@@ -751,7 +1029,7 @@ Tag
   console.log(randomWholeNum()); // 7
   ```
 
-* Generate Random Whole Numbers within a Range
+##### Generate Random Whole Numbers within a Range
 
   ```javascript
   function randomRange(myMin, myMax) {
@@ -764,7 +1042,7 @@ Tag
   console.log(randomRange(5, 15)); // 10
   ```
 
-* Use the parseInt Function
+##### Use the parseInt Function
 
   ```javascript
   function convertToInteger(str) {
@@ -774,7 +1052,7 @@ Tag
   console.log(convertToInteger("56")); // 56
   ```
 
-* Use the parseInt Function with a Radix
+##### Use the parseInt Function with a Radix
 
   ```javascript
   function convertToInteger(str) {
@@ -787,29 +1065,9 @@ Tag
   * The radix is the base of the number in the string
   * Basically this is showing how to convert a binary number to a decimal number
 
-* Use the Conditional (Ternary) Operator
+#### Recursion
 
-  ```javascript
-  function checkEqual(a, b) {
-    return a === b ? true : false;
-  }
-
-  console.log(checkEqual(1, 2)); // false
-  ```
-
-  * This is like python's `a if condition else b` syntax
-  * Multiple ternary operators can be chained together:
-  
-      ```javascript
-      function checkSign(num) {
-        return num > 0 ? "positive" : num < 0 ? "negative" : "zero";
-      }
-  
-      console.log(checkSign(10)); // positive
-      ```
-    
-    * In python this would be `a if condition else b if condition else c`
-* Using recursion to create a countdown
+##### Using recursion to create a countdown
 
   ```javascript
   function countdown(n) {
@@ -831,7 +1089,8 @@ Tag
     * the recursive case is the `else` statement
     * the call stack is used to manage the values of `n` as the function is called recursively
       * the call stack is then used to build the array in the reverse order of the recursive calls
-* Using recursion to create a range of numbers
+
+##### Using recursion to create a range of numbers
 
   ```javascript
   function rangeOfNumbers(startNum, endNum) {
@@ -856,7 +1115,7 @@ Tag
 
 ---
 
-### Some useful JavaScript Built-in Functions
+### Useful JavaScript Built-in Functions
 
 * Notice lines line objectName[i].hasOwnProperty(propName) in the Profile Lookup example above
   * Useful examples:
@@ -957,13 +1216,53 @@ Tag
 
 ### ES6
 
-* Use Arrow Functions to Write Concise Anonymous Functions
 
-  ```javascript
-  const magic = () => new Date(); // or `const magic = () => { return new Date(); };`
-  ```
+#### Use Arrow Functions to Write Concise Anonymous Functions
 
-  * This similar to:
+Recall - normal function definition in JavaScript:
+* Named function:
+  * Named functions can be called anywhere in the code
+  * E.g. `function myFunction() { ... }` or `function myFunction(param1, param2) { ... }` or:
+```javascript
+function myFunction() {
+  ...
+}
+```
+
+* Anonymous function:  
+  * Anonymous functions can only be called after they are defined
+  * E.g. `const myFunction = function() { ... };` or `const myFunction = function(param1, param2) { ... };` or:
+```javascript
+const myFunction = function() {
+  ...
+}
+```
+
+The reason for the difference is that named functions are hoisted but anonymous functions are not.
+ 
+Anonymous functions should be used when you want to:
+* Pass a function as an argument to another function
+* Write a concise function
+* Preserve the value of `this` in the context of the function
+* Write a method in an object
+* Write a constructor function
+
+Named functions should be used when you want to:
+* Call a function before it is defined
+* Use recursion
+* Use closures
+* Use callbacks
+
+Arrow functions are a concise way to write anonymous functions.
+The syntax is similar to python's lambda functions.
+The syntax looks like assigning a function with no name `()` to a variable and pointing to the lambda function with an arrow `=>`.
+Use brackets when the "lambda function" has multiple lines.
+
+```javascript
+const magic = () => new Date(); // or `const magic = () => { return new Date(); };`
+```
+
+  * This similar to...
 
     ```javascript
     function magic() function() {
@@ -974,20 +1273,21 @@ Tag
     };
     ```
     
-    * EXCEPT the latter syntax gets hoisted but the former syntax does not
-      * Hoisting is the process of moving function declarations to the top of the file
-      * This means that the function can be called before it is defined
-      * This is not possible with arrow functions
-  * Arrow functions are anonymous functions
-    * An anonymous function is a function that doesn't have a name -- it is typically stored in a variable
-    * E.g. `const myFunc = function() { ... };` is a named function but `const myFunc = () => { ... };` is an anonymous function
-    * The difference is that named functions can be called anywhere in the code but anonymous functions can only be called after they are defined
-  * They are useful when you want to pass a function as an argument to another function or when you want to write a concise function
-  * They are also useful when you want to preserve the value of `this` in the context of the function.
-    * E.g. `const myFunc = () => { this.value = 1; };` will set the value of `this` to the global object (i.e. `window` in the browser)
-  * The `const` keyword is used to declare arrow functions
-    * The reason for this is that arrow functions are anonymous functions so 
-* Write Arrow Functions with Parameters
+  * ...EXCEPT the latter syntax gets hoisted but the former syntax does not
+    * Hoisting is the process of moving function declarations to the top of the file
+    * This means that the function can be called before it is defined
+    * This is not possible with arrow functions
+* Arrow functions are anonymous functions
+  * An anonymous function is a function that doesn't have a name -- it is typically stored in a variable
+  * E.g. `const myFunc = function() { ... };` is a named function but `const myFunc = () => { ... };` is an anonymous function
+  * The difference is that named functions can be called anywhere in the code but anonymous functions can only be called after they are defined
+* They are useful when you want to pass a function as an argument to another function or when you want to write a concise function
+* They are also useful when you want to preserve the value of `this` in the context of the function.
+  * E.g. `const myFunc = () => { this.value = 1; };` will set the value of `this` to the global object (i.e. `window` in the browser)
+* The `const` keyword is used to declare arrow functions
+  * The reason for this is that arrow functions are anonymous functions so they must be stored in a variable
+
+#### Write Arrow Functions with Parameters
 
   ```javascript
   const myConcat = (arr1, arr2) => arr1.concat(arr2);
@@ -1002,7 +1302,7 @@ Tag
       return arr1.concat(arr2);
     };
     ```
-* Set Default Parameters for Your Functions
+#### Set Default Parameters for Your Functions
 
   ```javascript
   const increment = (number, value = 1) => number + value;
@@ -1011,7 +1311,7 @@ Tag
   console.log(increment(5)); // 6
   ```
 
-* Compare Scopes of the var and let Keywords
+#### Compare Scopes of the var and let Keywords
   * `var` is function-scoped
   * `let` is block-scoped
     * E.g. `if` statements, `for` loops, and `while` loops are blocks
@@ -1036,7 +1336,7 @@ Tag
   checkScope(); // logs "block scope" and "function scope"
   ```
 
-* Mutate an Array Declared with const
+#### Mutate an Array Declared with const
   * strict mode can be enabled by adding `"use strict";` to the top of the file
     * This can be used to prevent accidentally overwriting variables
 
@@ -1055,7 +1355,7 @@ Tag
   console.log(s); // [ 2, 5, 7 ]
   ```
 
-* Prevent Object Mutation
+#### Prevent Object Mutation
 
   ```javascript
   function freezeObj() {
@@ -1083,7 +1383,7 @@ Tag
       * `Object.seal()` prevents adding and deleting properties but allows changing existing properties
       * `Object.preventExtensions()` prevents adding properties but allows changing and deleting existing properties
 
-* Use the Rest Parameter with Function Parameters
+#### Use the Rest Parameter with Function Parameters
 
   ```javascript
   const sum = (...args) => {
@@ -1099,7 +1399,7 @@ Tag
     * It is similar to the `*args` syntax in python
       * The equivalent of `**kwargs` in python is the spread operator (see below)
 
-* Use the Spread Operator to Evaluate Arrays In-Place
+#### Use the Spread Operator to Evaluate Arrays In-Place
 
   ```javascript
   const arr1 = ["JAN", "FEB", "MAR", "APR", "MAY"];
@@ -1117,7 +1417,7 @@ Tag
   * This is necessary in cases where, e.g., a function is expecting an array
     * Another example is `Math.max(...myArray)`
 
-* Use Destructuring Assignment to Extract Values from Objects
+#### Use Destructuring Assignment to Extract Values from Objects
   * Destructuring is a way to extract values from objects and arrays
 
   ```javascript
@@ -1152,7 +1452,7 @@ Tag
     
     * This is useful when you want to extract multiple values from an object...you can just name the properties you want to extract
 
-* Use Destructuring Assignment to Assign Variables from Objects
+#### Use Destructuring Assignment to Assign Variables from Objects
   * You can give different names to the variables you are assigning using `:`
 
   ```javascript
@@ -1165,7 +1465,7 @@ Tag
   const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES;
   ```
 
-* Use Destructuring Assignment to Assign Variables from Arrays
+#### Use Destructuring Assignment to Assign Variables from Arrays
 
   ```javascript
   const [a, b] = [1, 2, 3, 4, 5, 6];
@@ -1188,7 +1488,7 @@ Tag
     console.log(a, b); // 1 4
     ```
 
-* Destructuring via rest elements
+#### Destructuring via rest elements
 
   ```javascript
   const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
@@ -1196,7 +1496,7 @@ Tag
   console.log(arr); // [ 3, 4, 5, 7 ]
   ```
 
-* Use Destructuring Assignment to Pass an Object as a Function's Parameters
+#### Use Destructuring Assignment to Pass an Object as a Function's Parameters
 
   ```javascript
   const HIGH_TEMPERATURES = {
@@ -1214,7 +1514,7 @@ Tag
   console.log(forecast(HIGH_TEMPERATURES)); // Today's high is 77 and tomorrow's high is 80
   ```
 
-* Create Strings using Template Literals
+#### Create Strings using Template Literals
 
   ```javascript
   const person = {
@@ -1229,7 +1529,7 @@ Tag
   // I am 56 years old.
   ```
 
-* Write Concise Object Literal Declarations Using Object Property Shorthand
+#### Write Concise Object Literal Declarations Using Object Property Shorthand
 
   ```javascript
   const getMousePosition = (x, y) => ({
@@ -1246,7 +1546,7 @@ Tag
       * This is because the function body is a single expression (i.e. the object)
       * So basically the function is equivalent to `const getMousePosition = (x, y) => { return { x: x, y: y }; };`
 
-* Write Concise Declarative Functions with ES6
+#### Write Concise Declarative Functions with ES6
 
   ```javascript
   const person = {
@@ -1270,79 +1570,79 @@ Tag
       * The function is being defined as a property of the object, so it is not necessary to formally define it
       * This is similar to python's `lambda` keyword
 
-* Use class Syntax to Define a Constructor Function
+#### Use class Syntax to Define a Constructor Function
 
   ```javascript
   
   ```
 
-* Use getters and setters to Control Access to an Object
+#### Use getters and setters to Control Access to an Object
 
   ```javascript
   
   ```
 
-* Create a Module Script
+#### Create a Module Script
 
   ```javascript
   
   ```
 
-* Use export to Share a Code Block
+#### Use export to Share a Code Block
 
   ```javascript
   
   ```
 
-* Reuse JavaScript Code Using import
+#### Reuse JavaScript Code Using import
 
   ```javascript
   
   ```
 
-* Use * to Import Everything from a File
+#### Use * to Import Everything from a File
 
   ```javascript
   
   ```
 
-* Create an Export Fallback with export default
+#### Create an Export Fallback with export default
 
   ```javascript
   
   ```
 
-* Import a Default Export
+#### Import a Default Export
 
   ```javascript
   
   ```
 
-* Create a JavaScript Promise
+#### Create a JavaScript Promise
 
   ```javascript
   
   ```
 
-* Complete a Promise with resolve and reject
+#### Complete a Promise with resolve and reject
 
   ```javascript
   
   ```
 
-* Handle a Fulfilled Promise with then
+#### Handle a Fulfilled Promise with then
 
   ```javascript
   
   ```
 
-* Handle a Rejected Promise with catch
+#### Handle a Rejected Promise with catch
 
   ```javascript
   
   ```
 
-* Use catch to Handle Asynchronous Operations
+#### Use catch to Handle Asynchronous Operations
 
   ```javascript
   
@@ -1350,7 +1650,53 @@ Tag
 
 ---
 
+## The DOM
+
+The Document Object Model (DOM) is a programming interface for HTML documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects. That way, programming languages can connect to the page.
+
+### Theory of the DOM
+
+The DOM is a tree-like structure that represents the HTML document. It is used to connect web pages to scripts like JavaScript. The DOM is an object-oriented representation of the web page, which can be modified with a scripting language like JavaScript. In short, the DOM is the way JavaScript sees its containing HTML page and allows JavaScript to access the HTML elements and styles to manipulate them.
+
+### Tree Details
+
+The DOM is a tree of nodes. HTML elements are nodes, and the document itself is a node. The document is the root node, and all other nodes are children of the document. Nodes can have siblings, children, and parents. "Sibling nodes" are nodes that share the same parent. 
+
+### Common Usage Patterns (JavaScript Interaction)
+
+| HTML Element | JavaScript Property | JavaScript Method | JavaScript Event | Example Usage |
+| --- | --- | --- | --- | --- |
+| `<button>` | `.innerHTML` | `.getElementById()` | `.onclick` | `document.getElementById('btn').onclick = function() {...}` |
+| `<button>` | `.innerHTML` | `.getElementsByClassName()` | `.onclick` | `document.getElementsByClassName('btn')[0].onclick = function() {...}` |
+| `<button>` | `.innerHTML` | `.getElementsByTagName()` | `.onclick` | `document.getElementsByTagName('button')[0].onclick = function() {...}` |
+| `<button>` | `.innerHTML` | `.querySelector()` | `.onclick` | `document.querySelector('#btn').onclick = function() {...}` |
+| `<button>` | `.innerHTML` | `.querySelectorAll()` | `.onclick` | `document.querySelectorAll('.btn')[0].onclick = function() {...}` |
+| `<button>` | `.innerHTML` | `.querySelectorAll()` | `.onclick` | `document.querySelectorAll('button')[0].onclick = function() {...}` |
+| `<button>` | `.innerHTML` | `.querySelector()` | `.addEventListener()` | `document.querySelector('#btn').addEventListener('click', function() {...})` |
+| `<button>` | `.innerHTML` | `.querySelectorAll()` | `.addEventListener()` | `document.querySelectorAll('.btn')[0].addEventListener('click', function() {...})` |
+| `<button>` | `.innerHTML` | `.querySelectorAll()` | `.addEventListener()` | `document.querySelectorAll('button')[0].addEventListener('click', function() {...})` |
+| `<button>` | `.innerHTML` | `.querySelector()` | `.onmouseover` | `document.querySelector('#btn').onmouseover = function() {...}` |
+| `<button>` | `.innerHTML` | `.querySelectorAll()` | `.onmouseover` | `document.querySelectorAll('.btn')[0].onmouseover = function() {...}` |
+| `<button>` | `.innerHTML` | `.querySelectorAll()` | `.onmouseover` | `document.querySelectorAll('button')[0].onmouseover = function() {...}` |
+| `<button>` | `.innerHTML` | `.querySelector()` | `.onmouseout` | `document.querySelector('#btn').onmouseout = function() {...}` |
+| `<button>` | `.innerHTML` | `.querySelectorAll()` | `.onmouseout` | `document.querySelectorAll('.btn')[0].onmouseout = function() {...}` |
+| `<button>` | `.innerHTML` | `.querySelectorAll()` | `.onmouseout` | `document.querySelectorAll('button')[0].onmouseout = function() {...}` |
+| `<input>` | `.value` | `.querySelector()` | `.onchange` | `document.querySelector('#input').onchange = function() {...}` |
+| `<input>` | `.value` | `.querySelectorAll()` | `.onchange` | `document.querySelectorAll('.input')[0].onchange = function() {...}` |
+| `<input>` | `.value` | `.querySelectorAll()` | `.onchange` | `document.querySelectorAll('input')[0].onchange = function() {...}` |
+| `<input>` | `.value` | `.querySelector()` | `.onkeyup` | `document.querySelector('#input').onkeyup = function() {...}` |
+| `<input>` | `.value` | `.querySelectorAll()` | `.onkeyup` | `document.querySelectorAll('.input')[0].onkeyup = function() {...}` |
+
 ## jQuery
+
+### Raison Detre
+
+jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animation, and Ajax.
+It extends plain vanilla JavaScript by providing a simpler syntax for common tasks, such as selecting elements, manipulating the DOM, and handling events.
+jQuery syntax enables developers to write code that is shorter and simpler than plain vanilla JavaScript.
+
+
+
 
 ### Common Usage Patterns
 | Method | Description | Example Usage |
@@ -1390,8 +1736,41 @@ Async programming handles operations that will complete later, allowing the prog
 ### Promises
 
 A Promise is an object representing the completion or failure of an asynchronous operation.
+At a high-level a Promise is an object that represents the eventual result of an asynchronous operation.
+It is a placeholder into which the successful result value or reason for failure will materialize.
+It is declared like a variable using the `new` keyword and invoked with the `then()` method.
 
-#### Syntax and Basic Usage
+#### Understanding Promises
+
+A Promise is an object representing the completion or failure of an asynchronous operation. 
+A Promise can be in one of three states: pending, fulfilled, or rejected. 
+  * Managing the pending state is how the Promise object enables asynchronous operations to be handled in a synchronous-like manner/syntax.
+A Promise is created using the `new` keyword and contains a callback function with two parameters: `resolve` and `reject`. 
+  * The `resolve` and `reject` parameters are **functions** that are called to resolve or reject the Promise.
+    * They are generally called within an `if` statement that checks whether the asynchronous operation was successful or not.
+  * The Promise is resolved when the asynchronous operation is successful and rejected when it fails. 
+The Promise object has methods for handling resolved and rejected Promises: 
+* `.then()`:
+* `.catch()`
+* `.finally()`. 
+
+Promises can be chained to handle sequential asynchronous operations (i.e. cases where one operation depends on the result of another operation). 
+
+#### Syntax and Usage
+
+* Syntax:
+
+```javascript
+let myPromise = new Promise((resolve, reject) => {
+  // Asynchronous operation code
+  let condition = true;
+  if (condition) {
+    resolve('Promise is resolved successfully.');
+  } else {
+    reject('Promise is rejected.');
+  }
+});
+```
 
 ```javascript
 let myPromise = new Promise((resolve, reject) => {
@@ -1409,6 +1788,35 @@ myPromise.then(
   (error) => { console.log(error); }
 );
 ```
+
+#### Promise States
+
+A Promise can be in one of three states:
+
+* Pending: Initial state, neither fulfilled nor rejected.
+* Fulfilled: Operation completed successfully.
+* Rejected: Operation failed.
+
+#### Promise Methods
+
+* .then(): Handles fulfilled and rejected Promises.
+* .catch(): Handles rejected Promises.
+* .finally(): Handles all Promises.
+
+#### Promise.all()
+
+Promise.all() takes an array of Promises and returns a single Promise that resolves when all of the Promises in the array resolve.
+
+```javascript
+Promise.all([promise1, promise2])
+  .then((values) => {
+    // Handle resolved promises
+  })
+  .catch((error) => {
+    // Handle error
+  });
+```
+
 #### Chaining Promises
 
 Promises can be chained to handle sequential asynchronous operations.
