@@ -59,6 +59,10 @@
         - [Using recursion to create a countdown](#using-recursion-to-create-a-countdown)
         - [Using recursion to create a range of numbers](#using-recursion-to-create-a-range-of-numbers)
     - [Useful JavaScript Built-in Functions](#useful-javascript-built-in-functions)
+    - [How to run JavaScript code](#how-to-run-javascript-code)
+      - [In the browser](#in-the-browser)
+      - [In the terminal](#in-the-terminal)
+      - [In VS Code](#in-vs-code)
     - [ES6](#es6)
       - [Use Arrow Functions to Write Concise Anonymous Functions](#use-arrow-functions-to-write-concise-anonymous-functions)
       - [Write Arrow Functions with Parameters](#write-arrow-functions-with-parameters)
@@ -80,15 +84,6 @@
       - [Use getters and setters to Control Access to an Object](#use-getters-and-setters-to-control-access-to-an-object)
       - [Create a Module Script](#create-a-module-script)
       - [Use export to Share a Code Block](#use-export-to-share-a-code-block)
-      - [Reuse JavaScript Code Using import](#reuse-javascript-code-using-import)
-      - [Use \* to Import Everything from a File](#use--to-import-everything-from-a-file)
-      - [Create an Export Fallback with export default](#create-an-export-fallback-with-export-default)
-      - [Import a Default Export](#import-a-default-export)
-      - [Create a JavaScript Promise](#create-a-javascript-promise)
-      - [Complete a Promise with resolve and reject](#complete-a-promise-with-resolve-and-reject)
-      - [Handle a Fulfilled Promise with then](#handle-a-fulfilled-promise-with-then)
-      - [Handle a Rejected Promise with catch](#handle-a-rejected-promise-with-catch)
-      - [Use catch to Handle Asynchronous Operations](#use-catch-to-handle-asynchronous-operations)
   - [The DOM](#the-dom)
     - [Theory of the DOM](#theory-of-the-dom)
     - [Tree Details](#tree-details)
@@ -118,11 +113,18 @@
       - [Event Loop Phases](#event-loop-phases)
       - [Event Loop Example](#event-loop-example)
       - [Event Loop and Asynchronous Operations](#event-loop-and-asynchronous-operations)
+  - [Table of common built-in network request functions](#table-of-common-built-in-network-request-functions)
   - [Introduction to React Framework](#introduction-to-react-framework)
     - [Background and Theory](#background-and-theory)
     - [Why React?](#why-react)
     - [Basic Concepts](#basic-concepts)
     - [Common Usage](#common-usage)
+    - [Intermediate Concepts](#intermediate-concepts)
+    - [React Common Libraries](#react-common-libraries)
+  - [Primer on TypeScript](#primer-on-typescript)
+    - [Examples of TypeScript](#examples-of-typescript)
+    - [TypeScript vs JavaScript](#typescript-vs-javascript)
+    - [TypeScript with React](#typescript-with-react)
   - [Node.js and npm](#nodejs-and-npm)
     - [Background and Theory of Node.js](#background-and-theory-of-nodejs)
     - [Why Use Node.js?](#why-use-nodejs)
@@ -1214,6 +1216,40 @@ But objects created using constructor functions __ARE__ similar to python object
 
 ---
 
+### How to run JavaScript code
+
+#### In the browser
+
+* Open the browser console
+  * In Chrome: `Ctrl + Shift + J`
+* Or use the `script` tag in the HTML file
+  * E.g. `<script src="script.js"></script>`
+  * This is useful when you want to run the code when the page loads
+* Or use the `script` tag in the HTML file with the `defer` attribute
+  * E.g. `<script src="script.js" defer></script>`
+  * This is useful when you want to run the code when the page loads but you want to load the HTML first (e.g. when you want to use the DOM)
+    * This can also be done by putting the `script` tag at the end of the `body` tag or using an event listener on the `DOMContentLoaded` event
+* Or use the `script` tag in the HTML file with the `async` attribute
+  * E.g. `<script src="script.js" async></script>`
+  * This is useful when you want to run the code when the page loads but you don't want to wait for the HTML to load (e.g. when you don't want to use the DOM)
+    * This can also be done by putting the `script` tag at the beginning of the `body` tag or using an event listener on the `load` event
+
+#### In the terminal
+
+* Install Node.js
+* Run `node script.js`
+* Or run `node` to open the Node.js REPL
+  * This is useful for testing code
+* Or run `node -i script.js` to run the script and then open the Node.js REPL (interactive mode)
+* Or run `node -e "console.log('Hello World!')"` to run a one-liner
+
+#### In VS Code
+
+* Install the Code Runner extension
+* Or use the Quokka.js extension
+  * This is useful for testing code
+  * It can be used to run code in the editor or in the terminal
+
 ### ES6
 
 
@@ -1573,79 +1609,87 @@ const magic = () => new Date(); // or `const magic = () => { return new Date(); 
 #### Use class Syntax to Define a Constructor Function
 
   ```javascript
-  
+  class Vegetable {
+    constructor(name) {
+      this.name = name;
+    }
+  }
+
+  const carrot = new Vegetable("carrot");
+  console.log(carrot.name); // Should display 'carrot'
   ```
 
 #### Use getters and setters to Control Access to an Object
 
   ```javascript
-  
+  class Thermostat {
+    constructor(fahrenheit) {
+      this.fahrenheit = fahrenheit;
+    }
+
+    get temperature() {
+      return (5 / 9) * (this.fahrenheit - 32);
+    }
+
+    set temperature(celsius) {
+      this.fahrenheit = (celsius * 9.0) / 5 + 32;
+    }
+  }
+
+  const thermos = new Thermostat(76); // Setting in Fahrenheit scale
+  let temp = thermos.temperature; // 24.44 in Celsius
+  thermos.temperature = 26;
+  temp = thermos.temperature; // 26 in Celsius
   ```
 
 #### Create a Module Script
 
+Module scripts are JavaScript files that can be imported and exported.
+
+  ```html
+  <html>
+    <body>
+      <script type="module" src="index.js"></script>
+    </body>
+  </html>
+  ```
+
+The code within index.js can be imported and exported using the `import` and `export` keywords:
+
   ```javascript
-  
+  // import { add } from "./math_functions.js"; // this is the syntax for importing a single function
+  import * as myMathModule from "./math_functions.js"; // this is the syntax for importing an entire module
+  // import { add, subtract } from "./math_functions.js"; // this is the syntax for importing multiple functions
+
+  console.log(myMathModule.add(1, 2)); // 3
+  console.log(myMathModule.subtract(1, 2)); // -1
+  ```
+
+  ```javascript
+  // export const add = (x, y) => {
+  //   return x + y;
+  // };
+
+  // export const subtract = (x, y) => {
+  //   return x - y;
+  // };
+
+  export const add = (x, y) => x + y; // this is the syntax for exporting a single function
+  export const subtract = (x, y) => x - y; // this is the syntax for exporting a single function
   ```
 
 #### Use export to Share a Code Block
 
   ```javascript
+  const uppercaseString = (string) => {
+    return string.toUpperCase();
+  };
   
-  ```
+  const lowercaseString = (string) => {
+    return string.toLowerCase();
+  };
 
-#### Reuse JavaScript Code Using import
-
-  ```javascript
-  
-  ```
-
-#### Use * to Import Everything from a File
-
-  ```javascript
-  
-  ```
-
-#### Create an Export Fallback with export default
-
-  ```javascript
-  
-  ```
-
-#### Import a Default Export
-
-  ```javascript
-  
-  ```
-
-#### Create a JavaScript Promise
-
-  ```javascript
-  
-  ```
-
-#### Complete a Promise with resolve and reject
-
-  ```javascript
-  
-  ```
-
-#### Handle a Fulfilled Promise with then
-
-  ```javascript
-  
-  ```
-
-#### Handle a Rejected Promise with catch
-
-  ```javascript
-  
-  ```
-
-#### Use catch to Handle Asynchronous Operations
-
-  ```javascript
-  
+  export { uppercaseString, lowercaseString };
   ```
 
 ---
@@ -1800,8 +1844,85 @@ A Promise can be in one of three states:
 #### Promise Methods
 
 * .then(): Handles fulfilled and rejected Promises.
+  * This is similar to a try/catch block in synchronous JavaScript.
+  * It is used to handle the result of a resolved Promise.
+  * It takes two callback functions as arguments: one for the resolved Promise and one for the rejected Promise.
 * .catch(): Handles rejected Promises.
+  * This is similar to a catch block in synchronous JavaScript.
+  * It is used to handle the reason for a rejected Promise.
+  * It takes one callback function as an argument: the callback function for the rejected Promise.
 * .finally(): Handles all Promises.
+  * This is similar to a finally block in synchronous JavaScript.
+  * It is used to execute code after a Promise is settled (i.e. resolved or rejected).
+  * It takes one callback function as an argument: the callback function for the settled Promise.
+
+In comparison to synchronous JavaScript, Promise methods are similar to try/catch/finally blocks.
+These are equivalent in python. Async python looks like this:
+
+```python
+import asyncio
+
+async def main():
+    print('Hello')
+    await asyncio.sleep(1)
+    print('World')
+
+asyncio.run(main())
+```
+
+Here's a more complex example:
+  
+  ```python
+  import asyncio
+  
+  async def say_after(delay, what):
+      await asyncio.sleep(delay)
+      print(what)
+
+  async def main():
+      print(f"started at {time.strftime('%X')}")
+
+      await say_after(1, 'hello')
+      await say_after(2, 'world')
+
+      print(f"finished at {time.strftime('%X')}")
+
+  asyncio.run(main()) # this is the equivalent of `await main()`
+  ```
+
+Example of .then():
+
+```javascript
+myPromise.then(
+  (value) => { console.log(value); },
+  (error) => { console.log(error); }
+);
+```
+
+In the above, `value` is the result of the resolved Promise. It is the value passed to the `resolve()` function.
+`error` is the reason for the rejection. It is the value passed to the `reject()` function.
+
+Example of .catch():
+
+```javascript
+myPromise.catch((error) => {
+  console.log(error);
+});
+```
+
+In the above, `error` is the reason for the rejection. It is the value passed to the `reject()` function.
+Common reasons for rejection are network errors, server errors, or user input errors.
+Common errors are `TypeError`, `ReferenceError`, and `SyntaxError`. These are all built-in JavaScript errors.
+
+Example of .finally():
+
+```javascript
+myPromise.finally(() => {
+  console.log('Promise is settled.');
+});
+```
+
+In the above, the callback function is executed when the Promise is settled, regardless of whether it is resolved or rejected.
 
 #### Promise.all()
 
@@ -1840,11 +1961,64 @@ myPromise
 ### Async/Await
 
 async and await make asynchronous code easier to write and read.
+They are built on top of Promises and are syntactic sugar for Promises.
+async declares an asynchronous function, returning a Promise.
+* It is critical to remember that async functions always return a Promise.
+await is used in an async function to wait for a Promise.
+* It can only be used within an async function.
+* await can be used to wait for any Promise-based function. For example:
+
+```javascript
+async function fetchData() {
+  let response = await fetch('https://api.example.com/data');
+  let data = await response.json();
+  console.log(data);
+}
+```
+
+In the above, fetchData() is an async function that fetches data from an API.
+* await is used to wait for the fetch() Promise to resolve. (fetch() is a built-in JavaScript function for making network requests.)
+* await is also used to wait for the response.json() Promise to resolve. (response.json() is a built-in JavaScript function for parsing JSON data.)
+Here is the same example using .then():
+
+```javascript
+async function fetchData() {
+  fetch('https://api.example.com/data')
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
+}
+
+fetchData();
+```
+
+Note that the return value of an async function is wrapped in a Promise. This means that async functions can be chained with .then().
+
+Here is the same example using the Promise constructor:
+
+```javascript
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    fetch('https://api.example.com/data')
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch((error) => reject(error));
+  });
+}
+
+fetchData()
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error));
+```
+
+While Promise is still used under the hood, async/await abstracts away the Promise constructor and .then() and .catch() methods as well as the need to explicitly return a Promise. Async/await also doesn't require the use of arrow functions or resolve() and reject() (although they can still be used).
+
+In short, using async/await is a more concise way of writing asynchronous code than using Promises. Promises require you to chain .then() and .catch() methods, which can be difficult to read and write. async/await allows you to write asynchronous code that looks like synchronous code.
+
 
 #### Async Function
 
 async declares an asynchronous function, returning a Promise.
-
 
 ```javascript
 async function myAsyncFunction() {
@@ -1853,9 +2027,12 @@ async function myAsyncFunction() {
 }
 
 myAsyncFunction()
-  .then((value) => console.log(value))
-  .catch((error) => console.log(error));
+  .then((value) => console.log(value)) // `value` is the result of the resolved Promise
+  .catch((error) => console.log(error)); // `error` is the reason for the rejection
 ```
+
+When myAsyncFunction() is invoked, it returns a Promise. The Promise is resolved with the value 'Success'.
+Note that the return value of an async function is wrapped in a Promise. This means that async functions can be chained with .then().
 
 #### Await Keyword
 
@@ -1993,6 +2170,44 @@ The event loop is crucial to asynchronous programming in JavaScript. It allows t
 
 ---
 
+## Table of common built-in network request functions
+
+| Function | Description | Example Usage |
+| --- | --- | --- |
+| `fetch()` | Fetches a resource from the network | `fetch('https://api.example.com/data')` |
+| `XMLHttpRequest()` | Creates an XMLHttpRequest object | `var xhttp = new XMLHttpRequest()` |
+| `onreadystatechange` | Defines a function to be called when the readyState property changes | `xhttp.onreadystatechange = function() {...}` |
+| `open()` | Initializes a request | `xhttp.open('GET', 'https://api.example.com/data', true)` |
+| `send()` | Sends the request to the server | `xhttp.send()` |
+| `readyState` | Holds the status of the XMLHttpRequest | `xhttp.readyState` |
+| `status` | Returns the status-number of a request | `xhttp.status` |
+| `responseText` | Returns the response data as a string | `xhttp.responseText` |
+| `responseXML` | Returns the response data as XML data | `xhttp.responseXML` |
+| `onload` | Defines a function to be called when the request is completed | `xhttp.onload = function() {...}` |
+| `onerror` | Defines a function to be called when the request fails | `xhttp.onerror = function() {...}` |
+| `onprogress` | Defines a function to be called when the browser starts receiving the response from the server | `xhttp.onprogress = function() {...}` |
+| `onabort` | Defines a function to be called when the request is aborted | `xhttp.onabort = function() {...}` |
+| `onloadstart` | Defines a function to be called when the browser starts to load the response | `xhttp.onloadstart = function() {...}` |
+| `onloadend` | Defines a function to be called when the browser has finished loading the response | `xhttp.onloadend = function() {...}` |
+| `onreadystatechange` | Defines a function to be called each time the readyState property changes | `xhttp.onreadystatechange = function() {...}` |
+| `setRequestHeader()` | Adds a label/value pair to the header to be sent | `xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')` |
+| `getResponseHeader()` | Returns specific header information from the server response | `xhttp.getResponseHeader('Content-type')` |
+| `getAllResponseHeaders()` | Returns all the header information from the server response | `xhttp.getAllResponseHeaders()` |
+| `overrideMimeType()` | Overrides the MIME type returned by the server | `xhttp.overrideMimeType('text/xml')` |
+| `withCredentials` | Specifies whether or not to include cookies in the request | `xhttp.withCredentials = true` |
+| `abort()` | Cancels the current request | `xhttp.abort()` |
+| `prompt()` | Displays a dialog box that prompts the visitor for input | `prompt('Please enter your name')` |
+| `confirm()` | Displays a dialog box with a specified message, along with an OK and a Cancel button | `confirm('Are you sure?')` |
+| `alert()` | Displays an alert box with a specified message and an OK button | `alert('Hello World!')` |
+| `setTimeout()` | Calls a function or evaluates an expression after a specified number of milliseconds | `setTimeout(function() {...}, 3000)` |
+| `clearTimeout()` | Cancels a setTimeout() method | `clearTimeout(myVar)` |
+| `setInterval()` | Calls a function or evaluates an expression at specified intervals (in milliseconds) | `setInterval(function() {...}, 3000)` |
+| `clearInterval()` | Cancels a setInterval() method | `clearInterval(myVar)` |
+
+Note in the above that `alert()`, `confirm()`, and `prompt()` are not network request functions, but are included for completeness. They are synchronous functions that block the main thread and should be avoided in modern web development.
+
+---
+
 ## Introduction to React Framework
 
 React is a popular JavaScript library for building user interfaces, particularly for single-page applications. It allows developers to create large web applications that can change data, without reloading the page.
@@ -2083,6 +2298,273 @@ React is commonly used for:
 - Complex Applications with Dynamic Data: The use of state and props in React makes it suitable for applications with complex and changing data.
 
 React's design and capabilities make it an excellent choice for developers looking to build dynamic, high-performance web applications. Its component-based architecture, combined with its declarative nature and strong community support, makes React a go-to library in modern web development.
+
+### Intermediate Concepts
+
+1. **Virtual DOM**: React creates an in-memory data structure cache, computes the resulting differences, and then updates the browser's displayed DOM efficiently. This allows the programmer to write code as if the entire page is rendered on each change, while the React libraries only render subcomponents that actually change.
+
+2. **React Hooks**: Hooks are functions that let you "hook into" React state and lifecycle features from function components. Hooks don't work inside classes - they let you use React without classes.
+
+    ```javascript
+    import React, { useState } from 'react';
+
+    function Example() {
+      // Declare a new state variable, which we'll call "count"
+      const [count, setCount] = useState(0);
+
+      return (
+        <div>
+          <p>You clicked {count} times</p>
+          <button onClick={() => setCount(count + 1)}>
+            Click me
+          </button>
+        </div>
+      );
+    }
+    ```
+3. **React Router**: React Router is a collection of navigational components that compose declaratively with your application. React Router is a third-party library that allows you to handle routing in a web app, using dynamic routing, nested routes, and more.
+
+    ```javascript
+    import React from "react";
+    import ReactDOM from "react-dom";
+    import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+    function Index() {
+      return <h2>Home</h2>;
+    }
+
+    function About() {
+      return <h2>About</h2>;
+    }
+
+    function Users() {
+      return <h2>Users</h2>;
+    }
+
+    function App() {
+      return (
+        <Router>
+          <div>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/about/">About</Link>
+                </li>
+                <li>
+                  <Link to="/users/">Users</Link>
+                </li>
+              </ul>
+            </nav>
+
+            <Route path="/" exact component={Index} />
+            <Route path="/about/" component={About} />
+            <Route path="/users/" component={Users} />
+          </div>
+        </Router>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));
+    ```
+
+4. **React Context**: Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+    ```javascript
+    const ThemeContext = React.createContext('light');
+
+    class App extends React.Component {
+      render() {
+        // Use a Provider to pass the current theme to the tree below.
+        // Any component can read it, no matter how deep it is.
+        // In this example, we're passing "dark" as the current value.
+        return (
+          <ThemeContext.Provider value="dark">
+            <Toolbar />
+          </ThemeContext.Provider>
+        );
+      }
+    }
+
+    // A component in the middle doesn't have to
+    // pass the theme down explicitly anymore.
+    function Toolbar(props) {
+      return (
+        <div>
+          <ThemedButton />
+        </div>
+      );
+    }
+
+    function ThemedButton(props) {
+      // Use a Consumer to read the current theme context.
+      // React will find the closest theme Provider above and use its value.
+      // In this example, the current theme is "dark".
+      return (
+        <ThemeContext.Consumer>
+          {theme => <Button {...props} theme={theme} />}
+        </ThemeContext.Consumer>
+      );
+    }
+    ```
+
+5. **React Testing Library**: React Testing Library is a set of helpers that let you test React components without relying on their implementation details.
+
+    ```javascript
+    import React from 'react'
+    import { render, fireEvent } from '@testing-library/react'
+    import '@testing-library/jest-dom/extend-expect'
+
+    function Counter() {
+      const [count, setCount] = React.useState(0)
+
+      return (
+        <div>
+          <button onClick={() => setCount(count + 1)}>
+            Clicked {count} times
+          </button>
+        </div>
+      )
+    }
+
+    test('increments counter', () => {
+      const { getByText } = render(<Counter />)
+      const button = getByText(/clicked 0 times/i)
+      fireEvent.click(button)
+      expect(button).toHaveTextContent(/clicked 1 times/i)
+    })
+    ```
+
+6. **React Redux**: Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
+
+    ```javascript
+    import { createStore } from 'redux'
+
+    /**
+     * This is a reducer, a pure function with (state, action) => state signature.
+     * It describes how an action transforms the state into the next state.
+     *
+     * The shape of the state is up to you: it can be a primitive, an array, an object,
+     * or even an Immutable.js data structure. The only important part is that you should
+     * not mutate the state object, but return a new object if the state changes.
+     *
+     * In this example, we use a `switch` statement and strings, but you can use a helper that
+     * follows a different convention (such as function maps) if it makes sense for your
+     * project.
+     */
+    function counter(state = 0, action) {
+      switch (action.type) {
+        case 'INCREMENT':
+          return state + 1
+        case 'DECREMENT':
+          return state - 1
+        default:
+          return state
+      }
+    }
+
+    // Create a Redux store holding the state of your app.
+    // Its API is { subscribe, dispatch, getState }.
+    let store = createStore(counter)
+
+    // You can subscribe to the updates manually, or use bindings to your view layer.
+    store.subscribe(() => console.log(store.getState()))
+
+    // The only way to mutate the internal state is to dispatch an action.
+    // The actions can be serialized, logged or stored and later replayed.
+    store.dispatch({ type: 'INCREMENT' })
+    // 1
+    store.dispatch({ type: 'INCREMENT' })
+    // 2
+    store.dispatch({ type: 'DECREMENT' })
+    // 1
+    ```
+
+Redux is useful for managing the state of an application. It is commonly used with React, but can be used with any other JavaScript framework or library.
+
+### React Common Libraries
+
+1. **React Router**: React Router is a collection of navigational components that compose declaratively with your application. React Router is a third-party library that allows you to handle routing in a web app, using dynamic routing, nested routes, and more.
+2. **React Redux**: Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
+3. **React Testing Library**: React Testing Library is a set of helpers that let you test React components without relying on their implementation details.
+4. **React Context**: Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+5. **React Hooks**: Hooks are functions that let you "hook into" React state and lifecycle features from function components. Hooks don't work inside classes - they let you use React without classes.
+6. **React Bootstrap**: React Bootstrap is a popular front-end framework, rebuilt for React.
+7. **React Native**: React Native is a framework for building native mobile apps using React. It allows you to create native apps for Android and iOS using React.
+8. **React Material UI**: React Material UI is a popular React UI framework that follows Google's Material Design guidelines.
+9. **React Semantic UI**: React Semantic UI is a popular React UI framework that follows the principles of Semantic UI.
+10. **React Ant Design**: React Ant Design is a popular React UI framework that follows the principles of Ant Design.
+11. **React Foundation**: React Foundation is a popular React UI framework that follows the principles of Foundation.
+12. **React Bulma**: React Bulma is a popular React UI framework that follows the principles of Bulma.
+13. **React Tailwind**: React Tailwind is a popular React UI framework that follows the principles of Tailwind CSS.
+14. **React Admin**: React Admin is a popular React UI framework for building admin applications.
+15. **React D3**: React D3 is a popular React UI framework for building data visualizations.
+16. **React Chart.js**: React Chart.js is a popular React UI framework for building charts and graphs.
+17. **React Google Maps**: React Google Maps is a popular React UI framework for building maps.
+18. **React Leaflet**: React Leaflet is a popular React UI framework for building maps.
+19. **React Bootstrap Table**: React Bootstrap Table is a popular React UI framework for building tables.
+20. **React Table**: React Table is a popular React UI framework for building tables.
+21. **React Virtualized**: React Virtualized is a popular React UI framework for building large lists and tables.
+
+---
+
+## Primer on TypeScript
+
+TypeScript is a superset of JavaScript that adds static type definitions. TypeScript code is transformed into JavaScript code via the TypeScript compiler or Babel.
+
+### Examples of TypeScript
+
+```typescript
+function greeter(person: string) {
+  return "Hello, " + person;
+}
+
+let user = "Jane User";
+
+document.body.textContent = greeter(user);
+```
+
+```typescript
+interface Person {
+  firstName: string;
+  lastName: string;
+}
+
+function greeter(person: Person) {
+  return "Hello, " + person.firstName + " " + person.lastName;
+}
+
+let user = { firstName: "Jane", lastName: "User" };
+
+document.body.textContent = greeter(user);
+```
+
+The above differs from JavaScript in that it uses static type definitions. This allows for type checking at compile time, which can help prevent bugs and improve code quality.
+
+### TypeScript vs JavaScript
+
+Syntax differences:
+
+* TypeScript uses static typing, while JavaScript uses dynamic typing.
+  * Example: `let foo: string = 'bar';`
+* TypeScript uses type annotations, while JavaScript does not.
+  * Example: `let foo: string = 'bar';`
+* TypeScript uses interfaces, while JavaScript does not.
+  * Example: `interface Person { firstName: string; lastName: string; }`
+* TypeScript uses generics, while JavaScript does not.
+  * Example: `function identity<T>(arg: T): T { return arg; }`
+  * The above example uses a type variable `T` to capture the type the user provides (e.g. `number`), so that we can use that information later.
+* TypeScript uses namespaces, while JavaScript does not.
+  * Example: `namespace Validation { export interface StringValidator { isAcceptable(s: string): boolean; } }`
+  * Namespaces are simply named JavaScript objects in the global namespace.
+
+### TypeScript with React
+
+React is a popular JavaScript library for building user interfaces, particularly for single-page applications. It allows developers to create large web applications that can change data, without reloading the page.
+TypeScript is a favorite among many developers for its static type checking and code refactoring features. It is commonly used with React, but can be used with any other JavaScript framework or library.
+In particular, TypeScript is useful when working with React because it allows for components to specify their own prop types and state types. This makes it easier to catch common bugs at compile time and provides better documentation for component APIs.
 
 ---
 
