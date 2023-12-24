@@ -2303,7 +2303,12 @@ React's design and capabilities make it an excellent choice for developers looki
 
 1. **Virtual DOM**: React creates an in-memory data structure cache, computes the resulting differences, and then updates the browser's displayed DOM efficiently. This allows the programmer to write code as if the entire page is rendered on each change, while the React libraries only render subcomponents that actually change.
 
-2. **React Hooks**: Hooks are functions that let you "hook into" React state and lifecycle features from function components. Hooks don't work inside classes - they let you use React without classes.
+<!-- include image of virtual Dom ./img/vdom.png-->
+
+![Virtual DOM](/Users/seanfuller/Pre_Code/hack3r/uhh/img/vdom.png)
+
+
+1. **React Hooks**: Hooks are functions that let you "hook into" React state and lifecycle features from function components. Hooks don't work inside classes - they let you use React without classes.
 
     ```javascript
     import React, { useState } from 'react';
@@ -2322,7 +2327,7 @@ React's design and capabilities make it an excellent choice for developers looki
       );
     }
     ```
-3. **React Router**: React Router is a collection of navigational components that compose declaratively with your application. React Router is a third-party library that allows you to handle routing in a web app, using dynamic routing, nested routes, and more.
+2. **React Router**: React Router is a collection of navigational components that compose declaratively with your application. React Router is a third-party library that allows you to handle routing in a web app, using dynamic routing, nested routes, and more.
 
     ```javascript
     import React from "react";
@@ -2370,7 +2375,7 @@ React's design and capabilities make it an excellent choice for developers looki
     ReactDOM.render(<App />, document.getElementById("root"));
     ```
 
-4. **React Context**: Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+3. **React Context**: Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 
     ```javascript
     const ThemeContext = React.createContext('light');
@@ -2410,7 +2415,7 @@ React's design and capabilities make it an excellent choice for developers looki
     }
     ```
 
-5. **React Testing Library**: React Testing Library is a set of helpers that let you test React components without relying on their implementation details.
+4. **React Testing Library**: React Testing Library is a set of helpers that let you test React components without relying on their implementation details.
 
     ```javascript
     import React from 'react'
@@ -2437,7 +2442,7 @@ React's design and capabilities make it an excellent choice for developers looki
     })
     ```
 
-6. **React Redux**: Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
+5. **React Redux**: Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
 
     ```javascript
     import { createStore } from 'redux'
