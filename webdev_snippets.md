@@ -2305,7 +2305,7 @@ React's design and capabilities make it an excellent choice for developers looki
 
 <!-- include image of virtual Dom ./img/vdom.png-->
 
-![Virtual DOM](/Users/seanfuller/Pre_Code/hack3r/uhh/img/vdom.png)
+![Virtual DOM](./img/vdom.png)
 
 
 1. **React Hooks**: Hooks are functions that let you "hook into" React state and lifecycle features from function components. Hooks don't work inside classes - they let you use React without classes.
