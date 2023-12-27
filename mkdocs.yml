@@ -83,4 +83,4 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - toc:
-      toc_depth: 3
+      toc_depth: 2
