@@ -31,10 +31,6 @@ Syntax notes and code I always forget
 
 ## Web Development Notes
 
-[Web Development Notes](webdev_snippets.md)
-
-[Web Development](webdev_snippets.md)
-
 ??? note "Web Development - Contents"
     - [Web Development Notes](webdev_snippets.md#web-development-notes)
     - [HTML](webdev_snippets.md#html)
