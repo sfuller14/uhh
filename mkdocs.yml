@@ -4,6 +4,10 @@ site_author: Sean Fuller
 site_description: >-
   Notes and code snippets
 
+plugins:
+  - search
+  - mkdocs_pymdownx_material_extras
+
 theme:
   name: material
   scheme: slate
@@ -33,10 +37,14 @@ theme:
     - search.highlight
     - search.share
     - search.suggest
-    - toc.follow
+    # - toc.follow
     - toc.integrate
   palette:
     - media: "(prefers-color-scheme)"
+      scheme: dracula
+      primary: '#f8f8f2'       # Dracula foreground
+      accent: '#bd93f9'        # Dracula purple
+      background: '#282a36'    # Dracula background
       toggle:
         icon: material/link
         name: Switch to light mode
@@ -47,21 +55,25 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
-    # - media: "(prefers-color-scheme: dark)"
-    #   scheme: slate
-    #   primary: black
-    #   accent: indigo
-    #   toggle:
-    #     icon: material/toggle-switch-off
-    #     name: Switch to system preference
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: '#f8f8f2'  # Dracula foreground
-      accent: '#bd93f9'   # Dracula purple
-      background: '#282a36'  # Dracula background
+      primary: black
+      accent: indigo
       toggle:
         icon: material/toggle-switch-off
         name: Switch to system preference
+    # - media: "(prefers-color-scheme: dark)"
+    #   scheme: slate
+    #   primary: '#f8f8f2'       # Dracula foreground
+    #   accent: '#bd93f9'        # Dracula purple
+    #   background: '#282a36'    # Dracula background
+    #   text: '#f8f8f2'          # Suggested for primary text, Dracula foreground
+    #   code: '#ff79c6'          # Suggested for inline code, Dracula pink
+    #   anchor: '#8be9fd'        # Suggested for anchor links, Dracula cyan
+    #   anchor_hover: '#50fa7b'  # Suggested for anchor hover, Dracula green
+    #   toggle:
+    #     icon: material/toggle-switch-off
+    #     name: Switch to system preference
   font:
     text: Roboto
     code: Roboto Mono
@@ -71,4 +83,4 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - toc:
-      toc_depth: 4
+      toc_depth: 3

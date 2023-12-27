@@ -1,5 +1,30 @@
 # Code Snippets
 
+??? note "Code Snippets - Contents"
+    - [GIT](snippets.md#git)
+        - [Commands](snippets.md#commands)
+        - [ghh CLI](snippets.md#ghh-cli)
+    - [SHELL](snippets.md#shell)
+        - [Shortcuts (zsh)](snippets.md#shortcuts-zsh)
+        - [Core Commands](snippets.md#core-commands)
+        - [Chaining Commands](snippets.md#chaining-commands)
+        - [Explanation of `grep`](snippets.md#explanation-of-grep)
+        - [Piping Commands](snippets.md#piping-commands)
+        - [Help](snippets.md#help)
+    - [PYTHON](snippets.md#python)
+        - [OpenAI API](snippets.md#openai-api)
+        - [Token Counts](snippets.md#token-counts)
+        - [numpy](snippets.md#numpy)
+        - [Reshaping](snippets.md#reshaping)
+        - [Broadcasting](snippets.md#broadcasting)
+    - [RARELY USED](snippets.md#rarely-used)
+        - [tmux](snippets.md#tmux)
+        - [Pane Management](snippets.md#pane-management)
+        - [Window Management](snippets.md#window-management)
+        - [Session Management](snippets.md#session-management)
+        - [Resizing Panes](snippets.md#resizing-panes)
+        - [Miscellaneous](snippets.md#miscellaneous)
+
 ---
 
 ## GIT
