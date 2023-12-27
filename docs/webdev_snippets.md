@@ -1,164 +1,10 @@
-- [Web Development Notes](#web-development-notes)
-  - [Basic Web Design](#basic-web-design)
-    - [HTML](#html)
-      - [Tags vs Attributes](#tags-vs-attributes)
-      - [Tags](#tags)
-    - [CSS](#css)
-      - [Properties and Usage](#properties-and-usage)
-    - [Simple Example Webpage with HTML, CSS, and JavaScript](#simple-example-webpage-with-html-css-and-javascript)
-  - [JavaScript](#javascript)
-    - [JavaScript Basics](#javascript-basics)
-      - [Printing, Variables, Arrays, Functions](#printing-variables-arrays-functions)
-        - [Printing to the Console](#printing-to-the-console)
-        - [Variable Declaration and Assignment](#variable-declaration-and-assignment)
-        - [Array Declaration and Manipulation](#array-declaration-and-manipulation)
-        - [Function Declaration and Calling](#function-declaration-and-calling)
-      - [If-Statement syntax  in JavaScript](#if-statement-syntax--in-javascript)
-        - [Syntax](#syntax)
-        - [If-else syntax:](#if-else-syntax)
-        - [If-else-if syntax:](#if-else-if-syntax)
-        - [Boolean Values in JavaScript](#boolean-values-in-javascript)
-        - [Comparison Operators in JavaScript](#comparison-operators-in-javascript)
-        - [Ternary Operator](#ternary-operator)
-        - [Switch Statements](#switch-statements)
-        - [Return Early Pattern for Functions](#return-early-pattern-for-functions)
-      - [JavaScript Objects](#javascript-objects)
-        - [Updating Object Properties](#updating-object-properties)
-        - [Add New Properties to a JavaScript Object](#add-new-properties-to-a-javascript-object)
-        - [Delete Properties from a JavaScript Object](#delete-properties-from-a-javascript-object)
-        - [Using Objects for Lookups](#using-objects-for-lookups)
-        - [Testing Objects for Properties](#testing-objects-for-properties)
-        - [Nested Objects](#nested-objects)
-        - [Accessing Nested Arrays](#accessing-nested-arrays)
-      - [Looping](#looping)
-        - [While Loops](#while-loops)
-        - [For Loops](#for-loops)
-        - [Iterate Through an Array with a For Loop](#iterate-through-an-array-with-a-for-loop)
-        - [Nesting For Loops](#nesting-for-loops)
-        - [Do...While Loops](#dowhile-loops)
-        - [Profile Lookup](#profile-lookup)
-      - [Constructor Functions](#constructor-functions)
-        - [Purpose](#purpose)
-        - [Syntax](#syntax-1)
-        - [Invoking a Constructor Function](#invoking-a-constructor-function)
-        - [Extending Constructors to Receive Arguments](#extending-constructors-to-receive-arguments)
-        - [Verify an Object's Constructor with instanceof](#verify-an-objects-constructor-with-instanceof)
-        - [Understand Own Properties](#understand-own-properties)
-        - [Use Prototype Properties to Reduce Duplicate Code](#use-prototype-properties-to-reduce-duplicate-code)
-        - [Iterate Over All Properties](#iterate-over-all-properties)
-      - [Methods](#methods)
-        - [Methods](#methods-1)
-        - [Example](#example)
-      - [Built-In Functions: Random Numbers \& Int-to-String Conversion](#built-in-functions-random-numbers--int-to-string-conversion)
-        - [Generate Random Fractions with JavaScript](#generate-random-fractions-with-javascript)
-        - [Generate Random Whole Numbers with JavaScript](#generate-random-whole-numbers-with-javascript)
-        - [Generate Random Whole Numbers within a Range](#generate-random-whole-numbers-within-a-range)
-        - [Use the parseInt Function](#use-the-parseint-function)
-        - [Use the parseInt Function with a Radix](#use-the-parseint-function-with-a-radix)
-      - [Recursion](#recursion)
-        - [Using recursion to create a countdown](#using-recursion-to-create-a-countdown)
-        - [Using recursion to create a range of numbers](#using-recursion-to-create-a-range-of-numbers)
-    - [Useful JavaScript Built-in Functions](#useful-javascript-built-in-functions)
-    - [How to run JavaScript code](#how-to-run-javascript-code)
-      - [In the browser](#in-the-browser)
-      - [In the terminal](#in-the-terminal)
-      - [In VS Code](#in-vs-code)
-    - [ES6](#es6)
-      - [Use Arrow Functions to Write Concise Anonymous Functions](#use-arrow-functions-to-write-concise-anonymous-functions)
-      - [Write Arrow Functions with Parameters](#write-arrow-functions-with-parameters)
-      - [Set Default Parameters for Your Functions](#set-default-parameters-for-your-functions)
-      - [Compare Scopes of the var and let Keywords](#compare-scopes-of-the-var-and-let-keywords)
-      - [Mutate an Array Declared with const](#mutate-an-array-declared-with-const)
-      - [Prevent Object Mutation](#prevent-object-mutation)
-      - [Use the Rest Parameter with Function Parameters](#use-the-rest-parameter-with-function-parameters)
-      - [Use the Spread Operator to Evaluate Arrays In-Place](#use-the-spread-operator-to-evaluate-arrays-in-place)
-      - [Use Destructuring Assignment to Extract Values from Objects](#use-destructuring-assignment-to-extract-values-from-objects)
-      - [Use Destructuring Assignment to Assign Variables from Objects](#use-destructuring-assignment-to-assign-variables-from-objects)
-      - [Use Destructuring Assignment to Assign Variables from Arrays](#use-destructuring-assignment-to-assign-variables-from-arrays)
-      - [Destructuring via rest elements](#destructuring-via-rest-elements)
-      - [Use Destructuring Assignment to Pass an Object as a Function's Parameters](#use-destructuring-assignment-to-pass-an-object-as-a-functions-parameters)
-      - [Create Strings using Template Literals](#create-strings-using-template-literals)
-      - [Write Concise Object Literal Declarations Using Object Property Shorthand](#write-concise-object-literal-declarations-using-object-property-shorthand)
-      - [Write Concise Declarative Functions with ES6](#write-concise-declarative-functions-with-es6)
-      - [Use class Syntax to Define a Constructor Function](#use-class-syntax-to-define-a-constructor-function)
-      - [Use getters and setters to Control Access to an Object](#use-getters-and-setters-to-control-access-to-an-object)
-      - [Create a Module Script](#create-a-module-script)
-      - [Use export to Share a Code Block](#use-export-to-share-a-code-block)
-  - [The DOM](#the-dom)
-    - [Theory of the DOM](#theory-of-the-dom)
-    - [Tree Details](#tree-details)
-    - [Common Usage Patterns (JavaScript Interaction)](#common-usage-patterns-javascript-interaction)
-  - [jQuery](#jquery)
-    - [Raison Detre](#raison-detre)
-    - [Common Usage Patterns](#common-usage-patterns)
-  - [Async Programming in JavaScript](#async-programming-in-javascript)
-    - [Theory of Async Programming](#theory-of-async-programming)
-    - [Promises](#promises)
-      - [Understanding Promises](#understanding-promises)
-      - [Syntax and Usage](#syntax-and-usage)
-      - [Promise States](#promise-states)
-      - [Promise Methods](#promise-methods)
-      - [Promise.all()](#promiseall)
-      - [Chaining Promises](#chaining-promises)
-    - [Async/Await](#asyncawait)
-      - [Async Function](#async-function)
-      - [Await Keyword](#await-keyword)
-    - [Common Usage Patterns](#common-usage-patterns-1)
-    - [Callbacks](#callbacks)
-      - [Understanding Callbacks](#understanding-callbacks)
-      - [Syntax and Basic Usage](#syntax-and-basic-usage)
-      - [Callback Hell and Its Avoidance](#callback-hell-and-its-avoidance)
-    - [Event Loop](#event-loop)
-      - [Understanding the Event Loop](#understanding-the-event-loop)
-      - [Event Loop Phases](#event-loop-phases)
-      - [Event Loop Example](#event-loop-example)
-      - [Event Loop and Asynchronous Operations](#event-loop-and-asynchronous-operations)
-  - [Table of common built-in network request functions](#table-of-common-built-in-network-request-functions)
-  - [Introduction to React Framework](#introduction-to-react-framework)
-    - [Background and Theory](#background-and-theory)
-    - [Why React?](#why-react)
-    - [Basic Concepts](#basic-concepts)
-    - [Common Usage](#common-usage)
-    - [Intermediate Concepts](#intermediate-concepts)
-    - [React Common Libraries](#react-common-libraries)
-  - [Primer on TypeScript](#primer-on-typescript)
-    - [Examples of TypeScript](#examples-of-typescript)
-    - [TypeScript vs JavaScript](#typescript-vs-javascript)
-    - [TypeScript with React](#typescript-with-react)
-  - [Node.js and npm](#nodejs-and-npm)
-    - [Background and Theory of Node.js](#background-and-theory-of-nodejs)
-    - [Why Use Node.js?](#why-use-nodejs)
-    - [npm: Node Package Manager](#npm-node-package-manager)
-      - [Common npm Commands](#common-npm-commands)
-      - [package.json File](#packagejson-file)
-        - [Example package.json](#example-packagejson)
-  - [Introduction to Yarn](#introduction-to-yarn)
-    - [Why Use Yarn?](#why-use-yarn)
-    - [Common Yarn Commands](#common-yarn-commands)
-    - [yarn.lock File](#yarnlock-file)
-    - [Example usage in a project](#example-usage-in-a-project)
-  - [Redux](#redux)
-    - [Key Concepts of Redux:](#key-concepts-of-redux)
-    - [Why Use Redux?](#why-use-redux)
-    - [Use Cases for Redux:](#use-cases-for-redux)
-  - [Development Workflow for React Using VSCode and npm](#development-workflow-for-react-using-vscode-and-npm)
-    - [Setting Up a New React Project](#setting-up-a-new-react-project)
-    - [Development Process](#development-process)
-    - [Building and Deployment](#building-and-deployment)
-    - [Best Practices](#best-practices)
-    - [Conclusion](#conclusion)
-
 # Web Development Notes
----
----
-
-## Basic Web Design
 
 ---
 
-### HTML
+## HTML
 
-#### Tags vs Attributes
+### Tags vs Attributes
 
 * **TAGS** are the elements that make up an HTML document
   * Tags have CONTENT and ATTRIBUTES
@@ -195,7 +41,7 @@ Tag
 └── Content
 ```
 
-#### Tags
+### Tags
 | Tag | Description | Unpaired? |
 | --- | --- | --- |
 | `<html></html>` | The root element of an HTML page | No |
@@ -234,9 +80,9 @@ Tag
 
 ---
 
-### CSS
+## CSS
 
-#### Properties and Usage
+### Properties and Usage
 | Property | Description | Example Usage |
 | --- | --- | --- |
 | `color` | Specifies the color of text | `color: blue;` |
@@ -262,7 +108,7 @@ Tag
 
 ---
 
-### Simple Example Webpage with HTML, CSS, and JavaScript
+## Example Webpage
 
 ```html
 <!DOCTYPE html>
@@ -346,7 +192,6 @@ Tag
 </html>
 ```
 
----
 ---
 
 ## JavaScript

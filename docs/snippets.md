@@ -1,31 +1,5 @@
-- [Snippets](#snippets)
-  - [GIT](#git)
-    - [Commands](#commands)
-    - [ghh CLI](#ghh-cli)
-  - [SHELL](#shell)
-    - [Shortcuts (zsh)](#shortcuts-zsh)
-    - [Core Commands](#core-commands)
-    - [Chaining Commands](#chaining-commands)
-    - [Explanation of `grep`](#explanation-of-grep)
-    - [Piping Commands](#piping-commands)
-    - [Help](#help)
-  - [PYTHON](#python)
-    - [OpenAI API](#openai-api)
-      - [Token Counts](#token-counts)
-    - [numpy](#numpy)
-      - [Reshaping](#reshaping)
-      - [Broadcasting](#broadcasting)
-  - [RARELY USED](#rarely-used)
-    - [tmux](#tmux)
-      - [Pane Management](#pane-management)
-      - [Window Management](#window-management)
-      - [Session Management](#session-management)
-      - [Resizing Panes](#resizing-panes)
-      - [Miscellaneous](#miscellaneous)
+# Code Snippets
 
-# Snippets
-
----
 ---
 
 ## GIT
