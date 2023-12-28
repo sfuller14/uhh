@@ -2669,30 +2669,68 @@ TypeScript is a superset of JavaScript that adds static type definitions. TypeSc
 
 ### Examples of TypeScript
 
-```typescript
-function greeter(person: string) {
-	return "Hello, " + person;
-}
+* Function Example
 
-let user = "Jane User";
+=== "TypeScript"
 
-document.body.textContent = greeter(user);
-```
+	```typescript
+	function greeter(person: string) {
+		return "Hello, " + person;
+	}
 
-```typescript
-interface Person {
-	firstName: string;
-	lastName: string;
-}
+	let user = "Jane User";
 
-function greeter(person: Person) {
-	return "Hello, " + person.firstName + " " + person.lastName;
-}
+	document.body.textContent = greeter(user); // Hello, Jane User
+	```
 
-let user = { firstName: "Jane", lastName: "User" };
+=== "JavaScript"
 
-document.body.textContent = greeter(user);
-```
+	```javascript
+	function greeter(person) {
+		return "Hello, " + person;
+	}
+
+	let user = "Jane User";
+
+	document.body.textContent = greeter(user); // Hello, Jane User
+	```
+
+* Interface Example
+    * TypeScript interfaces are used to define the shape of an object.
+        * Example: `interface Person { firstName: string; lastName: string; }`
+        * The purpose of an interface is to enforce a contract between two objects.
+    * JavaScript does not have interfaces.
+        * In JavaScript, the equivalent is to use a plain object and define its properties in the invocation.
+        * Doing so does not enforce a contract between two objects.
+
+=== "TypeScript"
+
+	```typescript
+	interface Person {
+		firstName: string;
+		lastName: string;
+	}
+
+	function greeter(person: Person) {
+		return "Hello, " + person.firstName + " " + person.lastName;
+	}
+
+	let user = { firstName: "Jane", lastName: "User" };
+
+	document.body.textContent = greeter(user); // Hello, Jane User
+	```
+
+=== "JavaScript"
+
+	```javascript
+	function greeter(person) {
+		return "Hello, " + person.firstName + " " + person.lastName;
+	}
+
+	let user = { firstName: "Jane", lastName: "User" };
+
+	document.body.textContent = greeter(user); // Hello, Jane User
+	```
 
 The above differs from JavaScript in that it uses static type definitions. This allows for type checking at compile time, which can help prevent bugs and improve code quality.
 
