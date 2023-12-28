@@ -237,7 +237,44 @@ Tag
 
 ## CSS
 
-### Properties and Usage
+### Selectors
+
+CSS (Cascading Style Sheets) is a language used to style HTML elements.  
+In CSS, selectors are used to target the HTML elements that you want to style.  
+A CSS selector can be a tag name, class name, id, or a combination of these.  
+
+* A class name is a name that you assign to an element in the `class` attribute.  
+	* E.g. `<p class="blue-text">This is a paragraph.</p>`  
+	* In this example, the class name is `blue-text`.  
+	* Multiple elements can have the same class name.  
+	* A class name can be used to style multiple elements at once.  
+* An id is a name that you assign to an element in the `id` attribute.  
+	* E.g. `<p id="blue-text">This is a paragraph.</p>`  
+	* In this example, the id is `blue-text`.  
+	* Only one element can have a given id.  
+	* An id can be used to style a single element.  
+
+For example, to style all `<p>` elements, you would use the selector `p`: `p { color: blue; }`.   
+For applying styles to multiple elements, you can use a comma-separated list of selectors: `p, h1 { color: blue; }`.   
+For applying styles to all elements of a certain type, you can use the `*` selector: `* { color: blue; }`.   
+For applying styles to all elements with a certain class, you can use the `.classname` selector: `.blue-text { color: blue; }`.   
+For applying styles to all elements with a certain id, you can use the `#idname` selector: `#blue-text { color: blue; }`.   
+To apply styles to elements that are nested within other elements, you can use the space character: `div p { color: blue; }`.   
+To apply multiple styles to an element, you can use a semicolon-separated list of style declarations: `p { color: blue; font-size: 16px; }`.   
+
+### Properties and Values
+
+A property is a style that you want to apply to an element. 
+A property is made up of a **name** and a **value**.  
+
+* General syntax: 
+```css
+selector {
+	property1: value1;
+	property2: value2;
+}
+```
+
 | Property | Description | Example Usage |
 | --- | --- | --- |
 | `color` | Specifies the color of text | `color: blue;` |
@@ -260,6 +297,206 @@ Tag
 | `transition` | Specifies the transition effects | `transition: background-color 0.5s ease;`<br>* Can define the property to transition, duration, and timing function. |
 | `flex` | Used in a flexbox layout to control the size of items | `flex: 1;`<br>* Can be used to specify the ability of an item to grow or shrink. |
 | `grid` | Used in a grid layout to define the structure of grid areas | `grid-template-columns: 50px 50px;`<br>* Specifies the size of columns and rows in grid layouts. |
+
+
+### CSS Flexbox
+
+Flexbox is a layout mode that arranges elements in a flexible way. 
+Flexbox is a one-dimensional layout model, as opposed to CSS Grid, which is a two-dimensional layout model. 
+Flexbox is used to create responsive layouts. 
+Flexbox is used to create a flexible container that can hold a flexible number of items.
+Flexbox is used to align items within the container. 
+
+Fully-fledged flexbox example:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox Example</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .flex-item {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="flex-item">Flex Item 1</div>
+        <div class="flex-item">Flex Item 2</div>
+        <div class="flex-item">Flex Item 3</div>
+    </div>
+</body>
+</html>
+```
+
+In short, flexbox extends the CSS box model to enable one-dimensional layouts. 
+One-dimensional layouts are layouts that can be laid out either as a row or as a column. 
+
+### CSS Grid
+
+CSS Grid is a layout mode that arranges elements in a two-dimensional grid. 
+
+Fully-fledged CSS Grid example:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grid Layout Example</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 10px;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .grid-item {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-item">Grid Item 1</div>
+        <div class="grid-item">Grid Item 2</div>
+        <div class="grid-item">Grid Item 3</div>
+        <div class="grid-item">Grid Item 4</div>
+        <div class="grid-item">Grid Item 5</div>
+        <div class="grid-item">Grid Item 6</div>
+    </div>
+</body>
+</html>
+```
+
+### Bootstrap
+
+Bootstrap is a CSS framework that makes it easy to create responsive websites.
+Bootstrap is a collection of CSS and JavaScript files that you can include in your HTML document.
+Bootstrap provides a grid system, a collection of pre-built components, and a set of utilities.
+
+Bootstrap example:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Simple Example Webpage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">WebDev Notes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <h1 class="display-4">Simple Example Webpage</h1>
+        <p class="lead">This is a simple example webpage. It is written in HTML, CSS, and JavaScript.</p>
+        <hr class="my-4">
+        <p>Explore the features of Bootstrap to enhance web development.</p>
+        <a class="btn btn-primary btn-lg" href="https://sfuller14.github.io/drawio/src/main/webapp/index.html" role="button">Learn more</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Feature 1</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Feature 2</h5>
+                        <p class="card-text">Another quick example text to build on the card title and fill the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Feature 3</h5>
+                        <p class="card-text">And another quick example text for the third card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start mt-4">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 WebDev Notes
+        </div>
+    </footer>
+
+    <!-- Optional Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+```
+
+In the example above, the Bootstrap CSS and JavaScript files are included in the `<head>` and `<body>` sections, respectively. 
+All that is needed to use Bootstrap is to include the CSS and JavaScript files in your HTML document. 
+People like Bootstrap because it enables you to create responsive websites without having to write a lot of CSS.
 
 ---
 
@@ -1027,6 +1264,8 @@ But objects created using constructor functions __ARE__ similar to python object
 
 ##### Syntax
 
+***Notice how it is truly a FUNCTION and is title-cased***
+
 ```javascript
 function Dog() {
 	this.name = "Spot";
@@ -1089,6 +1328,9 @@ console.log(ownProps); // [ 'name', 'numLegs' ]
 ```
 
 ##### Use Prototype Properties to Reduce Duplicate Code
+
+Prototype properties are shared among all instances of an object.  
+**These are how new properties and methods are added to constructor functions post-declaration.**
 
 ```javascript
 function Dog(name) {
@@ -1423,16 +1665,24 @@ function myFunction() {
 
 * Anonymous function:  
 	* Anonymous functions can only be called after they are defined
+	* ***NOTICE the syntax of `const myFunction = function() { ... };` or `const myFunction = () => { ... };`***
+		* It is assigned to a **variable name** and the function name is omitted
 	* E.g. `const myFunction = function() { ... };` or `const myFunction = function(param1, param2) { ... };` or:
-```javascript
-const myFunction = function() {
-	...
-}
-```
+	```javascript
+	const myFunction = function() {
+		...
+	}
+	```
+	* `const myFunction = function() { ... };` (function expression) is similar to `const myFunction = () => { ... };` (arrow function) but not identical
+		* `this` Behavior: In a traditional function (the first example), '*this*' refers to the context in which the function was called. In contrast, in an arrow function (the second example), '*this*' is lexically bound; it uses '*this*' from the surrounding code where the function is defined. This means that inside an arrow function, '*this*' refers to the context in which the arrow function was created, not where it is called.
+		* '*arguments* ' Object: Traditional functions provide an '*arguments*' object, which is an array-like object containing all the arguments passed to the function. Arrow functions do not have their own '*arguments*' object.
+		* Constructor Use: Traditional functions can be used as constructors with the '*new*' keyword. Arrow functions cannot be used as constructors and will throw an error if used with '*new*'.
+		* Method Definitions: If you're defining a method in an object, traditional functions are often preferred due to their dynamic '*this*'. Arrow functions can be problematic in object methods if you need '*this*' to refer to the object.
 
-The reason for the difference is that named functions are hoisted but anonymous functions are not.
+Named functions are hoisted but anonymous functions are not.
  
-Anonymous functions should be used when you want to:
+Anonymous (specifically arrow) functions should be used when you want to:
+
 * Pass a function as an argument to another function
 * Write a concise function
 * Preserve the value of `this` in the context of the function
@@ -1440,15 +1690,16 @@ Anonymous functions should be used when you want to:
 * Write a constructor function
 
 Named functions should be used when you want to:
+
 * Call a function before it is defined
 * Use recursion
 * Use closures
 * Use callbacks
 
-Arrow functions are a concise way to write anonymous functions.
-The syntax is similar to python's lambda functions.
-The syntax looks like assigning a function with no name `()` to a variable and pointing to the lambda function with an arrow `=>`.
-Use brackets when the "lambda function" has multiple lines.
+Arrow functions are a concise way to write anonymous functions.  
+The syntax is similar to python's lambda functions.  
+The syntax looks like assigning a function with no name `()` to a variable and pointing to the lambda function with an arrow `=>`.  
+Use brackets when the "lambda function" has multiple lines.  
 
 ```javascript
 const magic = () => new Date(); // or `const magic = () => { return new Date(); };`
@@ -1496,6 +1747,26 @@ console.log(myConcat([1, 2], [3, 4, 5])); // [ 1, 2, 3, 4, 5 ]
 		return arr1.concat(arr2);
 	};
 	```
+
+#### Implicit Return
+
+Notice in the above example that the `return` keyword is omitted.  
+This is because arrow functions can be written with an implicit return when they are written on a single line.
+
+When an arrow function is written with its body in a single line without curly braces {}, the return is implicit. That means the result of the expression following the arrow => is automatically returned. So:
+
+```javascript
+const myConcat = (arr1, arr2) => arr1.concat(arr2);
+```
+
+is equivalent to:
+
+```javascript
+const myConcat = (arr1, arr2) => {
+	return arr1.concat(arr2);
+};
+```
+
 #### Set Default Parameters for Your Functions
 
 ```javascript
@@ -1709,6 +1980,8 @@ console.log(forecast(HIGH_TEMPERATURES)); // Today's high is 77 and tomorrow's h
 ```
 
 #### Create Strings using Template Literals
+
+*Note the backticks*
 
 ```javascript
 const person = {
