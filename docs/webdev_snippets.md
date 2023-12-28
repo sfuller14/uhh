@@ -2343,12 +2343,12 @@ Note in the above that `alert()`, `confirm()`, and `prompt()` are not network re
 ## Introduction to React Framework
 
 ??? note "React"
-   - [Background and Theory](webdev_snippets.md#background-and-theory)
-   - [Why React?](webdev_snippets.md#why-react)
-   - [Basic Concepts](webdev_snippets.md#basic-concepts)
-   - [Common Usage](webdev_snippets.md#common-usage)
-   - [Intermediate Concepts](webdev_snippets.md#intermediate-concepts)
-   - [React Common Libraries](webdev_snippets.md#react-common-libraries)
+      - [Background and Theory](webdev_snippets.md#background-and-theory)
+      - [Why React?](webdev_snippets.md#why-react)
+      - [Basic Concepts](webdev_snippets.md#basic-concepts)
+      - [Common Usage](webdev_snippets.md#common-usage)
+      - [Intermediate Concepts](webdev_snippets.md#intermediate-concepts)
+      - [React Common Libraries](webdev_snippets.md#react-common-libraries)
 
 React is a popular JavaScript library for building user interfaces, particularly for single-page applications. It allows developers to create large web applications that can change data, without reloading the page.
 
