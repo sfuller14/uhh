@@ -1210,6 +1210,57 @@ console.log(convertToInteger("10011")); // 19
 
 #### Recursion
 
+#### Sum first n array elements
+
+```javascript
+function sum(arr, n) {
+  if (n === 0) { // base case -- n === 0
+    return 0;
+  } else { // recursive case -- n > 0
+    console.log(`n: ${n} --> n-1: ${n-1} --> arr[n-1]: ${arr[n-1]}`)
+    return sum(arr, n-1) + arr[n-1]
+  }
+}
+
+console.log(sum([1,2,3,4,5,6,7],4)) // 10
+// n: 4 --> n-1: 3 --> arr[n-1]: 4
+// n: 3 --> n-1: 2 --> arr[n-1]: 3
+// n: 2 --> n-1: 1 --> arr[n-1]: 2
+// n: 1 --> n-1: 0 --> arr[n-1]: 1
+
+// Stack Trace:
+// sum([1,2,3,4,5,6,7],4)
+//					  \										  
+// 						----------------------------------------
+//																 \
+//																   \
+//																	 \
+// sum([1,2,3,4,5,6,7],4-1) + arr[4-1]  --> sum([1,2,3,4,5,6,7], 3) + 4
+//															 \ 
+//															   \
+//																 \
+//																   \
+//																	 \
+// sum([1,2,3,4,5,6,7],3-1) + arr[3-1]  --> sum([1,2,3,4,5,6,7], 2) + 3
+//															 \ 
+//															   \
+//																 \
+//																   \
+//																	 \
+// sum([1,2,3,4,5,6,7],2-1) + arr[2-1]  --> sum([1,2,3,4,5,6,7], 1) + 2
+//															 \ 
+//															   \
+//																 \
+//																   \
+//																	 \
+// sum([1,2,3,4,5,6,7],1-1) + arr[1-1]  --> sum([1,2,3,4,5,6,7], 0) + 1
+//											/
+//										/
+//									/
+//								/
+// sum([1,2,3,4,5,6,7],0) --> 0
+```
+
 ##### Using recursion to create a countdown
 
 ```javascript
