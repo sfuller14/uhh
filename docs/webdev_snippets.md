@@ -471,9 +471,9 @@ Tag
 	
 ##### Printing to the Console
 
-	```javascript
-	console.log("Hello World!");
-	```
+```javascript
+console.log("Hello World!");
+```
 
 ##### Debugging in the console
 
@@ -504,82 +504,83 @@ console.assert(1 === 2, "This is an error"); // Assertion failed: This is an err
 
 ##### Variable Declaration and Assignment
 
-	```javascript
-	var myName = "John"; // DONT' USE - var is used throughout the program
-	let myValue = 7; // let is used within the scope of where it's declared
-	const pi = 3.14; // const is used for variables that won't change
+```javascript
+var myName = "John"; // DONT' USE - var is used throughout the program
+let myValue = 7; // let is used within the scope of where it's declared
+const pi = 3.14; // const is used for variables that won't change
 
-	myValue = 7 * 2;
-	myValue++;
-	myValue--;
-	myValue += 5;
-	myValue -= 5;
-	myValue *= 5;
-	myValue /= 5;
-	```
+myValue = 7 * 2;
+myValue++;
+myValue--;
+myValue += 5;
+myValue -= 5;
+myValue *= 5;
+myValue /= 5;
+```
 
 ##### Array Declaration and Manipulation
-	* 1-D:
-	
-		```javascript
-		let myArray = ["John", 23];
-		myArray[0] = "Jack"; // this won't work with const
-		myArray.push("John"); // adds to end
-		let holder = myArray.pop(); // removes from end and stores in holder
-		myArray.shift(); // removes from beginning
-		myArray.unshift("John"); // adds to beginning -- have to use this for const
-		```
 
-	* 2-D:
-	
-		```javascript
-		let myArray = [
-			["John", 23],
-			["Jack", 24],
-		];
+* 1-D:
 
-		myArray[0] = "Super random value"; // arrays can hold any type of value
-		```
+```javascript
+let myArray = ["John", 23];
+myArray[0] = "Jack"; // this won't work with const
+myArray.push("John"); // adds to end
+let holder = myArray.pop(); // removes from end and stores in holder
+myArray.shift(); // removes from beginning
+myArray.unshift("John"); // adds to beginning -- have to use this for const
+```
+
+* 2-D:
+
+```javascript
+let myArray = [
+	["John", 23],
+	["Jack", 24],
+];
+
+myArray[0] = "Super random value"; // arrays can hold any type of value
+```
 
 ##### Function Declaration and Calling
 
-	```javascript
-	// Print function
-	function myFunction() {
-		console.log("Hello World!");
-	}
+```javascript
+// Print function
+function myFunction() {
+	console.log("Hello World!");
+}
 
-	myFunction();
-	```
+myFunction();
+```
 
-	```javascript
-	// Return function
-	function myFunction() {
-		return "Hello World!";
-	}
+```javascript
+// Return function
+function myFunction() {
+	return "Hello World!";
+}
 
-	console.log(myFunction());
-	```
+console.log(myFunction());
+```
 
-	```javascript
-	// Setting global variable
-	// returns undefined
-	let sum = 0;
-	
-	function addThree() {
-		// the below line (i.e. without let/const/var) isn't a declaration 
-		// (it's a post-declaration assignment)
-		sum += 3;
-	}
-	
-	function addFive() {
-		sum += 5;
-	}
+```javascript
+// Setting global variable
+// returns undefined
+let sum = 0;
 
-	addThree();
-	addFive();
-	console.log(sum); // 8
-	```
+function addThree() {
+	// the below line (i.e. without let/const/var) isn't a declaration 
+	// (it's a post-declaration assignment)
+	sum += 3;
+}
+
+function addFive() {
+	sum += 5;
+}
+
+addThree();
+addFive();
+console.log(sum); // 8
+```
 
 #### If-Statement syntax  in JavaScript
 
@@ -587,421 +588,420 @@ console.assert(1 === 2, "This is an error"); // Assertion failed: This is an err
 
 * One then-statement: 
 
-		```if (condition) statement;```
-		
-		OR
+	```if (condition) statement;```
+	
+	OR
 
-		```javascript
-		if (condition) {
-			statement;
-		}
-		```
+	```javascript
+	if (condition) {
+		statement;
+	}
+	```
 
 * Multiple then-statements: 
 
-		```if (condition) { statement1; statement2; }```
-		
-		OR
+	```if (condition) { statement1; statement2; }```
+	
+	OR
 
-		```javascript
-		if (condition) {
-			statement1;
-			statement2;
-		}
-		```
+	```javascript
+	if (condition) {
+		statement1;
+		statement2;
+	}
+	```
 ##### If-else syntax: 
 
-
-		```javascript
-		if (condition) {
-			statement1;
-		} else {
-			statement2;
-		}
-		```
+```javascript
+if (condition) {
+	statement1;
+} else {
+	statement2;
+}
+```
 
 ##### If-else-if syntax: 
 
-		```javascript
-		if (condition1) {
-			statement1;
-		} else if (condition2) {
-			statement2;
-		} else {
-			statement3;
-		}
-		```
+```javascript
+if (condition1) {
+	statement1;
+} else if (condition2) {
+	statement2;
+} else {
+	statement3;
+}
+```
 
 ##### Boolean Values in JavaScript
 
-	```javascript
-	function trueOrFalse(wasThatTrue) {
-		if (wasThatTrue) {
-			return "Yes, that was true";
-		}
-		return "No, that was false";
+```javascript
+function trueOrFalse(wasThatTrue) {
+	if (wasThatTrue) {
+		return "Yes, that was true";
 	}
+	return "No, that was false";
+}
 
-	console.log(trueOrFalse(true)); // Yes, that was true
-	console.log(trueOrFalse(false)); // No, that was false
-	```
+console.log(trueOrFalse(true)); // Yes, that was true
+console.log(trueOrFalse(false)); // No, that was false
+```
 
 ##### Comparison Operators in JavaScript
 
-	* `&&` - and
-	* `||` - or
-	* `==` - equal to
-		* JavaScript compares different types by converting them to a common type
-	* `===` - equal value and equal type
-		* This is necessary in JavaScript because `1 == "1"` is true but `1 === "1"` is false
-	* `!=` - not equal
-	* `!==` - not equal value or not equal type
-	* `!` - not
-		* Common usage:
-			* `if (!(a && b)) { ... }`
-	* rest are same as python
+* `&&` - and
+* `||` - or
+* `==` - equal to
+* JavaScript compares different types by converting them to a common type
+* `===` - equal value and equal type
+* This is necessary in JavaScript because `1 == "1"` is true but `1 === "1"` is false
+* `!=` - not equal
+* `!==` - not equal value or not equal type
+* `!` - not
+* Common usage:
+	* `if (!(a && b)) { ... }`
+* rest are same as python
 
 ##### Ternary Operator
 
-	* Syntax:
+* Syntax:
 
-		```javascript
-		condition ? statement-if-true : statement-if-false;
-		```
+	```javascript
+	condition ? statement-if-true : statement-if-false;
+	```
 
-	* Example:
+* Example:
 
-		```javascript
-		function checkEqual(a, b) {
-			return a === b ? true : false;
-		}
+	```javascript
+	function checkEqual(a, b) {
+		return a === b ? true : false;
+	}
 
-		console.log(checkEqual(1, 2)); // false
-		```
+	console.log(checkEqual(1, 2)); // false
+	```
 
-	* This is like python's `a if condition else b` syntax
-	* Multiple ternary operators can be chained together:
-	
-			```javascript
-			function checkSign(num) {
-				return num > 0 ? "positive" : num < 0 ? "negative" : "zero";
-			}
-	
-			console.log(checkSign(10)); // positive
-			```
-		
-		* In python this would be `a if condition else b if condition else c`
+* This is like python's `a if condition else b` syntax
+* Multiple ternary operators can be chained together:
+
+	```javascript
+	function checkSign(num) {
+		return num > 0 ? "positive" : num < 0 ? "negative" : "zero";
+	}
+
+	console.log(checkSign(10)); // positive
+	```
+
+* In python this would be `a if condition else b if condition else c`
 
 ##### Switch Statements
-	* Simpler syntax for single variable value comparison
-	* Equivalent to python 3.10+ match-case statement
-	* Uses strict equality (`===`) in comparisons
-	* Simple example:
+* Simpler syntax for single variable value comparison
+* Equivalent to python 3.10+ match-case statement
+* Uses strict equality (`===`) in comparisons
+* Simple example:
 
-		```javascript
-		function caseInSwitch(val) {
-			let answer = "";
-			switch (val) {
-				case 1:
-					answer = "alpha";
-					break;
-				case 2:
-					answer = "beta";
-					break;
-				case 3:
-					answer = "gamma";
-					break;
-			}
-			return answer;
-		}
+```javascript
+function caseInSwitch(val) {
+	let answer = "";
+	switch (val) {
+		case 1:
+			answer = "alpha";
+			break;
+		case 2:
+			answer = "beta";
+			break;
+		case 3:
+			answer = "gamma";
+			break;
+	}
+	return answer;
+}
 
-		console.log(caseInSwitch(1)); // alpha
-		console.log(caseInSwitch(2)); // beta
-		console.log(caseInSwitch(3)); // gamma
-		console.log(caseInSwitch(4)); // empty string
-		```
-	* Case with multiple values:
+console.log(caseInSwitch(1)); // alpha
+console.log(caseInSwitch(2)); // beta
+console.log(caseInSwitch(3)); // gamma
+console.log(caseInSwitch(4)); // empty string
+```
+* Case with multiple values:
 
-		```javascript
-		function sequentialSizes(val) {
-			let answer = "";
+```javascript
+function sequentialSizes(val) {
+	let answer = "";
 
-			switch (val) {
-				case 1:
-				case 2:
-					answer = "Low";
-					break;
-				case 3:
-				case 4:
-					answer = "Mid";
-					break;
-				case 5:
-					answer = "High";
-					break;
-			}
-			
-			return answer;
-		}
+	switch (val) {
+		case 1:
+		case 2:
+			answer = "Low";
+			break;
+		case 3:
+		case 4:
+			answer = "Mid";
+			break;
+		case 5:
+			answer = "High";
+			break;
+	}
+	
+	return answer;
+}
 
-		// obvious how this works with, e.g., console.log(sequentialSizes(1));
-		```
+// obvious how this works with, e.g., console.log(sequentialSizes(1));
+```
 
 ##### Return Early Pattern for Functions
-	* Example:
+* Example:
 
-		```javascript
-		function abTest(a, b) {
-			if (a < 0 || b < 0) {
-				return undefined;
-			}
+```javascript
+function abTest(a, b) {
+	if (a < 0 || b < 0) {
+		return undefined;
+	}
 
-			return Math.round(Math.pow(Math.sqrt(a) + Math.sqrt(b), 2));
-		}
+	return Math.round(Math.pow(Math.sqrt(a) + Math.sqrt(b), 2));
+}
 
-		console.log(abTest(2, 2)); // 8
-		console.log(abTest(-2, 2)); // undefined
-		console.log(abTest(2, -2)); // undefined
-		console.log(abTest(2, 8)); // 18
-		```
+console.log(abTest(2, 2)); // 8
+console.log(abTest(-2, 2)); // undefined
+console.log(abTest(2, -2)); // undefined
+console.log(abTest(2, 8)); // 18
+```
 
 #### JavaScript Objects
 
-	* Objects are more similar to python dictionaries than to python objects
-	* They are similar to JavaScript arrays except that the index keys ("properties") are strings
-	* Simmple example:
+* Objects are more similar to python dictionaries than to python objects
+* They are similar to JavaScript arrays except that the index keys ("properties") are strings
+* Simmple example:
 
-		```javascript
-		let myDog = {
-			name: "Spot",
-			legs: 4,
-			tails: 1,
-			friends: ["Rover", "Fido"]
-		};
+```javascript
+let myDog = {
+	name: "Spot",
+	legs: 4,
+	tails: 1,
+	friends: ["Rover", "Fido"]
+};
 
-		console.log(myDog.name); // or myDog["name"]
-		console.log(myDog.legs); // or myDog["legs"]
-		console.log(myDog.tails); // 1
-		console.log(myDog.friends); // [ 'Rover', 'Fido' ]
+console.log(myDog.name); // or myDog["name"]
+console.log(myDog.legs); // or myDog["legs"]
+console.log(myDog.tails); // 1
+console.log(myDog.friends); // [ 'Rover', 'Fido' ]
 
-		let nameToCheck = "Spot";
-		console.log(myDog[nameToCheck]); // Spot
-		```
+let nameToCheck = "Spot";
+console.log(myDog[nameToCheck]); // Spot
+```
 
 ##### Updating Object Properties
 
-	```javascript
-	myDog.name = "Happy Spot";
-	console.log(myDog.name); // Happy Spot
-	```
+```javascript
+myDog.name = "Happy Spot";
+console.log(myDog.name); // Happy Spot
+```
 
 ##### Add New Properties to a JavaScript Object
 
-	```javascript
-	myDog.bark = "woof";
-	console.log(myDog.bark); // woof
-	```
+```javascript
+myDog.bark = "woof";
+console.log(myDog.bark); // woof
+```
 
 ##### Delete Properties from a JavaScript Object
 
-	```javascript
-	delete myDog.bark;
-	console.log(myDog.bark); // undefined
-	```
+```javascript
+delete myDog.bark;
+console.log(myDog.bark); // undefined
+```
 
 ##### Using Objects for Lookups
 
-	```javascript
-	// Can be used like a switch statement (keys must be strings)
-	// (like a python dictionary)
-	function phoneticLookup(val) {
-		let result = "";
+```javascript
+// Can be used like a switch statement (keys must be strings)
+// (like a python dictionary)
+function phoneticLookup(val) {
+	let result = "";
 
-		let lookup = {
-			alpha: "Adams",
-			bravo: "Boston",
-			charlie: "Chicago",
-			delta: "Denver",
-			echo: "Easy",
-			foxtrot: "Frank",
-		};
+	let lookup = {
+		alpha: "Adams",
+		bravo: "Boston",
+		charlie: "Chicago",
+		delta: "Denver",
+		echo: "Easy",
+		foxtrot: "Frank",
+	};
 
-		result = lookup[val];
+	result = lookup[val];
 
-		return result;
-	}
-	```
+	return result;
+}
+```
 
 ##### Testing Objects for Properties
 
-	```javascript
-	// Similar to python's `in` operator
-	function checkObj(obj, checkProp) {
-		if (obj.hasOwnProperty(checkProp)) {
-			return obj[checkProp];
-		} else {
-			return "Not Found";
-		}
+```javascript
+// Similar to python's `in` operator
+function checkObj(obj, checkProp) {
+	if (obj.hasOwnProperty(checkProp)) {
+		return obj[checkProp];
+	} else {
+		return "Not Found";
 	}
-	```
+}
+```
 
 ##### Nested Objects
 
-	```javascript
-	let myStorage = {
-		car: {
-			inside: {
-				"glove box": "maps",
-				"passenger seat": "crumbs",
-			},
-			outside: {
-				trunk: "jack",
-			},
+```javascript
+let myStorage = {
+	car: {
+		inside: {
+			"glove box": "maps",
+			"passenger seat": "crumbs",
 		},
-	};
+		outside: {
+			trunk: "jack",
+		},
+	},
+};
 
-	let gloveBoxContents = myStorage.car.inside["glove box"];
-	console.log(gloveBoxContents); // maps
-	```
+let gloveBoxContents = myStorage.car.inside["glove box"];
+console.log(gloveBoxContents); // maps
+```
 
 ##### Accessing Nested Arrays
 
-	```javascript
-	let myPlants = [
-		{
-			type: "flowers",
-			list: ["rose", "tulip", "dandelion"],
-		},
-		{
-			type: "trees",
-			list: ["fir", "pine", "birch"],
-		},
-	];
+```javascript
+let myPlants = [
+	{
+		type: "flowers",
+		list: ["rose", "tulip", "dandelion"],
+	},
+	{
+		type: "trees",
+		list: ["fir", "pine", "birch"],
+	},
+];
 
-	let secondTree = myPlants[1].list[1];
-	console.log(secondTree); // pine
-	```
+let secondTree = myPlants[1].list[1];
+console.log(secondTree); // pine
+```
 
 #### Looping
 
 ##### While Loops
 
-	```javascript
-	let myArray = [];
-	let i = 0;
-	while (i < 5) {
-		myArray.push(i);
-		i++;
-	}
-	console.log(myArray); // [ 0, 1, 2, 3, 4 ]
-	```
+```javascript
+let myArray = [];
+let i = 0;
+while (i < 5) {
+	myArray.push(i);
+	i++;
+}
+console.log(myArray); // [ 0, 1, 2, 3, 4 ]
+```
 
 ##### For Loops
 
-	```javascript
-	let myArray = [];
-	for (let i = 0; i < 5; i++) {
-		myArray.push(i);
-	}
-	console.log(myArray); // [ 0, 1, 2, 3, 4 ]
-	```
+```javascript
+let myArray = [];
+for (let i = 0; i < 5; i++) {
+	myArray.push(i);
+}
+console.log(myArray); // [ 0, 1, 2, 3, 4 ]
+```
 
 ##### Iterate Through an Array with a For Loop
 
-	```javascript
-	let myArr = [2, 3, 4, 5, 6];
-	let total = 0;
-	for (let i = 0; i < myArr.length; i++) {
-		total += myArr[i];
-	}
-	console.log(total); // 20
-	```
+```javascript
+let myArr = [2, 3, 4, 5, 6];
+let total = 0;
+for (let i = 0; i < myArr.length; i++) {
+	total += myArr[i];
+}
+console.log(total); // 20
+```
 
 ##### Nesting For Loops
 
-	```javascript
-	function multiplyAll(arr) {
-		let product = 1;
-		for (let i = 0; i < arr.length; i++) {
-			for (let j = 0; j < arr[i].length; j++) {
-				product *= arr[i][j];
-			}
+```javascript
+function multiplyAll(arr) {
+	let product = 1;
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = 0; j < arr[i].length; j++) {
+			product *= arr[i][j];
 		}
-		return product;
 	}
+	return product;
+}
 
-	let product = multiplyAll([
-		[1, 2],
-		[3, 4],
-		[5, 6, 7],
-	]);
+let product = multiplyAll([
+	[1, 2],
+	[3, 4],
+	[5, 6, 7],
+]);
 
-	console.log(product); // 5040
-	```
+console.log(product); // 5040
+```
 
 ##### Do...While Loops
 
-	```javascript
-	let myArray = [];
-	let i = 10;
-	do {
-		myArray.push(i);
-		i++;
-	} while (i < 5);
-	console.log(i, myArray); // 10 [ 10 ]
-	```
+```javascript
+let myArray = [];
+let i = 10;
+do {
+	myArray.push(i);
+	i++;
+} while (i < 5);
+console.log(i, myArray); // 10 [ 10 ]
+```
 
-	* The above code will run once even though the condition is false
-	* So it will push `10` to `myArray` and increment `i` to `11` then exit the loop
-	* This is useful when you want to run the loop at least once
+* The above code will run once even though the condition is false
+* So it will push `10` to `myArray` and increment `i` to `11` then exit the loop
+* This is useful when you want to run the loop at least once
 
 ##### Profile Lookup
 
-	```javascript
-	let contacts = [
-		{
-			firstName: "Akira",
-			lastName: "Laine",
-			number: "0543236543",
-			likes: ["Pizza", "Coding", "Brownie Points"],
-		},
-		{
-			firstName: "Harry",
-			lastName: "Potter",
-			number: "0994372684",
-			likes: ["Hogwarts", "Magic", "Hagrid"],
-		},
-		{
-			firstName: "Sherlock",
-			lastName: "Holmes",
-			number: "0487345643",
-			likes: ["Intriguing Cases", "Violin"],
-		},
-		{
-			firstName: "Kristian",
-			lastName: "Vos",
-			number: "unknown",
-			likes: ["JavaScript", "Gaming", "Foxes"],
-		},
-	];
+```javascript
+let contacts = [
+	{
+		firstName: "Akira",
+		lastName: "Laine",
+		number: "0543236543",
+		likes: ["Pizza", "Coding", "Brownie Points"],
+	},
+	{
+		firstName: "Harry",
+		lastName: "Potter",
+		number: "0994372684",
+		likes: ["Hogwarts", "Magic", "Hagrid"],
+	},
+	{
+		firstName: "Sherlock",
+		lastName: "Holmes",
+		number: "0487345643",
+		likes: ["Intriguing Cases", "Violin"],
+	},
+	{
+		firstName: "Kristian",
+		lastName: "Vos",
+		number: "unknown",
+		likes: ["JavaScript", "Gaming", "Foxes"],
+	},
+];
 
-	function lookUpProfile(name, prop) {
-		for (let i = 0; i < contacts.length; i++) {
-			if (contacts[i].firstName === name) {
-				if (contacts[i].hasOwnProperty(prop)) { // or, equivalently, `if (contacts[i][prop])` bc `undefined` is falsy
-					return contacts[i][prop];
-				} else {
-					return "No such property";
-				}
+function lookUpProfile(name, prop) {
+	for (let i = 0; i < contacts.length; i++) {
+		if (contacts[i].firstName === name) {
+			if (contacts[i].hasOwnProperty(prop)) { // or, equivalently, `if (contacts[i][prop])` bc `undefined` is falsy
+				return contacts[i][prop];
+			} else {
+				return "No such property";
 			}
 		}
-		return "No such contact";
 	}
+	return "No such contact";
+}
 
-	console.log(lookUpProfile("Akira", "likes")); // [ 'Pizza', 'Coding', 'Brownie Points' ]
-	console.log(lookUpProfile("Kristian", "lastName")); // Vos
-	```
+console.log(lookUpProfile("Akira", "likes")); // [ 'Pizza', 'Coding', 'Brownie Points' ]
+console.log(lookUpProfile("Kristian", "lastName")); // Vos
+```
 
-	* Other falsy values in JavaScript are `false`, `0`, `""`, `null`, `undefined`, and `NaN`
+* Other falsy values in JavaScript are `false`, `0`, `""`, `null`, `undefined`, and `NaN`
 
 #### Constructor Functions
 
@@ -1009,10 +1009,10 @@ console.assert(1 === 2, "This is an error"); // Assertion failed: This is an err
 
 As noted, JavaScript objects are similar to python dictionaries. However, they are not as flexible as python dictionaries. For example, you can't add a new key-value pair to a JavaScript object after it's been created. This is where constructor functions come in. They are used to create multiple objects of the same type. They are similar to classes in other languages.
 
-	* Constructor functions are used to create objects
-	* They are similar to classes in other languages
-	* They are used to create multiple objects of the same type
-	* They are used to create objects with the same properties but different values
+* Constructor functions are used to create objects
+* They are similar to classes in other languages
+* They are used to create multiple objects of the same type
+* They are used to create objects with the same properties but different values
 
 Long story short:
 
@@ -1027,234 +1027,234 @@ But objects created using constructor functions __ARE__ similar to python object
 
 ##### Syntax
 
-	```javascript
-	function Dog() {
-		this.name = "Spot";
-		this.color = "brown";
-		this.numLegs = 4;
-	}
-	```
+```javascript
+function Dog() {
+	this.name = "Spot";
+	this.color = "brown";
+	this.numLegs = 4;
+}
+```
 
-	* The `this` keyword is used to refer to the current object
-	* The `new` keyword is used to create a new object from the constructor function
-	* The `new` keyword creates an instance of the object
+* The `this` keyword is used to refer to the current object
+* The `new` keyword is used to create a new object from the constructor function
+* The `new` keyword creates an instance of the object
 
 ##### Invoking a Constructor Function
 
-	```javascript
-	let hound = new Dog();
-	console.log(hound); // Dog { name: 'Spot', color: 'brown', numLegs: 4 }
-	```
+```javascript
+let hound = new Dog();
+console.log(hound); // Dog { name: 'Spot', color: 'brown', numLegs: 4 }
+```
 
 ##### Extending Constructors to Receive Arguments
 
-	```javascript
-	function Dog(name, color) {
-		this.name = name;
-		this.color = color;
-		this.numLegs = 4;
-	}
+```javascript
+function Dog(name, color) {
+	this.name = name;
+	this.color = color;
+	this.numLegs = 4;
+}
 
-	let hound = new Dog("Spot", "brown");
-	console.log(hound); // Dog { name: 'Spot', color: 'brown', numLegs: 4 }
-	```
+let hound = new Dog("Spot", "brown");
+console.log(hound); // Dog { name: 'Spot', color: 'brown', numLegs: 4 }
+```
 
 ##### Verify an Object's Constructor with instanceof
 
-	```javascript
-	function House(numBedrooms) {
-		this.numBedrooms = numBedrooms;
-	}
+```javascript
+function House(numBedrooms) {
+	this.numBedrooms = numBedrooms;
+}
 
-	let myHouse = new House(4);
-	console.log(myHouse instanceof House); // true
-	```
+let myHouse = new House(4);
+console.log(myHouse instanceof House); // true
+```
 
 ##### Understand Own Properties
 
-	```javascript
-	function Bird(name) {
-		this.name = name;
-		this.numLegs = 2;
-	}
+```javascript
+function Bird(name) {
+	this.name = name;
+	this.numLegs = 2;
+}
 
-	let canary = new Bird("Tweety");
-	let ownProps = [];
-	for (let property in canary) {
-		if (canary.hasOwnProperty(property)) {
-			ownProps.push(property);
-		}
+let canary = new Bird("Tweety");
+let ownProps = [];
+for (let property in canary) {
+	if (canary.hasOwnProperty(property)) {
+		ownProps.push(property);
 	}
-	console.log(ownProps); // [ 'name', 'numLegs' ]
-	```
+}
+console.log(ownProps); // [ 'name', 'numLegs' ]
+```
 
 ##### Use Prototype Properties to Reduce Duplicate Code
 
-	```javascript
-	function Dog(name) {
-		this.name = name;
-	}
+```javascript
+function Dog(name) {
+	this.name = name;
+}
 
-	Dog.prototype.numLegs = 4; // this is allowing all Dog objects to have the numLegs property (even though it's not defined in the constructor function)
+Dog.prototype.numLegs = 4; // this is allowing all Dog objects to have the numLegs property (even though it's not defined in the constructor function)
 
-	let beagle = new Dog("Snoopy");
-	console.log(beagle.numLegs); // 4
-	```
+let beagle = new Dog("Snoopy");
+console.log(beagle.numLegs); // 4
+```
 
 ##### Iterate Over All Properties
 
-	```javascript
-	function Dog(name) {
-		this.name = name;
+```javascript
+function Dog(name) {
+	this.name = name;
+}
+
+Dog.prototype.numLegs = 4;
+
+let beagle = new Dog("Snoopy");
+
+let ownProps = [];
+let prototypeProps = [];
+
+for (let property in beagle) {
+	if (beagle.hasOwnProperty(property)) {
+		ownProps.push(property);
+	} else {
+		prototypeProps.push(property);
 	}
+}
 
-	Dog.prototype.numLegs = 4;
-
-	let beagle = new Dog("Snoopy");
-
-	let ownProps = [];
-	let prototypeProps = [];
-
-	for (let property in beagle) {
-		if (beagle.hasOwnProperty(property)) {
-			ownProps.push(property);
-		} else {
-			prototypeProps.push(property);
-		}
-	}
-
-	console.log(ownProps); // [ 'name' ]
-	console.log(prototypeProps); // [ 'numLegs' ]
-	```
+console.log(ownProps); // [ 'name' ]
+console.log(prototypeProps); // [ 'numLegs' ]
+```
 
 #### Methods
 
 ##### Methods
 
-	* Methods are functions that are stored as object properties
-	* They are defined in the same way as regular functions
-	* They are invoked using the dot notation
-	* They can be used to change object properties
+* Methods are functions that are stored as object properties
+* They are defined in the same way as regular functions
+* They are invoked using the dot notation
+* They can be used to change object properties
 
 ##### Example
 
-	```javascript
-	let dog = {
-		name: "Spot",
-		numLegs: 4,
-		sayLegs: function () {
-			return "This dog has " + dog.numLegs + " legs.";
-		},
-	};
+```javascript
+let dog = {
+	name: "Spot",
+	numLegs: 4,
+	sayLegs: function () {
+		return "This dog has " + dog.numLegs + " legs.";
+	},
+};
 
-	console.log(dog.sayLegs()); // This dog has 4 legs.
-	```
+console.log(dog.sayLegs()); // This dog has 4 legs.
+```
 
 #### Built-In Functions: Random Numbers & Int-to-String Conversion
 
 ##### Generate Random Fractions with JavaScript
 
-	```javascript
-	function randomFraction() {
-		return Math.random();
-	}
+```javascript
+function randomFraction() {
+	return Math.random();
+}
 
-	console.log(randomFraction()); // 0.12345678901234567
-	```
+console.log(randomFraction()); // 0.12345678901234567
+```
 
 ##### Generate Random Whole Numbers with JavaScript
 
-	```javascript
-	function randomWholeNum() {
-		return Math.floor(Math.random() * 10);
-	}
+```javascript
+function randomWholeNum() {
+	return Math.floor(Math.random() * 10);
+}
 
-	console.log(randomWholeNum()); // 7
-	```
+console.log(randomWholeNum()); // 7
+```
 
 ##### Generate Random Whole Numbers within a Range
 
-	```javascript
-	function randomRange(myMin, myMax) {
-		// The below line basically generates a random number between 0 and 1
-		// and then scales it to be between myMin and myMax
-		// (offsets are necessary to include myMin and myMax)
-		return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
-	}
+```javascript
+function randomRange(myMin, myMax) {
+	// The below line basically generates a random number between 0 and 1
+	// and then scales it to be between myMin and myMax
+	// (offsets are necessary to include myMin and myMax)
+	return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
+}
 
 	console.log(randomRange(5, 15)); // 10
-	```
+```
 
 ##### Use the parseInt Function
 
-	```javascript
-	function convertToInteger(str) {
-		return parseInt(str);
-	}
+```javascript
+function convertToInteger(str) {
+	return parseInt(str);
+}
 
-	console.log(convertToInteger("56")); // 56
-	```
+console.log(convertToInteger("56")); // 56
+```
 
 ##### Use the parseInt Function with a Radix
 
-	```javascript
-	function convertToInteger(str) {
-		return parseInt(str, 2);
-	}
+```javascript
+function convertToInteger(str) {
+	return parseInt(str, 2);
+}
 
-	console.log(convertToInteger("10011")); // 19
-	```
+console.log(convertToInteger("10011")); // 19
+```
 
-	* The radix is the base of the number in the string
-	* Basically this is showing how to convert a binary number to a decimal number
+* The radix is the base of the number in the string
+* Basically this is showing how to convert a binary number to a decimal number
 
 #### Recursion
 
 ##### Using recursion to create a countdown
 
-	```javascript
-	function countdown(n) {
-		if (n < 1) { // base case
-			return [];
-		} else { // recursive case
-			const countArray = countdown(n - 1);
-			countArray.unshift(n);
-			return countArray;
-		}
+```javascript
+function countdown(n) {
+	if (n < 1) { // base case
+		return [];
+	} else { // recursive case
+		const countArray = countdown(n - 1);
+		countArray.unshift(n);
+		return countArray;
 	}
+}
 
-	console.log(countdown(5)); // [ 1, 2, 3, 4, 5 ]
-	```
+console.log(countdown(5)); // [ 1, 2, 3, 4, 5 ]
+```
 
-	* The `unshift` is adding the current value of `n` to the beginning of the array
-	* Like in all recursive functions:
-		* the base case is the first `if` statement
-		* the recursive case is the `else` statement
-		* the call stack is used to manage the values of `n` as the function is called recursively
-			* the call stack is then used to build the array in the reverse order of the recursive calls
+* The `unshift` is adding the current value of `n` to the beginning of the array
+* Like in all recursive functions:
+	* the base case is the first `if` statement
+	* the recursive case is the `else` statement
+	* the call stack is used to manage the values of `n` as the function is called recursively
+		* the call stack is then used to build the array in the reverse order of the recursive calls
 
 ##### Using recursion to create a range of numbers
 
-	```javascript
-	function rangeOfNumbers(startNum, endNum) {
-		if (startNum === endNum) { // base case
-			return [startNum];
-		} else { // recursive case
-			const countArray = rangeOfNumbers(startNum, endNum - 1);
-			countArray.push(endNum);
-			return countArray;
-		}
+```javascript
+function rangeOfNumbers(startNum, endNum) {
+	if (startNum === endNum) { // base case
+		return [startNum];
+	} else { // recursive case
+		const countArray = rangeOfNumbers(startNum, endNum - 1);
+		countArray.push(endNum);
+		return countArray;
 	}
+}
 
-	console.log(rangeOfNumbers(1, 5)); // [ 1, 2, 3, 4, 5 ]
-	```
+console.log(rangeOfNumbers(1, 5)); // [ 1, 2, 3, 4, 5 ]
+```
 
-	* The `push` is adding the current value of `endNum` to the end of the array
-	* Like in all recursive functions:
-		* the base case is the first `if` statement
-		* the recursive case is the `else` statement
-		* the call stack is used to manage the values of `endNum` as the function is called recursively
-			* the call stack is then used to build the array in the correct order of the recursive calls
+* The `push` is adding the current value of `endNum` to the end of the array
+* Like in all recursive functions:
+	* the base case is the first `if` statement
+	* the recursive case is the `else` statement
+	* the call stack is used to manage the values of `endNum` as the function is called recursively
+		* the call stack is then used to build the array in the correct order of the recursive calls
 
 ---
 
@@ -1289,14 +1289,14 @@ But objects created using constructor functions __ARE__ similar to python object
 				* To round to a specific number of decimal places, multiply by 10 to the power of that number of decimal places, round, and then divide by 10 to the power of that number of decimal places (same as any language)
 					* E.g. to round to 2 decimal places:
 					
-							```javascript
-							let num = 2.12345;
-							num = Math.round(num * 100) / 100; 
-							// || `Math.round(num * 10**2) / 10**2` 
-							// || `Math.round(num * Math.pow(10, 2)) / Math.pow(10, 2)`
-							// let desiredNumOfDecimalPlaces = 2; Math.round(num * 10**desiredNumOfDecimalPlaces) / 10**desiredNumOfDecimalPlaces;
-							console.log(num); // 2.12
-							```
+						```javascript
+						let num = 2.12345;
+						num = Math.round(num * 100) / 100; 
+						// || `Math.round(num * 10**2) / 10**2` 
+						// || `Math.round(num * Math.pow(10, 2)) / Math.pow(10, 2)`
+						// let desiredNumOfDecimalPlaces = 2; Math.round(num * 10**desiredNumOfDecimalPlaces) / 10**desiredNumOfDecimalPlaces;
+						console.log(num); // 2.12
+						```
 
 			* `Math.abs()` (returns the absolute value)
 			* `Math.pow(base, exponent)` (returns `base` to the power of `exponent`)
@@ -1403,21 +1403,23 @@ Use brackets when the "lambda function" has multiple lines.
 const magic = () => new Date(); // or `const magic = () => { return new Date(); };`
 ```
 
-	* This similar to...
+* This similar to...
 
-		```javascript
-		function magic() function() {
-			return new Date(); // Date() is a built-in function that returns the current date
-			// `new` is a keyword that creates an instance of the Date object.
-			// `new` is necessary bc Date() is a constructor function
-			// A constructor function is a function that creates an object. They are used with the `new` keyword.
-		};
-		```
-		
-	* ...EXCEPT the latter syntax gets hoisted but the former syntax does not
-		* Hoisting is the process of moving function declarations to the top of the file
-		* This means that the function can be called before it is defined
-		* This is not possible with arrow functions
+```javascript
+function magic() function() {
+	return new Date(); // Date() is a built-in function that returns the current date
+	// `new` is a keyword that creates an instance of the Date object.
+	// `new` is necessary bc Date() is a constructor function
+	// A constructor function is a function that creates an object. They are used with the `new` keyword.
+};
+```
+
+* ...EXCEPT the latter syntax gets hoisted but the former syntax does not
+* Hoisting is the process of moving function declarations to the top of the file
+* This means that the function can be called before it is defined
+* This is not possible with arrow functions
+
+
 * Arrow functions are anonymous functions
 	* An anonymous function is a function that doesn't have a name -- it is typically stored in a variable
 	* E.g. `const myFunc = function() { ... };` is a named function but `const myFunc = () => { ... };` is an anonymous function
@@ -1430,372 +1432,372 @@ const magic = () => new Date(); // or `const magic = () => { return new Date(); 
 
 #### Write Arrow Functions with Parameters
 
+```javascript
+const myConcat = (arr1, arr2) => arr1.concat(arr2);
+
+console.log(myConcat([1, 2], [3, 4, 5])); // [ 1, 2, 3, 4, 5 ]
+```
+
+* This is similar to:
+
 	```javascript
-	const myConcat = (arr1, arr2) => arr1.concat(arr2);
-
-	console.log(myConcat([1, 2], [3, 4, 5])); // [ 1, 2, 3, 4, 5 ]
+	const myConcat = function(arr1, arr2) {
+		return arr1.concat(arr2);
+	};
 	```
-
-	* This is similar to:
-
-		```javascript
-		const myConcat = function(arr1, arr2) {
-			return arr1.concat(arr2);
-		};
-		```
 #### Set Default Parameters for Your Functions
 
-	```javascript
-	const increment = (number, value = 1) => number + value;
+```javascript
+const increment = (number, value = 1) => number + value;
 
-	console.log(increment(5, 2)); // 7
-	console.log(increment(5)); // 6
-	```
+console.log(increment(5, 2)); // 7
+console.log(increment(5)); // 6
+```
 
 #### Compare Scopes of the var and let Keywords
-	* `var` is function-scoped
-	* `let` is block-scoped
-		* E.g. `if` statements, `for` loops, and `while` loops are blocks
-		* Blocks are generally defined by curly braces `{ }`
-			* E.g. `if (true) { let i = 1; }` is block-scoped but `if (true) let i = 1;` is not
-		* Functions are block-scoped if they are defined using the `function` keyword but not if they are defined using arrow functions
-			* E.g. `function myFunction() { let i = 1; }` is block-scoped but `const myFunction = () => { let i = 1; }` is not
-	
-	```javascript
-	// let is block-scoped
-	function checkScope() {
-		"use strict";
-		let i = "function scope"; // if this was `var i = "function scope"` ...
-		if (true) {
-			let i = "block scope"; // ...and this was `i = "block scope"` then the console.log at bottom would print "block scope"
-			console.log("Block scope i is: ", i); // as is, this prints "block scope"
-		}
-		console.log("Function scope i is: ", i); // as is, this prints "function scope" bc the `let` within the if is block-scoped
-		return i;
-	}
+* `var` is function-scoped
+* `let` is block-scoped
+* E.g. `if` statements, `for` loops, and `while` loops are blocks
+* Blocks are generally defined by curly braces `{ }`
+	* E.g. `if (true) { let i = 1; }` is block-scoped but `if (true) let i = 1;` is not
+* Functions are block-scoped if they are defined using the `function` keyword but not if they are defined using arrow functions
+	* E.g. `function myFunction() { let i = 1; }` is block-scoped but `const myFunction = () => { let i = 1; }` is not
 
-	checkScope(); // logs "block scope" and "function scope"
-	```
+```javascript
+// let is block-scoped
+function checkScope() {
+"use strict";
+let i = "function scope"; // if this was `var i = "function scope"` ...
+if (true) {
+	let i = "block scope"; // ...and this was `i = "block scope"` then the console.log at bottom would print "block scope"
+	console.log("Block scope i is: ", i); // as is, this prints "block scope"
+}
+console.log("Function scope i is: ", i); // as is, this prints "function scope" bc the `let` within the if is block-scoped
+return i;
+}
+
+checkScope(); // logs "block scope" and "function scope"
+```
 
 #### Mutate an Array Declared with const
-	* strict mode can be enabled by adding `"use strict";` to the top of the file
-		* This can be used to prevent accidentally overwriting variables
+* strict mode can be enabled by adding `"use strict";` to the top of the file
+* This can be used to prevent accidentally overwriting variables
 
-	```javascript
-	const s = [5, 7, 2];
-	function editInPlace() {
-		"use strict"; // this line is necessary to enable strict mode
-		// strict mode prevents you from accidentally overwriting variables
-		// e.g. s = [2, 5, 7]; <- this is invalid
-		// in other words, strict mode prevents you from accidentally reassigning variables but it doesn't prevent you from mutating them
-		s[0] = 2;
-		s[1] = 5;
-		s[2] = 7;
-	}
-	editInPlace(); // this works
-	console.log(s); // [ 2, 5, 7 ]
-	```
+```javascript
+const s = [5, 7, 2];
+function editInPlace() {
+"use strict"; // this line is necessary to enable strict mode
+// strict mode prevents you from accidentally overwriting variables
+// e.g. s = [2, 5, 7]; <- this is invalid
+// in other words, strict mode prevents you from accidentally reassigning variables but it doesn't prevent you from mutating them
+s[0] = 2;
+s[1] = 5;
+s[2] = 7;
+}
+editInPlace(); // this works
+console.log(s); // [ 2, 5, 7 ]
+```
 
 #### Prevent Object Mutation
 
-	```javascript
-	function freezeObj() {
-		"use strict";
-		const MATH_CONSTANTS = {
-			PI: 3.14,
-		};
-		Object.freeze(MATH_CONSTANTS); // this line is necessary to prevent mutation
-		try {
-			MATH_CONSTANTS.PI = 99;
-		} catch (ex) {
-			console.log(ex);
-		}
-		return MATH_CONSTANTS.PI;
-	}
+```javascript
+function freezeObj() {
+"use strict";
+const MATH_CONSTANTS = {
+	PI: 3.14,
+};
+Object.freeze(MATH_CONSTANTS); // this line is necessary to prevent mutation
+try {
+	MATH_CONSTANTS.PI = 99;
+} catch (ex) {
+	console.log(ex);
+}
+return MATH_CONSTANTS.PI;
+}
 
-	const PI = freezeObj();
-	console.log(PI); // 3.14
-	```
+const PI = freezeObj();
+console.log(PI); // 3.14
+```
 
-	* The point of the above example is to show that `Object.freeze()` prevents mutation
-	* It also shows that `Object` is a built-in object in JavaScript that has a `freeze()` method
-		* Pass the object you want to freeze as an argument to `Object.freeze()`
-		* Other similar methods are `Object.seal()` and `Object.preventExtensions()`
-			* `Object.seal()` prevents adding and deleting properties but allows changing existing properties
-			* `Object.preventExtensions()` prevents adding properties but allows changing and deleting existing properties
+* The point of the above example is to show that `Object.freeze()` prevents mutation
+* It also shows that `Object` is a built-in object in JavaScript that has a `freeze()` method
+* Pass the object you want to freeze as an argument to `Object.freeze()`
+* Other similar methods are `Object.seal()` and `Object.preventExtensions()`
+	* `Object.seal()` prevents adding and deleting properties but allows changing existing properties
+	* `Object.preventExtensions()` prevents adding properties but allows changing and deleting existing properties
 
 #### Use the Rest Parameter with Function Parameters
 
-	```javascript
-	const sum = (...args) => {
-		return args.reduce((a, b) => a + b, 0);
-	};
+```javascript
+const sum = (...args) => {
+	return args.reduce((a, b) => a + b, 0);
+};
 
-	console.log(sum(1, 2, 3)); // 6
-	```
+console.log(sum(1, 2, 3)); // 6
+```
 
-	* The `...` is the rest operator
-		* It allows you to pass an arbitrary number of arguments to a function
-			* E.g. `myList = [1, 2, 3]; myOtherList = [4, 5, 6]; myList.push(...myOtherList);` is equivalent to `myList = [1, 2, 3]; myOtherList = [4, 5, 6]; myList.push(myOtherList[0], myOtherList[1], myOtherList[2]);`
-		* It is similar to the `*args` syntax in python
-			* The equivalent of `**kwargs` in python is the spread operator (see below)
+* The `...` is the rest operator
+	* It allows you to pass an arbitrary number of arguments to a function
+		* E.g. `myList = [1, 2, 3]; myOtherList = [4, 5, 6]; myList.push(...myOtherList);` is equivalent to `myList = [1, 2, 3]; myOtherList = [4, 5, 6]; myList.push(myOtherList[0], myOtherList[1], myOtherList[2]);`
+	* It is similar to the `*args` syntax in python
+		* The equivalent of `**kwargs` in python is the spread operator (see below)
 
 #### Use the Spread Operator to Evaluate Arrays In-Place
 
-	```javascript
-	const arr1 = ["JAN", "FEB", "MAR", "APR", "MAY"];
-	let arr2; // variable can be declared without being initialized
-	// this is necessary when you want to pass the variable as an argument to a function that will initialize it but requires it to be passed as an argument
+```javascript
+const arr1 = ["JAN", "FEB", "MAR", "APR", "MAY"];
+let arr2; // variable can be declared without being initialized
+// this is necessary when you want to pass the variable as an argument to a function that will initialize it but requires it to be passed as an argument
 
-	function spreadArray(arr1, arr2) {
-		arr2 = [...arr1];
-		return arr2;
-	}
+function spreadArray(arr1, arr2) {
+	arr2 = [...arr1];
+	return arr2;
+}
 
-	console.log(spreadArray(arr1, arr2)); // [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY' ]
-	```
+console.log(spreadArray(arr1, arr2)); // [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY' ]
+```
 
-	* This is necessary in cases where, e.g., a function is expecting an array
-		* Another example is `Math.max(...myArray)`
+* This is necessary in cases where, e.g., a function is expecting an array
+	* Another example is `Math.max(...myArray)`
 
 #### Use Destructuring Assignment to Extract Values from Objects
-	* Destructuring is a way to extract values from objects and arrays
+* Destructuring is a way to extract values from objects and arrays
 
-	```javascript
-	const HIGH_TEMPERATURES = {
-		yesterday: 75,
-		today: 77,
-		tomorrow: 80,
-	};
+```javascript
+const HIGH_TEMPERATURES = {
+yesterday: 75,
+today: 77,
+tomorrow: 80,
+};
 
-	const { today, tomorrow } = HIGH_TEMPERATURES;
+const { today, tomorrow } = HIGH_TEMPERATURES;
 
-	console.log(today); // 77
-	console.log(tomorrow); // 80
-	```
+console.log(today); // 77
+console.log(tomorrow); // 80
+```
 
-	* In the above example, `today` and `tomorrow` are variables that are being assigned the values of the `today` and `tomorrow` properties of the `HIGH_TEMPERATURES` object
-	* This is similar to:
+* In the above example, `today` and `tomorrow` are variables that are being assigned the values of the `today` and `tomorrow` properties of the `HIGH_TEMPERATURES` object
+* This is similar to:
 
-		```javascript
-		const HIGH_TEMPERATURES = {
-			yesterday: 75,
-			today: 77,
-			tomorrow: 80,
-		};
+```javascript
+const HIGH_TEMPERATURES = {
+	yesterday: 75,
+	today: 77,
+	tomorrow: 80,
+};
 
-		const today = HIGH_TEMPERATURES.today;
-		const tomorrow = HIGH_TEMPERATURES.tomorrow;
+const today = HIGH_TEMPERATURES.today;
+const tomorrow = HIGH_TEMPERATURES.tomorrow;
 
-		console.log(today); // 77
-		console.log(tomorrow); // 80
-		```
-		
-		* This is useful when you want to extract multiple values from an object...you can just name the properties you want to extract
+console.log(today); // 77
+console.log(tomorrow); // 80
+```
+
+* This is useful when you want to extract multiple values from an object...you can just name the properties you want to extract
 
 #### Use Destructuring Assignment to Assign Variables from Objects
-	* You can give different names to the variables you are assigning using `:`
+* You can give different names to the variables you are assigning using `:`
 
-	```javascript
-	const HIGH_TEMPERATURES = {
-		yesterday: 75,
-		today: 77,
-		tomorrow: 80,
-	};
+```javascript
+const HIGH_TEMPERATURES = {
+yesterday: 75,
+today: 77,
+tomorrow: 80,
+};
 
-	const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES;
-	```
+const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES;
+```
 
 #### Use Destructuring Assignment to Assign Variables from Arrays
 
+```javascript
+const [a, b] = [1, 2, 3, 4, 5, 6];
+console.log(a, b); // 1 2
+```
+
+* This is similar to:
+
 	```javascript
-	const [a, b] = [1, 2, 3, 4, 5, 6];
+	const myArray = [1, 2, 3, 4, 5, 6];
+	const a = myArray[0];
+	const b = myArray[1];
 	console.log(a, b); // 1 2
 	```
 
-	* This is similar to:
+* You can also skip elements:
 
-		```javascript
-		const myArray = [1, 2, 3, 4, 5, 6];
-		const a = myArray[0];
-		const b = myArray[1];
-		console.log(a, b); // 1 2
-		```
-	
-	* You can also skip elements:
-
-		```javascript
-		const [a, , , b] = [1, 2, 3, 4, 5, 6];
-		console.log(a, b); // 1 4
-		```
+	```javascript
+	const [a, , , b] = [1, 2, 3, 4, 5, 6];
+	console.log(a, b); // 1 4
+	```
 
 #### Destructuring via rest elements
 
-	```javascript
-	const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
-	console.log(a, b); // 1 2
-	console.log(arr); // [ 3, 4, 5, 7 ]
-	```
+```javascript
+const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
+console.log(a, b); // 1 2
+console.log(arr); // [ 3, 4, 5, 7 ]
+```
 
 #### Use Destructuring Assignment to Pass an Object as a Function's Parameters
 
-	```javascript
-	const HIGH_TEMPERATURES = {
-		yesterday: 75,
-		today: 77,
-		tomorrow: 80,
-	};
+```javascript
+const HIGH_TEMPERATURES = {
+	yesterday: 75,
+	today: 77,
+	tomorrow: 80,
+};
 
-	const { today, tomorrow } = HIGH_TEMPERATURES;
+const { today, tomorrow } = HIGH_TEMPERATURES;
 
-	function forecast({ today, tomorrow }) {
-		return `Today's high is ${today} and tomorrow's high is ${tomorrow}`; // this is a template literal (f-string)
-	}
+function forecast({ today, tomorrow }) {
+	return `Today's high is ${today} and tomorrow's high is ${tomorrow}`; // this is a template literal (f-string)
+}
 
-	console.log(forecast(HIGH_TEMPERATURES)); // Today's high is 77 and tomorrow's high is 80
-	```
+console.log(forecast(HIGH_TEMPERATURES)); // Today's high is 77 and tomorrow's high is 80
+```
 
 #### Create Strings using Template Literals
 
-	```javascript
-	const person = {
-		name: "Zodiac Hasbro",
-		age: 56,
-	};
+```javascript
+const person = {
+	name: "Zodiac Hasbro",
+	age: 56,
+};
 
-	const greeting = `Hello, my name is ${person.name}!
-	I am ${person.age} years old.`;
+const greeting = `Hello, my name is ${person.name}!
+I am ${person.age} years old.`;
 
-	console.log(greeting); // Hello, my name is Zodiac Hasbro!
-	// I am 56 years old.
-	```
+console.log(greeting); // Hello, my name is Zodiac Hasbro!
+// I am 56 years old.
+```
 
 #### Write Concise Object Literal Declarations Using Object Property Shorthand
 
-	```javascript
-	const getMousePosition = (x, y) => ({
-		x: x,
-		y: y,
-	});
+```javascript
+const getMousePosition = (x, y) => ({
+	x: x,
+	y: y,
+});
 
-	console.log(getMousePosition(1, 2)); // { x: 1, y: 2 }
-	```
+console.log(getMousePosition(1, 2)); // { x: 1, y: 2 }
+```
 
-	* There are a few useful points in the above example:
-		* The `()` around the object are necessary to prevent the `{` and `}` from being interpreted as the start and end of the function body
-		* The anonymous function is being implicitly returned
-			* This is because the function body is a single expression (i.e. the object)
-			* So basically the function is equivalent to `const getMousePosition = (x, y) => { return { x: x, y: y }; };`
+* There are a few useful points in the above example:
+    * The `()` around the object are necessary to prevent the `{` and `}` from being interpreted as the start and end of the function body
+    * The anonymous function is being implicitly returned
+    	* This is because the function body is a single expression (i.e. the object)
+    	* So basically the function is equivalent to `const getMousePosition = (x, y) => { return { x: x, y: y }; };`
 
 #### Write Concise Declarative Functions with ES6
 
-	```javascript
-	const person = {
-		name: "Taylor",
-		sayHello() {
-			return `Hello! My name is ${this.name}.`;
-		},
-	};
+```javascript
+const person = {
+	name: "Taylor",
+	sayHello() {
+		return `Hello! My name is ${this.name}.`;
+	},
+};
 
-	console.log(person.sayHello()); // Hello! My name is Taylor.
-	```
+console.log(person.sayHello()); // Hello! My name is Taylor.
+```
 
-	* This is a good example of the use of `this`
-		* `this` refers to the object that the function is a property of
-		* In this case, `this` refers to the `person` object
-		* This is similar to python's `self` keyword
-		* `this` is necessary when you want to access the object's properties from within the function
-			* E.g. `const person = { name: "Taylor", sayHello() { return `Hello! My name is ${name}.`; }, };` will not work because `name` is not defined
-			* E.g. `const person = { name: "Taylor", sayHello() { return `Hello! My name is ${this.name}.`; }, };` will work because `this.name` refers to the `name` property of the `person` object
-		* It also exemplifies the use case of anonymous functions
-			* The function is being defined as a property of the object, so it is not necessary to formally define it
-			* This is similar to python's `lambda` keyword
+* This is a good example of the use of `this`
+	* `this` refers to the object that the function is a property of
+	* In this case, `this` refers to the `person` object
+	* This is similar to python's `self` keyword
+	* `this` is necessary when you want to access the object's properties from within the function
+		* E.g. `const person = { name: "Taylor", sayHello() { return `Hello! My name is ${name}.`; }, };` will not work because `name` is not defined
+		* E.g. `const person = { name: "Taylor", sayHello() { return `Hello! My name is ${this.name}.`; }, };` will work because `this.name` refers to the `name` property of the `person` object
+	* It also exemplifies the use case of anonymous functions
+		* The function is being defined as a property of the object, so it is not necessary to formally define it
+		* This is similar to python's `lambda` keyword
 
 #### Use class Syntax to Define a Constructor Function
 
-	```javascript
-	class Vegetable {
-		constructor(name) {
-			this.name = name;
-		}
+```javascript
+class Vegetable {
+	constructor(name) {
+		this.name = name;
 	}
+}
 
-	const carrot = new Vegetable("carrot");
-	console.log(carrot.name); // Should display 'carrot'
-	```
+const carrot = new Vegetable("carrot");
+console.log(carrot.name); // Should display 'carrot'
+```
 
 #### Use getters and setters to Control Access to an Object
 
-	```javascript
-	class Thermostat {
-		constructor(fahrenheit) {
-			this.fahrenheit = fahrenheit;
-		}
-
-		get temperature() {
-			return (5 / 9) * (this.fahrenheit - 32);
-		}
-
-		set temperature(celsius) {
-			this.fahrenheit = (celsius * 9.0) / 5 + 32;
-		}
+```javascript
+class Thermostat {
+	constructor(fahrenheit) {
+		this.fahrenheit = fahrenheit;
 	}
 
-	const thermos = new Thermostat(76); // Setting in Fahrenheit scale
-	let temp = thermos.temperature; // 24.44 in Celsius
-	thermos.temperature = 26;
-	temp = thermos.temperature; // 26 in Celsius
-	```
+	get temperature() {
+		return (5 / 9) * (this.fahrenheit - 32);
+	}
+
+	set temperature(celsius) {
+		this.fahrenheit = (celsius * 9.0) / 5 + 32;
+	}
+}
+
+const thermos = new Thermostat(76); // Setting in Fahrenheit scale
+let temp = thermos.temperature; // 24.44 in Celsius
+thermos.temperature = 26;
+temp = thermos.temperature; // 26 in Celsius
+```
 
 #### Create a Module Script
 
 Module scripts are JavaScript files that can be imported and exported.
 
-	```html
-	<html>
-		<body>
-			<script type="module" src="index.js"></script>
-		</body>
-	</html>
-	```
+```html
+<html>
+	<body>
+		<script type="module" src="index.js"></script>
+	</body>
+</html>
+```
 
 The code within index.js can be imported and exported using the `import` and `export` keywords:
 
-	```javascript
-	// import { add } from "./math_functions.js"; // this is the syntax for importing a single function
-	import * as myMathModule from "./math_functions.js"; // this is the syntax for importing an entire module
-	// import { add, subtract } from "./math_functions.js"; // this is the syntax for importing multiple functions
+```javascript
+// import { add } from "./math_functions.js"; // this is the syntax for importing a single function
+import * as myMathModule from "./math_functions.js"; // this is the syntax for importing an entire module
+// import { add, subtract } from "./math_functions.js"; // this is the syntax for importing multiple functions
 
-	console.log(myMathModule.add(1, 2)); // 3
-	console.log(myMathModule.subtract(1, 2)); // -1
-	```
+console.log(myMathModule.add(1, 2)); // 3
+console.log(myMathModule.subtract(1, 2)); // -1
+```
 
-	```javascript
-	// export const add = (x, y) => {
-	//   return x + y;
-	// };
+```javascript
+// export const add = (x, y) => {
+//   return x + y;
+// };
 
-	// export const subtract = (x, y) => {
-	//   return x - y;
-	// };
+// export const subtract = (x, y) => {
+//   return x - y;
+// };
 
-	export const add = (x, y) => x + y; // this is the syntax for exporting a single function
-	export const subtract = (x, y) => x - y; // this is the syntax for exporting a single function
-	```
+export const add = (x, y) => x + y; // this is the syntax for exporting a single function
+export const subtract = (x, y) => x - y; // this is the syntax for exporting a single function
+```
 
 #### Use export to Share a Code Block
 
-	```javascript
-	const uppercaseString = (string) => {
-		return string.toUpperCase();
-	};
-	
-	const lowercaseString = (string) => {
-		return string.toLowerCase();
-	};
+```javascript
+const uppercaseString = (string) => {
+	return string.toUpperCase();
+};
 
-	export { uppercaseString, lowercaseString };
-	```
+const lowercaseString = (string) => {
+	return string.toLowerCase();
+};
+
+export { uppercaseString, lowercaseString };
+```
 
 ---
 
@@ -2367,68 +2369,68 @@ React was developed by Facebook and is maintained by Facebook and a community of
 
 1. **JSX**: JSX is a syntax extension to JavaScript used with React to describe what the UI should look like. JSX might remind you of a template language, but it comes with the full power of JavaScript.
 
-		```javascript
-		const element = <h1>Hello, world!</h1>;
-		```
+	```javascript
+	const element = <h1>Hello, world!</h1>;
+	```
 
 2. **Components**: React apps are built using components. A component takes in parameters, called props, and returns a hierarchy of views to display via the render method.
 
-		```javascript
-		class Welcome extends React.Component {
-			render() {
-				return <h1>Hello, {this.props.name}</h1>;
-			}
+	```javascript
+	class Welcome extends React.Component {
+		render() {
+			return <h1>Hello, {this.props.name}</h1>;
 		}
-		```
+	}
+	```
 
 3. **State and Lifecycle**: Components can have state by setting `this.state` in their constructors. `this.setState` is used to update the state and re-render the component.
 
-		```javascript
-		class Timer extends React.Component {
-			constructor(props) {
-				super(props);
-				this.state = { seconds: 0 };
-			}
-
-			tick() {
-				this.setState(state => ({
-					seconds: state.seconds + 1
-				}));
-			}
-
-			componentDidMount() {
-				this.interval = setInterval(() => this.tick(), 1000);
-			}
-
-			componentWillUnmount() {
-				clearInterval(this.interval);
-			}
-
-			render() {
-				return (
-					<div>
-						Seconds: {this.state.seconds}
-					</div>
-				);
-			}
+	```javascript
+	class Timer extends React.Component {
+		constructor(props) {
+			super(props);
+			this.state = { seconds: 0 };
 		}
-		```
+
+		tick() {
+			this.setState(state => ({
+				seconds: state.seconds + 1
+			}));
+		}
+
+		componentDidMount() {
+			this.interval = setInterval(() => this.tick(), 1000);
+		}
+
+		componentWillUnmount() {
+			clearInterval(this.interval);
+		}
+
+		render() {
+			return (
+				<div>
+					Seconds: {this.state.seconds}
+				</div>
+			);
+		}
+	}
+	```
 
 4. **Props**: Props are read-only components. They are an effective way to pass existing data to a component, however, the component cannot change the props - they're read-only.
 
-		```javascript
-		function Welcome(props) {
-			return <h1>Hello, {props.name}</h1>;
-		}
-		```
+	```javascript
+	function Welcome(props) {
+		return <h1>Hello, {props.name}</h1>;
+	}
+	```
 
 5. **Event Handling**: React elements handle events similarly to DOM elements, with some syntax differences.
 
-		```javascript
-		<button onClick={activateLasers}>
-			Activate Lasers
-		</button>
-		```
+	```javascript
+	<button onClick={activateLasers}>
+		Activate Lasers
+	</button>
+	```
 
 ### Common Usage
 
@@ -2452,182 +2454,182 @@ React doesn't actually do this. It is done by a library called ReactDOM. ReactDO
 
 1. **React Hooks**: Hooks are functions that let you "hook into" React state and lifecycle features from function components. Hooks don't work inside classes - they let you use React without classes.
 
-		```javascript
-		import React, { useState } from 'react';
+	```javascript
+	import React, { useState } from 'react';
 
-		function Example() {
-			// Declare a new state variable, which we'll call "count"
-			const [count, setCount] = useState(0);
+	function Example() {
+		// Declare a new state variable, which we'll call "count"
+		const [count, setCount] = useState(0);
 
-			return (
-				<div>
-					<p>You clicked {count} times</p>
-					<button onClick={() => setCount(count + 1)}>
-						Click me
-					</button>
-				</div>
-			);
-		}
-		```
+		return (
+			<div>
+				<p>You clicked {count} times</p>
+				<button onClick={() => setCount(count + 1)}>
+					Click me
+				</button>
+			</div>
+		);
+	}
+	```
 2. **React Router**: React Router is a collection of navigational components that compose declaratively with your application. React Router is a third-party library that allows you to handle routing in a web app, using dynamic routing, nested routes, and more.
 
-		```javascript
-		import React from "react";
-		import ReactDOM from "react-dom";
-		import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+	```javascript
+	import React from "react";
+	import ReactDOM from "react-dom";
+	import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-		function Index() {
-			return <h2>Home</h2>;
-		}
+	function Index() {
+		return <h2>Home</h2>;
+	}
 
-		function About() {
-			return <h2>About</h2>;
-		}
+	function About() {
+		return <h2>About</h2>;
+	}
 
-		function Users() {
-			return <h2>Users</h2>;
-		}
+	function Users() {
+		return <h2>Users</h2>;
+	}
 
-		function App() {
-			return (
-				<Router>
-					<div>
-						<nav>
-							<ul>
-								<li>
-									<Link to="/">Home</Link>
-								</li>
-								<li>
-									<Link to="/about/">About</Link>
-								</li>
-								<li>
-									<Link to="/users/">Users</Link>
-								</li>
-							</ul>
-						</nav>
+	function App() {
+		return (
+			<Router>
+				<div>
+					<nav>
+						<ul>
+							<li>
+								<Link to="/">Home</Link>
+							</li>
+							<li>
+								<Link to="/about/">About</Link>
+							</li>
+							<li>
+								<Link to="/users/">Users</Link>
+							</li>
+						</ul>
+					</nav>
 
-						<Route path="/" exact component={Index} />
-						<Route path="/about/" component={About} />
-						<Route path="/users/" component={Users} />
-					</div>
-				</Router>
-			);
-		}
+					<Route path="/" exact component={Index} />
+					<Route path="/about/" component={About} />
+					<Route path="/users/" component={Users} />
+				</div>
+			</Router>
+		);
+	}
 
-		ReactDOM.render(<App />, document.getElementById("root"));
-		```
+	ReactDOM.render(<App />, document.getElementById("root"));
+	```
 
 3. **React Context**: Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 
-		```javascript
-		const ThemeContext = React.createContext('light');
+	```javascript
+	const ThemeContext = React.createContext('light');
 
-		class App extends React.Component {
-			render() {
-				// Use a Provider to pass the current theme to the tree below.
-				// Any component can read it, no matter how deep it is.
-				// In this example, we're passing "dark" as the current value.
-				return (
-					<ThemeContext.Provider value="dark">
-						<Toolbar />
-					</ThemeContext.Provider>
-				);
-			}
-		}
-
-		// A component in the middle doesn't have to
-		// pass the theme down explicitly anymore.
-		function Toolbar(props) {
+	class App extends React.Component {
+		render() {
+			// Use a Provider to pass the current theme to the tree below.
+			// Any component can read it, no matter how deep it is.
+			// In this example, we're passing "dark" as the current value.
 			return (
-				<div>
-					<ThemedButton />
-				</div>
+				<ThemeContext.Provider value="dark">
+					<Toolbar />
+				</ThemeContext.Provider>
 			);
 		}
+	}
 
-		function ThemedButton(props) {
-			// Use a Consumer to read the current theme context.
-			// React will find the closest theme Provider above and use its value.
-			// In this example, the current theme is "dark".
-			return (
-				<ThemeContext.Consumer>
-					{theme => <Button {...props} theme={theme} />}
-				</ThemeContext.Consumer>
-			);
-		}
-		```
+	// A component in the middle doesn't have to
+	// pass the theme down explicitly anymore.
+	function Toolbar(props) {
+		return (
+			<div>
+				<ThemedButton />
+			</div>
+		);
+	}
+
+	function ThemedButton(props) {
+		// Use a Consumer to read the current theme context.
+		// React will find the closest theme Provider above and use its value.
+		// In this example, the current theme is "dark".
+		return (
+			<ThemeContext.Consumer>
+				{theme => <Button {...props} theme={theme} />}
+			</ThemeContext.Consumer>
+		);
+	}
+	```
 
 4. **React Testing Library**: React Testing Library is a set of helpers that let you test React components without relying on their implementation details.
 
-		```javascript
-		import React from 'react'
-		import { render, fireEvent } from '@testing-library/react'
-		import '@testing-library/jest-dom/extend-expect'
+	```javascript
+	import React from 'react'
+	import { render, fireEvent } from '@testing-library/react'
+	import '@testing-library/jest-dom/extend-expect'
 
-		function Counter() {
-			const [count, setCount] = React.useState(0)
+	function Counter() {
+		const [count, setCount] = React.useState(0)
 
-			return (
-				<div>
-					<button onClick={() => setCount(count + 1)}>
-						Clicked {count} times
-					</button>
-				</div>
-			)
-		}
+		return (
+			<div>
+				<button onClick={() => setCount(count + 1)}>
+					Clicked {count} times
+				</button>
+			</div>
+		)
+	}
 
-		test('increments counter', () => {
-			const { getByText } = render(<Counter />)
-			const button = getByText(/clicked 0 times/i)
-			fireEvent.click(button)
-			expect(button).toHaveTextContent(/clicked 1 times/i)
-		})
-		```
+	test('increments counter', () => {
+		const { getByText } = render(<Counter />)
+		const button = getByText(/clicked 0 times/i)
+		fireEvent.click(button)
+		expect(button).toHaveTextContent(/clicked 1 times/i)
+	})
+	```
 
 5. **React Redux**: Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
 
-		```javascript
-		import { createStore } from 'redux'
+	```javascript
+	import { createStore } from 'redux'
 
-		/**
-		 * This is a reducer, a pure function with (state, action) => state signature.
-		 * It describes how an action transforms the state into the next state.
-		 *
-		 * The shape of the state is up to you: it can be a primitive, an array, an object,
-		 * or even an Immutable.js data structure. The only important part is that you should
-		 * not mutate the state object, but return a new object if the state changes.
-		 *
-		 * In this example, we use a `switch` statement and strings, but you can use a helper that
-		 * follows a different convention (such as function maps) if it makes sense for your
-		 * project.
-		 */
-		function counter(state = 0, action) {
-			switch (action.type) {
-				case 'INCREMENT':
-					return state + 1
-				case 'DECREMENT':
-					return state - 1
-				default:
-					return state
-			}
+	/**
+	 * This is a reducer, a pure function with (state, action) => state signature.
+		* It describes how an action transforms the state into the next state.
+		*
+		* The shape of the state is up to you: it can be a primitive, an array, an object,
+		* or even an Immutable.js data structure. The only important part is that you should
+		* not mutate the state object, but return a new object if the state changes.
+		*
+		* In this example, we use a `switch` statement and strings, but you can use a helper that
+		* follows a different convention (such as function maps) if it makes sense for your
+		* project.
+		*/
+	function counter(state = 0, action) {
+		switch (action.type) {
+			case 'INCREMENT':
+				return state + 1
+			case 'DECREMENT':
+				return state - 1
+			default:
+				return state
 		}
+	}
 
-		// Create a Redux store holding the state of your app.
-		// Its API is { subscribe, dispatch, getState }.
-		let store = createStore(counter)
+	// Create a Redux store holding the state of your app.
+	// Its API is { subscribe, dispatch, getState }.
+	let store = createStore(counter)
 
-		// You can subscribe to the updates manually, or use bindings to your view layer.
-		store.subscribe(() => console.log(store.getState()))
+	// You can subscribe to the updates manually, or use bindings to your view layer.
+	store.subscribe(() => console.log(store.getState()))
 
-		// The only way to mutate the internal state is to dispatch an action.
-		// The actions can be serialized, logged or stored and later replayed.
-		store.dispatch({ type: 'INCREMENT' })
-		// 1
-		store.dispatch({ type: 'INCREMENT' })
-		// 2
-		store.dispatch({ type: 'DECREMENT' })
-		// 1
-		```
+	// The only way to mutate the internal state is to dispatch an action.
+	// The actions can be serialized, logged or stored and later replayed.
+	store.dispatch({ type: 'INCREMENT' })
+	// 1
+	store.dispatch({ type: 'INCREMENT' })
+	// 2
+	store.dispatch({ type: 'DECREMENT' })
+	// 1
+	```
 
 Redux is useful for managing the state of an application. It is commonly used with React, but can be used with any other JavaScript framework or library.
 
@@ -2673,27 +2675,27 @@ TypeScript is a superset of JavaScript that adds static type definitions. TypeSc
 
 === "TypeScript"
 
-	```typescript
-	function greeter(person: string) {
-		return "Hello, " + person;
-	}
+```typescript
+function greeter(person: string) {
+	return "Hello, " + person;
+}
 
-	let user = "Jane User";
+let user = "Jane User";
 
-	document.body.textContent = greeter(user); // Hello, Jane User
-	```
+document.body.textContent = greeter(user); // Hello, Jane User
+```
 
 === "JavaScript"
 
-	```javascript
-	function greeter(person) {
-		return "Hello, " + person;
-	}
+```javascript
+function greeter(person) {
+	return "Hello, " + person;
+}
 
-	let user = "Jane User";
+let user = "Jane User";
 
-	document.body.textContent = greeter(user); // Hello, Jane User
-	```
+document.body.textContent = greeter(user); // Hello, Jane User
+```
 
 * Interface Example
     * TypeScript interfaces are used to define the shape of an object.
@@ -2705,32 +2707,32 @@ TypeScript is a superset of JavaScript that adds static type definitions. TypeSc
 
 === "TypeScript"
 
-	```typescript
-	interface Person {
-		firstName: string;
-		lastName: string;
-	}
+```typescript
+interface Person {
+	firstName: string;
+	lastName: string;
+}
 
-	function greeter(person: Person) {
-		return "Hello, " + person.firstName + " " + person.lastName;
-	}
+function greeter(person: Person) {
+	return "Hello, " + person.firstName + " " + person.lastName;
+}
 
-	let user = { firstName: "Jane", lastName: "User" };
+let user = { firstName: "Jane", lastName: "User" };
 
-	document.body.textContent = greeter(user); // Hello, Jane User
-	```
+document.body.textContent = greeter(user); // Hello, Jane User
+```
 
 === "JavaScript"
 
-	```javascript
-	function greeter(person) {
-		return "Hello, " + person.firstName + " " + person.lastName;
-	}
+```javascript
+function greeter(person) {
+	return "Hello, " + person.firstName + " " + person.lastName;
+}
 
-	let user = { firstName: "Jane", lastName: "User" };
+let user = { firstName: "Jane", lastName: "User" };
 
-	document.body.textContent = greeter(user); // Hello, Jane User
-	```
+document.body.textContent = greeter(user); // Hello, Jane User
+```
 
 The above differs from JavaScript in that it uses static type definitions. This allows for type checking at compile time, which can help prevent bugs and improve code quality.
 
