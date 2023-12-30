@@ -883,6 +883,65 @@ console.log(trueOrFalse(true)); // Yes, that was true
 console.log(trueOrFalse(false)); // No, that was false
 ```
 
+##### Try...Catch
+
+```javascript
+try {
+	// code to try
+} catch (err) { // here an error object is assigned to err
+	// code to run if an error occurs
+}
+```
+
+```javascript
+try {
+  nonExistentFunction();
+} catch (error) {
+  console.error(error);
+  // Expected output: ReferenceError: nonExistentFunction is not defined
+}
+```
+
+
+##### Try...Catch...Finally
+
+```javascript
+try {
+	// code to try
+} catch (err) { // here an error object is assigned to err
+	// code to run if an error occurs
+} finally {
+	// code to run regardless of whether an error occurs
+}
+```
+
+##### Throw
+
+Use `throw` instead of console.error() to throw an exception.  
+This is useful for custom error messages during debugging.  
+
+```javascript
+throw "Error2"; // generates an exception with a string value
+// console output: Uncaught Error2
+```
+
+```javascript
+throw 42; // generates an exception with the value 42
+// console output: Uncaught 42
+```
+
+##### Try catch within Promise definition
+
+```javascript
+const myPromise = new Promise((resolve, reject) => {
+	try {
+		// resolve([codeToTry])
+	} catch (err) {
+		// reject([codeToRunIfError])
+	}
+});
+```
+
 ##### Comparison Operators in JavaScript
 
 * `&&` - and
@@ -2232,15 +2291,17 @@ jQuery syntax enables developers to write code that is shorter and simpler than 
 Async programming in JavaScript is essential for handling tasks like network requests or timers without blocking the main thread. It keeps the application responsive by dealing with operations that complete in the future.
 
 ### Theory of Async Programming
-
+ 
 Async programming handles operations that will complete later, allowing the program to continue running without waiting. This is especially important for web development, involving network requests and file operations.
 
 ### Promises
 
-A Promise is an object representing the completion or failure of an asynchronous operation.
-At a high-level a Promise is an object that represents the eventual result of an asynchronous operation.
-It is a placeholder into which the successful result value or reason for failure will materialize.
-It is declared like a variable using the `new` keyword and invoked with the `then()` method.
+**A Promise is an object representing the eventual completion or failure of an asynchronous operation.**  
+It is a placeholder into which the successful result value or reason for failure will materialize.  
+It is declared like a variable using the `new` keyword, takes a (resolve, reject) tuple as an arg, and is invoked with the `then()` method.  
+Promises *immediately* return a Promise object which tells JavaScript's main thread to offload the callback handling to the event loop and immediately move forward with program execution.  
+Promises are what underlie async in JS.  
+`async`/`await` are a wrapper on top of promises to write asynchronous code in a way that looks synchronous.  
 
 #### Understanding Promises
 
@@ -2272,23 +2333,39 @@ let myPromise = new Promise((resolve, reject) => {
 		reject('Promise is rejected.');
 	}
 });
-```
-
-```javascript
-let myPromise = new Promise((resolve, reject) => {
-	// Asynchronous operation code
-	let condition = true;
-	if (condition) {
-		resolve('Promise is resolved successfully.');
-	} else {
-		reject('Promise is rejected.');
-	}
-});
 
 myPromise.then(
 	(value) => { console.log(value); },
 	(error) => { console.log(error); }
 );
+```
+
+* With callbacks
+	* callbacks are functions whose logic depends on the result of a Promise
+	* A callback is passed as arg to SCARF, which declares a Promise var, pass it to the callback as arg, who invokes it
+	* callbacks receive a Promise object as arg and invoke/initiate it using Promise.then(...)  
+	* When the Promise is initiated (in the callback), JavaScript knows to immediately move forward with program execution (within the SCARF)  
+		* SCARF(callback) --> Promise --> 
+			* callback(Promise) --> Promise.then(...) --> 
+		* SCARF // remaining lines
+	* When using callbacks, that "next line of program execution" is the invocation of the callback handling specification for the returned Promise object.  
+		* Because a Promise object is passed as
+
+```javascript
+// Slow  (SCARF)
+function fetchData(callback) {
+	let data = fetch('https://api.example.com/data'); // fetch immediately returns a Promise object...
+	callback(data); // ...which is immediately passed to the callback...
+}
+
+// Callback function that parses and prints response
+function handleData(data) {
+	data.then(response => response.json()) //... which immediately invokes it...
+	     .then(json => console.log(json))
+	     .catch(error => console.error('Error:', error));
+}
+
+fetchData(handleData);
 ```
 
 #### Promise States
@@ -2538,25 +2615,61 @@ Promise.all([fetch(url1), fetch(url2)])
 
 ### Callbacks
 
-Callbacks are functions passed into other functions as arguments, which are then invoked inside the outer function to complete some kind of routine or action.
+Callbacks are functions passed into other functions as arguments, which are then invoked inside the outer (argument-receiving) function to complete some kind of routine or action.
+
+**Callbacks in JavaScript are functions that are passed as arguments to other functions. This is a very important feature of asynchronous programming, and it enables the function that receives the callback to (1) perform a slow task without blocking & (2) execute the callback function upon completion of said task.** The callback function's logic is dependent on the completion of the slow task.
+
+* CAF - callback argument function
+	* CAF's are dependent on the completion of SCARFs
+* SCARF - slow callback arg-receiver function
+	* SCARFs do not block the event loop
+	* This means that SCARFs do not wait for the slow task to complete before moving on to the next line of code
+		* JavaScript knows to initiate Promise then immediately continue evaluating the next line in the SCARF when it enc an invocation of a function that returns a Promise
+* CAFs are passed to SCARFs as arguments (often using a stand-in argument name of "callback")
+* SCARFs call CAFs at some appropriate time (e.g. after a network request has been completed)
+* When called, CAFs are executed *inside* SCARFs
+	* This is how CAFs are able to access variables defined in SCARFs (e.g. the result of a network request)
+
 
 #### Understanding Callbacks
 
-A callback function is a function that is passed to another function with the expectation that the other function will call it at some appropriate time. Callbacks are a way to ensure certain code doesn’t execute until other code has already finished execution.
+A callback function ("arg callback function" -- CAF) is a function that is passed to another function ("slow arg-receiver function" -- SCARF) with the expectation that the other function (SCARF) will call it (CAF) at some appropriate time. Callbacks (CAFs) are a way to ensure certain code doesn’t execute until other code has already finished execution.
 
 #### Syntax and Basic Usage
 
 ```javascript
-function greeting(name) {
-	alert('Hello ' + name);
+// A callback function that displays a greeting
+function displayGreeting(name) {
+	console.log('Hello ' + name);
 }
 
+// Function that processes user input and then calls the callback function
 function processUserInput(callback) {
 	var name = prompt('Please enter your name.');
-	callback(name);
+	callback(name); // invoking the callback with the user's name
 }
 
-processUserInput(greeting);
+// Passing the displayGreeting function as a callback to processUserInput
+processUserInput(displayGreeting);
+```
+
+```javascript
+// A callback function that processes and displays fetched data
+function handleData(data) {
+	data.then(response => response.json()) // Parsing the response to JSON
+	     .then(json => console.log(json)) // Displaying the JSON data
+	     .catch(error => console.error('Error:', error));
+}
+
+// Function to fetch data and then call the callback with the fetched data
+function fetchData(callback) {
+	let data = fetch('https://api.example.com/data');
+	callback(data); // Passing the fetch promise to the callback
+}
+
+// Passing the handleData function as a callback to fetchData
+fetchData(handleData);
+
 ```
 
 In this example, fetchData performs a network request and uses a callback to return the data or an error.
