@@ -819,6 +819,12 @@ addFive();
 console.log(sum); // 8
 ```
 
+###### Callbacks
+
+A callback is a function definition passed as an argument to another function, enabling the inner function to be invoked within the outer function w/ access to the scope of the outer function  
+This can be done in-line (i.e. defining the inner function within the arg pass to the outer function) -- see array.forEach()  
+Can also be done using a stand-in value for the inner function in the definition of the outer function -- see callbacks with async  
+
 #### If-Statement syntax  in JavaScript
 
 ##### Syntax
@@ -1200,6 +1206,20 @@ for (let i = 0; i < 5; i++) {
 }
 console.log(myArray); // [ 0, 1, 2, 3, 4 ]
 ```
+
+##### forEach Loops
+
+Here a callback is used (where the callback is defined in-line)  
+
+```javascript
+const xArray = [10, 6, 8];
+
+xArray.forEach(function(x) {
+	console.log(x);
+})
+```
+
+In other words, the callback definition is used to specify the "dynamic variable name" used for the array elements  
 
 ##### Iterate Through an Array with a For Loop
 
