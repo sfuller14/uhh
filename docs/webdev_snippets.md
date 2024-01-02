@@ -1221,6 +1221,59 @@ xArray.forEach(function(x) {
 
 In other words, the first arg of the callback definition is used to specify the "dynamic variable name" used for the array elements  
 
+##### Array callback methods  
+
+Notice the pattern here -- `array.method(callback)` where callback is  
+
+```javascript
+function(arrayItem) {...}
+```
+
+* `.filter()`
+* `.find()`
+* `.map()`
+
+###### Filtering Arrays  
+
+Note: this will always return an array  
+
+```javascript
+const years = [2000, 2008, 2020, 2023];
+
+years.filter(function(year) {
+    return year >= 2010; // this must *return* a boolean
+});
+```
+
+###### Searching arrays
+
+The .find() method returns either the first array item that matches the callback condition or `undefined` if the specified item isn't found.  
+
+```javascript
+const names = ["Sam", "Alex", "Charlie"];
+
+const result = names.find(function(name) {
+  return name === "Alex";
+});
+console.log(result); // "Alex"
+```
+
+###### Mapping functions to arrays 
+
+```javascript
+const names = ["sam", "Alex"];
+const upperNames = names.map(function(name) {
+    return name.toUpperCase();
+});
+```
+
+##### Array NON-callback methods 
+
+* `.includes()`
+	* `groceries.includes("Tomato"); // true`
+* `.join()`
+	* `groceries.join("; "); // "Apple; Peach; Tomato"`
+
 ##### Iterate Through an Array with a For Loop
 
 ```javascript
