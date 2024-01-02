@@ -819,7 +819,7 @@ addFive();
 console.log(sum); // 8
 ```
 
-###### Callbacks
+###### Callbacks (general)
 
 A callback is a function definition passed as an argument to another function, enabling the inner function to be invoked within the outer function w/ access to the scope of the outer function  
 This can be done in-line (i.e. defining the inner function within the arg pass to the outer function) -- see array.forEach()  
@@ -1219,7 +1219,7 @@ xArray.forEach(function(x) {
 })
 ```
 
-In other words, the callback definition is used to specify the "dynamic variable name" used for the array elements  
+In other words, the first arg of the callback definition is used to specify the "dynamic variable name" used for the array elements  
 
 ##### Iterate Through an Array with a For Loop
 
@@ -1230,6 +1230,17 @@ for (let i = 0; i < myArr.length; i++) {
 	total += myArr[i];
 }
 console.log(total); // 20
+```
+
+OR (using `forEach`)  
+
+```javascript
+let myArr = [2, 3, 4, 5, 6];
+let total = 0;
+myArr.forEach(function(element) {
+	total += element
+})
+console.log(total) // 20
 ```
 
 ##### Nesting For Loops
@@ -2513,15 +2524,97 @@ myPromise
 ```
 .catch() is used for error handling in promise chains.
 
-### Async/Await
+### Callbacks (async)
 
-async and await make asynchronous code easier to write and read.
-They are built on top of Promises and are syntactic sugar for Promises.
-async declares an asynchronous function, returning a Promise.
-* It is critical to remember that async functions always return a Promise.
-await is used in an async function to wait for a Promise.
-* It can only be used within an async function.
-* await can be used to wait for any Promise-based function. For example:
+Callbacks are functions passed into other functions as arguments, which are then invoked inside the outer (argument-receiving) function to complete some kind of routine or action.
+
+**Callbacks in JavaScript are functions that are passed as arguments to other functions. This is a very important feature of asynchronous programming, and it enables the function that receives the callback to (1) perform a slow task without blocking & (2) execute the callback function upon completion of said task.** The callback function's logic is dependent on the completion of the slow task.
+
+* CAF - callback argument function
+	* CAF's are dependent on the completion of SCARFs
+* SCARF - slow callback arg-receiver function
+	* SCARFs (1) assign the result of a Promise-returning function to a variable then (2) pass that result (which is a Promise) to the callback function 
+	* SCARFs do not block the event loop
+	* This means that SCARFs do not wait for the slow task to complete before moving on to the next line of code
+		* JavaScript knows to initiate Promise then immediately continue evaluating the next line in the SCARF when it enc an invocation of a function that returns a Promise
+* CAFs are passed to SCARFs as arguments (often using a stand-in argument name of "callback")
+* SCARFs call CAFs at some appropriate time (e.g. after a network request has been completed)
+* When called, CAFs are executed *inside* SCARFs
+	* This is how CAFs are able to access variables defined in SCARFs (e.g. the result of a network request)
+
+
+#### Understanding Callbacks
+
+A callback function (CAF) is a function that is passed to another function (SCARF) with the expectation that the other function (SCARF) will call it (CAF) at some appropriate time. Callbacks (CAFs) are a way to ensure certain code doesn’t execute until other code has already finished execution.
+
+#### Syntax and Basic Usage
+
+```javascript
+// Callback func
+function handleData(data) {
+	data.then(response => response.json())
+	     .then(json => console.log(json))
+	     .catch(error => console.error('Error:', error));
+}
+
+function fetchData(callback) {
+	let data = fetch('https://api.example.com/data'); // KEY: THIS RETURNS A PROMISE
+	callback(data); // Passing the fetch PROMISE OBJECT to the callback -- this line is called immediately without waiting for fetch to complete
+}
+
+fetchData(handleData);
+```
+
+In this example, fetchData performs a network request and uses a callback to return the data or an error.
+
+#### Callback Hell and Its Avoidance
+
+One of the drawbacks of callbacks is "callback hell" or "pyramid of doom," which refers to heavily nested callbacks leading to complex and unreadable code.
+
+To avoid callback hell:
+
+* Use named functions instead of anonymous functions.
+* Modularize code by breaking it into smaller, reusable functions.
+* Consider using Promises or async/await where appropriate.
+
+Understanding callbacks is crucial in JavaScript as they are foundational to asynchronous programming. While Promises and async/await are often preferred for handling asynchronous operations, callbacks are still widely used, especially in legacy codebases and in certain libraries and APIs.
+
+
+### Async/Await  
+
+This Promise-returning function... 
+
+```javascript
+function add2 (x,y){
+  return new Promise((resolve,reject)=>{
+   resolve(x+y);
+  })
+}
+
+add2(1,2).then((result) => {
+ console.log(result)
+})
+```
+
+...can be re-written as:
+
+```javascript
+async function add(x, y) {
+ return x + y
+}
+
+add(1,2).then((result) => {
+ console.log(result)
+})
+```
+
+async and await make asynchronous code easier to write and read (makes it look like synchronous code)  
+They are built on top of Promises and are syntactic sugar for Promises.  
+async declares an asynchronous function, returning a Promise.  
+* It is critical to remember that async functions always return a Promise.  
+await is used in an async function to wait for a Promise.  
+* It can only be used within an async function.  
+* await can be used to wait for any Promise-based function. For example:  
 
 ```javascript
 async function fetchData() {
@@ -2632,79 +2725,6 @@ Promise.all([fetch(url1), fetch(url2)])
 3) Error Handling: Always handle errors in async operations.
 
 4) Sequential Operations: Chain promises or use multiple await statements for dependent operations.
-
-### Callbacks
-
-Callbacks are functions passed into other functions as arguments, which are then invoked inside the outer (argument-receiving) function to complete some kind of routine or action.
-
-**Callbacks in JavaScript are functions that are passed as arguments to other functions. This is a very important feature of asynchronous programming, and it enables the function that receives the callback to (1) perform a slow task without blocking & (2) execute the callback function upon completion of said task.** The callback function's logic is dependent on the completion of the slow task.
-
-* CAF - callback argument function
-	* CAF's are dependent on the completion of SCARFs
-* SCARF - slow callback arg-receiver function
-	* SCARFs do not block the event loop
-	* This means that SCARFs do not wait for the slow task to complete before moving on to the next line of code
-		* JavaScript knows to initiate Promise then immediately continue evaluating the next line in the SCARF when it enc an invocation of a function that returns a Promise
-* CAFs are passed to SCARFs as arguments (often using a stand-in argument name of "callback")
-* SCARFs call CAFs at some appropriate time (e.g. after a network request has been completed)
-* When called, CAFs are executed *inside* SCARFs
-	* This is how CAFs are able to access variables defined in SCARFs (e.g. the result of a network request)
-
-
-#### Understanding Callbacks
-
-A callback function ("arg callback function" -- CAF) is a function that is passed to another function ("slow arg-receiver function" -- SCARF) with the expectation that the other function (SCARF) will call it (CAF) at some appropriate time. Callbacks (CAFs) are a way to ensure certain code doesn’t execute until other code has already finished execution.
-
-#### Syntax and Basic Usage
-
-```javascript
-// A callback function that displays a greeting
-function displayGreeting(name) {
-	console.log('Hello ' + name);
-}
-
-// Function that processes user input and then calls the callback function
-function processUserInput(callback) {
-	var name = prompt('Please enter your name.');
-	callback(name); // invoking the callback with the user's name
-}
-
-// Passing the displayGreeting function as a callback to processUserInput
-processUserInput(displayGreeting);
-```
-
-```javascript
-// A callback function that processes and displays fetched data
-function handleData(data) {
-	data.then(response => response.json()) // Parsing the response to JSON
-	     .then(json => console.log(json)) // Displaying the JSON data
-	     .catch(error => console.error('Error:', error));
-}
-
-// Function to fetch data and then call the callback with the fetched data
-function fetchData(callback) {
-	let data = fetch('https://api.example.com/data');
-	callback(data); // Passing the fetch promise to the callback
-}
-
-// Passing the handleData function as a callback to fetchData
-fetchData(handleData);
-
-```
-
-In this example, fetchData performs a network request and uses a callback to return the data or an error.
-
-#### Callback Hell and Its Avoidance
-
-One of the drawbacks of callbacks is "callback hell" or "pyramid of doom," which refers to heavily nested callbacks leading to complex and unreadable code.
-
-To avoid callback hell:
-
-* Use named functions instead of anonymous functions.
-* Modularize code by breaking it into smaller, reusable functions.
-* Consider using Promises or async/await where appropriate.
-
-Understanding callbacks is crucial in JavaScript as they are foundational to asynchronous programming. While Promises and async/await are often preferred for handling asynchronous operations, callbacks are still widely used, especially in legacy codebases and in certain libraries and APIs.
 
 ### Event Loop
 
