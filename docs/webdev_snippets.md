@@ -1765,93 +1765,101 @@ console.log(rangeOfNumbers(1, 5)); // [ 1, 2, 3, 4, 5 ]
 			* `Math.random()` (generates a random number between 0 and 1)
 			* `Math.floor()` (rounds down to the nearest integer)
 		* These are some others:
-			* `arrayName.join(" ")` (joins an array of strings into a single string)
-			* `arrayName.join("")` (joins an array of characters into a single string)
-			* `arrayName.indexOf(" ")` (returns the index of the first occurrence of the string)
-			* `arrayName.lastIndexOf(" ")` (returns the index of the last occurrence of the string)
-			* `arrayName.slice(0, 5)` (returns the first 5 elements of the array)
-				* Similar to python this is "up to but not including"
-			* `arrayName.slice(5)` (returns the last 5 elements of the array)
-			* `arrayName.slice(2, 5)` (returns the 3rd, 4th, and 5th elements of the array)
-			* `arrayName.sort()` (sorts the array)
-			* `arrayName.reverse()` (reverses the order of the array)
-			* `arrayName.every(`[conditionExpressedAsCallback]`)` (returns true if all elements meet specified condition)
-				* e.g. `numbersArray.every(number => number >= 10)`
-			* `arrayName.some(`[conditionExpressedAsCallback]`)` (returns true if any elements meet specified condition)
-				* e.g. `numbersArray.some(number => number > 10)`
-			* `Math.random()` (generates a random number between 0 and 1)
-			* `Math.floor()` (rounds down to the nearest integer)
-			* `Math.ceil()` (rounds up to the nearest integer)
-			* `Math.round()` (rounds to the nearest integer)
-				* To round to a specific number of decimal places, multiply by 10 to the power of that number of decimal places, round, and then divide by 10 to the power of that number of decimal places (same as any language)
-					* E.g. to round to 2 decimal places:
-					
-						```javascript
-						let num = 2.12345;
-						num = Math.round(num * 100) / 100; 
-						// || `Math.round(num * 10**2) / 10**2` 
-						// || `Math.round(num * Math.pow(10, 2)) / Math.pow(10, 2)`
-						// let desiredNumOfDecimalPlaces = 2; Math.round(num * 10**desiredNumOfDecimalPlaces) / 10**desiredNumOfDecimalPlaces;
-						console.log(num); // 2.12
-						```
+			* Strings:
+				* `stringName.toUpperCase()`
+				* `stringName.toLowerCase()`
+				* `stringName.split(" ")`
+				* `stringName.split("")` (splits into an array of characters)
+				* `stringName.length`
+				* `stringName[0]` (returns the first character)
+					* Or `stringName.charAt(0)`
+				* `stringName.concat(" ", "is", " ", "a", " ", "string")` (concatenates strings)
+				* `stringName.endsWith("string")` (returns `true` if the string ends with the specified string)
+				* `stringName.includes("string")` (returns `true` if the string includes the specified string)
+				* `stringName.replace("string", "newString")` (replaces the first occurrence of the string with the new string)
+				* `stringName.replaceAll("string", "newString")` (replaces the all occurrences of the string with the new string)
+				* `stringName.search("string")` (returns the index of the first occurrence of the string)
+				* `stringName.startsWith("string")` (returns `true` if the string starts with the specified string)
+				* Slicing and splitting are same as for arrays. Or:
+					* `stringName.substr(0, 5)` (returns the first 5 characters of the string)
+					* `stringName.substring(0, 5)` (returns the first 5 characters of the string)
+				* `stringName.toLowerCase()` (converts to lowercase)
+				* `stringName.toUpperCase()` (converts to uppercase)
+				* `stringName.trim()` (removes whitespace from both ends of the string)
+			* Arrays:
+				* `arrayName.join(" ")` (joins an array of strings into a single string)
+				* `arrayName.join("")` (joins an array of characters into a single string)
+				* `arrayName.indexOf(" ")` (returns the index of the first occurrence of the string)
+				* `arrayName.lastIndexOf(" ")` (returns the index of the last occurrence of the string)
+				* **CAREFUL NOT TO CONFUSE `.slice` with `.splice`**
+				* `arrayName.slice(0, 5)` (returns the first 5 elements of the array)
+					* Similar to python this is "up to but not including"
+				* `arrayName.slice(5)` (returns the last 5 elements of the array)
+				* `arrayName.slice(2, 5)` (returns the 3rd, 4th, and 5th elements of the array)
+				* `arrayName.splice(2, 3)` (REMOVES/DELETES the 3rd, 4th, and 5th elements of the array and returns them)
+					* e.g. `const deletedItem = items.splice(0, 1);` -- this removes the first item from the array and assigns it to `deletedItem`
+					* Note that the behavior of this is kind of weird -- to remove the second element you would use `arrayName.splice(1, 1)`
+						* This is the call signature: `array.splice(startIndex, deleteCount)`
+					* Deleting/emptying full arrays can also be done by setting `arrayName.length = 0`
+				* `arrayName.sort()` (sorts the array)
+				* `arrayName.reverse()` (reverses the order of the array)
+				* `arrayName.every(`[conditionExpressedAsCallback]`)` (returns true if all elements meet specified condition)
+					* e.g. `numbersArray.every(number => number >= 10)`
+				* `arrayName.some(`[conditionExpressedAsCallback]`)` (returns true if any elements meet specified condition)
+					* e.g. `numbersArray.some(number => number > 10)`
+			* Math:
+				* `Math.random()` (generates a random number between 0 and 1)
+				* `Math.floor()` (rounds down to the nearest integer)
+				* `Math.ceil()` (rounds up to the nearest integer)
+				* `Math.round()` (rounds to the nearest integer)
+					* To round to a specific number of decimal places, multiply by 10 to the power of that number of decimal places, round, and then divide by 10 to the power of that number of decimal places (same as any language)
+						* E.g. to round to 2 decimal places:
+						
+							```javascript
+							let num = 2.12345;
+							num = Math.round(num * 100) / 100; 
+							// || `Math.round(num * 10**2) / 10**2` 
+							// || `Math.round(num * Math.pow(10, 2)) / Math.pow(10, 2)`
+							// let desiredNumOfDecimalPlaces = 2; Math.round(num * 10**desiredNumOfDecimalPlaces) / 10**desiredNumOfDecimalPlaces;
+							console.log(num); // 2.12
+							```
 
-			* `Math.abs()` (returns the absolute value)
-			* `Math.pow(base, exponent)` (returns `base` to the power of `exponent`)
-			* `Math.sqrt()` (returns the square root)
-			* `Math.max()` (returns the maximum value)
-			* `Math.min()` (returns the minimum value)
-			* `Math.floor(Math.random() * 10)`
-		* Here are some useful date-related ones:
-			* `Date()` (returns the current date)
-			* `Date.now()` (returns the number of milliseconds since January 1, 1970)
-				* This is useful for timing things
-			* `Date.parse("June 1, 2021")` (returns the number of milliseconds since January 1, 1970)
-			* `Date.UTC(2021, 5, 1)` (returns the number of milliseconds since January 1, 1970 in UTC)
-			* `Date.prototype.getFullYear()` (returns the year)
-			* `Date.prototype.getMonth()` (returns the month)
-			* `Date.prototype.getDate()` (returns the day of the month)
-			* `Date.prototype.getDay()` (returns the day of the week)
-			* `Date.prototype.getHours()` (returns the hour)
-			* `Date.prototype.getMinutes()` (returns the minute)
-			* `Date.prototype.getSeconds()` (returns the second)
-			* `Date.prototype.getTime()` (returns the number of milliseconds since January 1, 1970)
-			* `Date.prototype.getUTCFullYear()` (returns the year in UTC)
-			* `Date.prototype.getUTCMonth()` (returns the month in UTC)
-			* `Date.prototype.getUTCDate()` (returns the day of the month in UTC)
-			* `Date.prototype.getUTCDay()` (returns the day of the week in UTC)
-			* `Date.prototype.getUTCHours()` (returns the hour in UTC)
-			* `Date.prototype.getUTCMinutes()` (returns the minute in UTC)
-			* `Date.prototype.getUTCSeconds()` (returns the second in UTC)
-			* `Date.prototype.getUTCMilliseconds()` (returns the millisecond in UTC)
-			* `Date.prototype.getTimezoneOffset()` (returns the local time zone offset from UTC in minutes)
-			* `Date.prototype.setFullYear()` (sets the year)
-				* Setting dates is necessary when you want to change the date (e.g. when working )
-				* Similar functions exist for all of the above increments
-			* `Date.prototype.toDateString()` (converts to a string)
-			* `Date.prototype.toISOString()` (converts to a string in ISO format)
-			* `Date.prototype.toJSON()` (converts to a string in JSON format)
-			* `Date.prototype.toLocaleDateString()` (converts to a string using the current locale)
-		* Here are some useful string-related ones:
-			* `stringName.toUpperCase()`
-			* `stringName.toLowerCase()`
-			* `stringName.split(" ")`
-			* `stringName.split("")` (splits into an array of characters)
-			* `stringName.length`
-			* `stringName[0]` (returns the first character)
-				* Or `stringName.charAt(0)`
-			* `stringName.concat(" ", "is", " ", "a", " ", "string")` (concatenates strings)
-			* `stringName.endsWith("string")` (returns `true` if the string ends with the specified string)
-			* `stringName.includes("string")` (returns `true` if the string includes the specified string)
-			* `stringName.replace("string", "newString")` (replaces the first occurrence of the string with the new string)
-			* `stringName.replaceAll("string", "newString")` (replaces the all occurrences of the string with the new string)
-			* `stringName.search("string")` (returns the index of the first occurrence of the string)
-			* `stringName.startsWith("string")` (returns `true` if the string starts with the specified string)
-			* Slicing and splitting are same as for arrays. Or:
-				* `stringName.substr(0, 5)` (returns the first 5 characters of the string)
-				* `stringName.substring(0, 5)` (returns the first 5 characters of the string)
-			* `stringName.toLowerCase()` (converts to lowercase)
-			* `stringName.toUpperCase()` (converts to uppercase)
-			* `stringName.trim()` (removes whitespace from both ends of the string)
+				* `Math.abs()` (returns the absolute value)
+				* `Math.pow(base, exponent)` (returns `base` to the power of `exponent`)
+				* `Math.sqrt()` (returns the square root)
+				* `Math.max()` (returns the maximum value)
+				* `Math.min()` (returns the minimum value)
+				* `Math.floor(Math.random() * 10)`
+			* Dates:
+				* `Date()` (returns the current date)
+				* `Date.now()` (returns the number of milliseconds since January 1, 1970)
+					* This is useful for timing things
+				* `Date.parse("June 1, 2021")` (returns the number of milliseconds since January 1, 1970)
+				* `Date.UTC(2021, 5, 1)` (returns the number of milliseconds since January 1, 1970 in UTC)
+				* `Date.prototype.getFullYear()` (returns the year)
+				* `Date.prototype.getMonth()` (returns the month)
+				* `Date.prototype.getDate()` (returns the day of the month)
+				* `Date.prototype.getDay()` (returns the day of the week)
+				* `Date.prototype.getHours()` (returns the hour)
+				* `Date.prototype.getMinutes()` (returns the minute)
+				* `Date.prototype.getSeconds()` (returns the second)
+				* `Date.prototype.getTime()` (returns the number of milliseconds since January 1, 1970)
+				* `Date.prototype.getUTCFullYear()` (returns the year in UTC)
+				* `Date.prototype.getUTCMonth()` (returns the month in UTC)
+				* `Date.prototype.getUTCDate()` (returns the day of the month in UTC)
+				* `Date.prototype.getUTCDay()` (returns the day of the week in UTC)
+				* `Date.prototype.getUTCHours()` (returns the hour in UTC)
+				* `Date.prototype.getUTCMinutes()` (returns the minute in UTC)
+				* `Date.prototype.getUTCSeconds()` (returns the second in UTC)
+				* `Date.prototype.getUTCMilliseconds()` (returns the millisecond in UTC)
+				* `Date.prototype.getTimezoneOffset()` (returns the local time zone offset from UTC in minutes)
+				* `Date.prototype.setFullYear()` (sets the year)
+					* Setting dates is necessary when you want to change the date (e.g. when working )
+					* Similar functions exist for all of the above increments
+				* `Date.prototype.toDateString()` (converts to a string)
+				* `Date.prototype.toISOString()` (converts to a string in ISO format)
+				* `Date.prototype.toJSON()` (converts to a string in JSON format)
+				* `Date.prototype.toLocaleDateString()` (converts to a string using the current locale)
 
 #### Chaining Array and String methods to generate HTML text
 
