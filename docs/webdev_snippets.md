@@ -1603,7 +1603,7 @@ function sum(arr, n) {
     return 0;
   } else { // recursive case -- n > 0
     console.log(`n: ${n} --> n-1: ${n-1} --> arr[n-1]: ${arr[n-1]}`)
-    return sum(arr, n-1) + arr[n-1]
+    return sum(arr, n-1) + arr[n-1] // KEY: n-1 is used to access the 0th element just before base case is hit
   }
 }
 
@@ -1795,6 +1795,42 @@ console.log(rangeOfNumbers(1, 5)); // [ 1, 2, 3, 4, 5 ]
 
 
 #### Use Arrow Functions to Write Concise Anonymous Functions
+
+##### From functions to arrow functions
+
+This function...
+
+```javascript
+function sum(a, b) {
+	return a+b;
+}
+```
+
+...can be re-written as:
+
+```javascript
+const sum = function(a, b) {
+	return a+b;
+}
+```
+
+An arrow function is just the second syntax but removes the `function` keyword and points the function signature at the definition with an `=>`  
+
+```javascript
+const sum = (a, b) => {
+	return a+b;
+}
+```
+
+This does not __have__ to be assigned to a `const` variable. The function definition alone looks like this: 
+
+```javascript
+(a,b) => {
+	return a+b;
+}
+```
+
+##### More detail:
 
 Recall - normal function definition in JavaScript:
 * Named function:
