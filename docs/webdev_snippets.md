@@ -704,9 +704,7 @@ People like Bootstrap because it enables you to create responsive websites witho
 	* This is useful for testing code
 	* It can be used to run code in the editor or in the terminal
 
-#### Printing, Variables, Arrays, Functions
-	
-##### Printing to the Console
+#### Printing to the Console
 
 ```javascript
 console.log("Hello World!");
@@ -739,7 +737,7 @@ add(1, 2); // 3
 console.assert(1 === 2, "This is an error"); // Assertion failed: This is an error
 ```
 
-##### Variable Declaration and Assignment
+#### Variable Declaration and Assignment
 
 ```javascript
 var myName = "John"; // DONT' USE - var is used throughout the program
@@ -755,9 +753,9 @@ myValue *= 5;
 myValue /= 5;
 ```
 
-##### Arrays
+#### Arrays
 
-###### Declaration and Manipulation
+##### Declaration and Manipulation
 
 * 1-D:
 
@@ -781,7 +779,7 @@ let myArray = [
 myArray[0] = "Super random value"; // arrays can hold any type of value
 ```
 
-###### forEach Loops
+##### forEach Loops
 
 (This is jumping ahead a bit but should be grouped with arrays -- see [Looping](webdev_snippets.md#looping), [Functions](webdev_snippets.md#functions), and first segments of [ES6](webdev_snippets.md#ES6) for more info)  
 
@@ -806,7 +804,7 @@ xArray.forEach((x) => {
 })
 ```
 
-###### Array callback methods  
+##### Array callback methods  
 
 Notice the pattern here -- `array.method(callback)` where callback is  
 
@@ -907,8 +905,96 @@ const upperNames = names.map((name) => name.toUpperCase();)
 * `.join()`
 	* `groceries.join("; "); // "Apple; Peach; Tomato"`
 
+###### .reduce() method
 
-##### Functions
+The `reduce()` method is used to calculate a single value from an array. In other terms, you reduce an array into a single value.  
+`.reduce()` is commonly used for summing the values in an array (or multiplying, or finding the max, or averaging, etc. -- any operation that reduces an array to a single value).  
+
+* The reduce() method accepts the "reducer" -- a callback that you have to write -- and an optional initial value (for the accumulator).   
+	* The "reducer function" takes two arguments: the accumulator and the current value. 
+
+General syntax:
+
+```javascript
+array.reduce(function(accumulator, currentValue) { // this callback is the "reducer function"
+	return accumulator + currentValue; 
+}, 0); // 0 is the initial value of the accumulator
+```
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+const sum = numbers.reduce(function(accumulator, currentValue) {
+	return accumulator + currentValue; // this is the "reducer function"
+});
+console.log(sum); // 15
+```
+
+Using arrow function syntax: 
+
+```javascript
+const sum = numbers.reduce((accumulator, currentValue) => {
+	return accumulator + currentValue;
+});
+console.log(sum); // 15
+```
+
+Using implicit return: 
+
+```javascript
+const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue;)
+console.log(sum); // 15
+```
+
+Using an initial value: 
+
+```javascript
+const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue;, 100)
+console.log(sum); // 115
+```
+
+###### .reduce() -- Walkthrough
+
+```javascript
+const grades = [10, 15, 5];
+const sum = grades.reduce((total, current) => { 
+    return total + current;
+}, 0);
+```
+
+Here the reducer is: 
+
+```javascript
+(total, current) => { 
+	return total + current;
+}
+```
+
+This is the callback that is applied for every item in the array, however, this callback takes 2 parameters: total and current.  
+  
+The total is always referring to the last computed value by the reduce function. You may often see this called as accumulator in documentation which is a more correct name. And the current is referring to a single item in the array. 
+
+```javascript
+const grades = [10, 15, 5];
+const sum = grades.reduce((total, current) => total + current;, 0); // total (the accumulator) holds the "running total" & gets assigned to & returned at end || current represents 1 item in the array
+```
+
+Looking at the value of `total` and `current` for each iteration:
+
+* Iteration 1: 
+	* `total` = 0 (because of initial value)
+	* `current` = 10 (because of first item in array)
+		* `total` + `current` is returned and becomes the new `total` for the next iteration
+* Iteration 2: 
+	* `total` = 10 (because of previous iteration)
+	* `current` = 15 (because of next item in array)
+		* `total` + `current` is returned and becomes the new `total` for the next iteration
+* Iteration 3: 
+	* `total` = 25 (because of previous iteration)
+	* `current` = 5 (because of next item in array)
+		* `total` + `current` is returned and - since there are no more items in the array - this is the final value of `total`, which gets assigned to `sum`
+
+#### Functions
 
 ```javascript
 // Print function
@@ -956,7 +1042,7 @@ Can also be done using a stand-in value for the inner function in the definition
 
 #### If-Statement syntax  in JavaScript
 
-##### Syntax
+##### General Syntax
 
 * One then-statement: 
 
@@ -982,6 +1068,7 @@ Can also be done using a stand-in value for the inner function in the definition
 		statement2;
 	}
 	```
+
 ##### If-else syntax: 
 
 ```javascript
@@ -1598,16 +1685,14 @@ console.log(ownProps); // [ 'name' ]
 console.log(prototypeProps); // [ 'numLegs' ]
 ```
 
-#### Methods
-
-##### Methods
+#### Object Methods
 
 * Methods are functions that are stored as object properties
 * They are defined in the same way as regular functions
 * They are invoked using the dot notation
 * They can be used to change object properties
 
-##### Example
+###### Example
 
 ```javascript
 let dog = {
