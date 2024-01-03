@@ -755,7 +755,9 @@ myValue *= 5;
 myValue /= 5;
 ```
 
-##### Array Declaration and Manipulation
+##### Arrays
+
+###### Declaration and Manipulation
 
 * 1-D:
 
@@ -779,7 +781,134 @@ let myArray = [
 myArray[0] = "Super random value"; // arrays can hold any type of value
 ```
 
-##### Function Declaration and Calling
+###### forEach Loops
+
+(This is jumping ahead a bit but should be grouped with arrays -- see [Looping](webdev_snippets.md#looping), [Functions](webdev_snippets.md#functions), and first segments of [ES6](webdev_snippets.md#ES6) for more info)  
+
+Here a callback is used (where the callback is defined in-line)  
+
+```javascript
+const xArray = [10, 6, 8];
+
+xArray.forEach(function(x) {
+	console.log(x);
+})
+```
+
+In other words, the first arg of the callback definition is used to specify the "dynamic variable name" used for the array elements  
+Using an arrow function, the syntax is more elegant: 
+
+```javascript
+const xArray = [10, 6, 8];
+
+xArray.forEach((x) => {
+	console.log(x);
+})
+```
+
+###### Array callback methods  
+
+Notice the pattern here -- `array.method(callback)` where callback is  
+
+```javascript
+function(arrayItem) {...}
+```
+
+* `.filter()`
+* `.find()`
+* `.map()`
+
+###### Filtering Arrays  
+
+Note: this will always return an array  
+
+```javascript
+const years = [2000, 2008, 2020, 2023];
+
+years.filter(function(year) {
+    return year >= 2010; // this must *return* a boolean
+});
+```
+
+Using arrow function syntax:
+
+```javascript
+const years = [2000, 2008, 2020, 2023];
+
+years.filter((year) => {
+    return year >= 2010; // this must *return* a boolean
+});
+```
+
+Using implicit return:
+
+```javascript
+years.filter((year) => year >= 2010;)
+```
+
+###### Searching arrays
+
+The .find() method returns either the first array item that matches the callback condition or `undefined` if the specified item isn't found.  
+
+```javascript
+const names = ["Sam", "Alex", "Charlie"];
+
+const result = names.find(function(name) {
+  return name === "Alex";
+});
+console.log(result); // "Alex"
+```
+
+Using arrow function syntax:
+
+```javascript
+const names = ["Sam", "Alex", "Charlie"];
+
+const result = names.find((name) => {
+  return name === "Alex";
+});
+console.log(result); // "Alex"
+```
+
+Using implicit return: 
+
+```javascript
+const result = names.find((name) => name === 'Alex')
+```
+
+###### Mapping functions to arrays 
+
+```javascript
+const names = ["sam", "Alex"];
+const upperNames = names.map(function(name) {
+    return name.toUpperCase();
+});
+```
+
+Using arrow function syntax: 
+
+```javascript
+const names = ["sam", "Alex"];
+const upperNames = names.map((name) => {
+    return name.toUpperCase();
+});
+```
+
+Using implicit return: 
+
+```javascript
+const upperNames = names.map((name) => name.toUpperCase();)
+```
+
+###### Array NON-callback methods 
+
+* `.includes()`
+	* `groceries.includes("Tomato"); // true`
+* `.join()`
+	* `groceries.join("; "); // "Apple; Peach; Tomato"`
+
+
+##### Functions
 
 ```javascript
 // Print function
@@ -1049,6 +1178,7 @@ function sequentialSizes(val) {
 ```
 
 ##### Return Early Pattern for Functions
+
 * Example:
 
 ```javascript
@@ -1229,107 +1359,6 @@ xArray.forEach((x) => {
 	console.log(x);
 })
 ```
-
-##### Array callback methods  
-
-Notice the pattern here -- `array.method(callback)` where callback is  
-
-```javascript
-function(arrayItem) {...}
-```
-
-* `.filter()`
-* `.find()`
-* `.map()`
-
-###### Filtering Arrays  
-
-Note: this will always return an array  
-
-```javascript
-const years = [2000, 2008, 2020, 2023];
-
-years.filter(function(year) {
-    return year >= 2010; // this must *return* a boolean
-});
-```
-
-Using arrow function syntax:
-
-```javascript
-const years = [2000, 2008, 2020, 2023];
-
-years.filter((year) => {
-    return year >= 2010; // this must *return* a boolean
-});
-```
-
-Using implicit return:
-
-```javascript
-years.filter((year) => year >= 2010;)
-```
-
-###### Searching arrays
-
-The .find() method returns either the first array item that matches the callback condition or `undefined` if the specified item isn't found.  
-
-```javascript
-const names = ["Sam", "Alex", "Charlie"];
-
-const result = names.find(function(name) {
-  return name === "Alex";
-});
-console.log(result); // "Alex"
-```
-
-Using arrow function syntax:
-
-```javascript
-const names = ["Sam", "Alex", "Charlie"];
-
-const result = names.find((name) => {
-  return name === "Alex";
-});
-console.log(result); // "Alex"
-```
-
-Using implicit return: 
-
-```javascript
-const result = names.find((name) => name === 'Alex')
-```
-
-###### Mapping functions to arrays 
-
-```javascript
-const names = ["sam", "Alex"];
-const upperNames = names.map(function(name) {
-    return name.toUpperCase();
-});
-```
-
-Using arrow function syntax: 
-
-```javascript
-const names = ["sam", "Alex"];
-const upperNames = names.map((name) => {
-    return name.toUpperCase();
-});
-```
-
-Using implicit return: 
-
-```javascript
-const upperNames = names.map((name) => name.toUpperCase();)
-```
-
-##### Array NON-callback methods 
-
-* `.includes()`
-	* `groceries.includes("Tomato"); // true`
-* `.join()`
-	* `groceries.join("; "); // "Apple; Peach; Tomato"`
 
 ##### Iterate Through an Array with a For Loop
 
@@ -1652,7 +1681,7 @@ console.log(convertToInteger("10011")); // 19
 
 #### Recursion
 
-#### Sum first n array elements
+##### Sum first n array elements
 
 ```javascript
 function sum(arr, n) {
