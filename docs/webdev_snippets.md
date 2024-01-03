@@ -1973,22 +1973,37 @@ numbers.filter(number => number >= 0); // [3, 5]
 
 #### Implicit Return
 
-When using arrow functions, **IFF** the function body is a single statement (i.e. a single line), the `return` keyword can be omitted **IFF** you remove the curly braces. This is called "implicit return".  
+**Implicit Return definition** - When using arrow functions, the `return` keyword can be omitted **IFF** the function body is a single statement (i.e. a single line). 
+If you omit the `return` keyword, you must also omit the curly braces. 
+
+* Normal arrow function: 
 
 ```javascript
-// doesn't work if you include the curly braces
+// this works -- there are curly braces and a `return` keyword
 const sum = (a, b) => {
-    a + b;
+	return a + b;
 }
 
-sum(1, 3); // undefined
+sum(1, 3); // 4
 ```
 
+* Arrow function with implicit return:
 ```javascript
 // arrow function with implicit return -- no `return` and no {}
 const sum = (a, b) => a + b;
 
 sum(1, 3); // 4
+```
+
+* **Invalid** arrow function with implicit return: 
+
+```javascript
+// doesn't work if you include the curly braces but omit the `return` keyword
+const sum = (a, b) => {
+    a + b;
+}
+
+sum(1, 3); // undefined
 ```
 
 Some examples of single parameter w/ no default argument + arrow function + implicit return: 
