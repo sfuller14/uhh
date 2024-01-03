@@ -1264,6 +1264,12 @@ years.filter((year) => {
 });
 ```
 
+Using implicit return:
+
+```javascript
+years.filter((year) => year >= 2010;)
+```
+
 ###### Searching arrays
 
 The .find() method returns either the first array item that matches the callback condition or `undefined` if the specified item isn't found.  
@@ -1288,6 +1294,12 @@ const result = names.find((name) => {
 console.log(result); // "Alex"
 ```
 
+Using implicit return: 
+
+```javascript
+const result = names.find((name) => name === 'Alex')
+```
+
 ###### Mapping functions to arrays 
 
 ```javascript
@@ -1304,6 +1316,12 @@ const names = ["sam", "Alex"];
 const upperNames = names.map((name) => {
     return name.toUpperCase();
 });
+```
+
+Using implicit return: 
+
+```javascript
+const upperNames = names.map((name) => name.toUpperCase();)
 ```
 
 ##### Array NON-callback methods 
@@ -1869,7 +1887,58 @@ This does not __have__ to be assigned to a `const` variable. The function defini
 }
 ```
 
-##### More detail:
+When an arrow function has one parameter without a default value, you are allowed to drop the parentheses around that parameter: 
+
+```javascript
+const sum = a => {
+	return a+1;
+}
+```
+
+In the above, the function definition is `a => { return a+1; }`. We will see that this gives rise to the "implicit return" syntax `a => a+1;`: 
+
+```javascript
+let numbers = [-4, 3, -2, 5];
+numbers.filter(number => number >= 0); // [3, 5]
+```
+
+#### Implicit Return
+
+When using arrow functions, **IFF** the function body is a single statement (i.e. a single line), the `return` keyword can be omitted **IFF** you remove the curly braces. This is called "implicit return".  
+
+```javascript
+// doesn't work if you include the curly braces
+const sum = (a, b) => {
+    a + b;
+}
+
+sum(1, 3); // undefined
+```
+
+```javascript
+// arrow function with implicit return -- no `return` and no {}
+const sum = (a, b) => a + b;
+
+sum(1, 3); // 4
+```
+
+Some examples of single parameter w/ no default argument + arrow function + implicit return: 
+
+```javascript
+const square = n => n * n;
+const isLegal = age => age >= 18;
+const isEven = n => n % 2 === 0;
+```
+
+Here the function definitions are: 
+
+```javascript
+n => n * n;
+age => age >= 18;
+n => n % 2 === 0;
+```
+
+#### More detail on arrow functions:
 
 Recall - normal function definition in JavaScript:
 * Named function:
