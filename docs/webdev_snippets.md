@@ -1220,6 +1220,15 @@ xArray.forEach(function(x) {
 ```
 
 In other words, the first arg of the callback definition is used to specify the "dynamic variable name" used for the array elements  
+Using an arrow function, the syntax is more elegant: 
+
+```javascript
+const xArray = [10, 6, 8];
+
+xArray.forEach((x) => {
+	console.log(x);
+})
+```
 
 ##### Array callback methods  
 
@@ -1245,6 +1254,16 @@ years.filter(function(year) {
 });
 ```
 
+Using arrow function syntax:
+
+```javascript
+const years = [2000, 2008, 2020, 2023];
+
+years.filter((year) => {
+    return year >= 2010; // this must *return* a boolean
+});
+```
+
 ###### Searching arrays
 
 The .find() method returns either the first array item that matches the callback condition or `undefined` if the specified item isn't found.  
@@ -1258,11 +1277,31 @@ const result = names.find(function(name) {
 console.log(result); // "Alex"
 ```
 
+Using arrow function syntax:
+
+```javascript
+const names = ["Sam", "Alex", "Charlie"];
+
+const result = names.find((name) => {
+  return name === "Alex";
+});
+console.log(result); // "Alex"
+```
+
 ###### Mapping functions to arrays 
 
 ```javascript
 const names = ["sam", "Alex"];
 const upperNames = names.map(function(name) {
+    return name.toUpperCase();
+});
+```
+
+Using arrow function syntax: 
+
+```javascript
+const names = ["sam", "Alex"];
+const upperNames = names.map((name) => {
     return name.toUpperCase();
 });
 ```
