@@ -1839,6 +1839,7 @@ console.log(rangeOfNumbers(1, 5)); // [ 1, 2, 3, 4, 5 ]
 			* `stringName.endsWith("string")` (returns `true` if the string ends with the specified string)
 			* `stringName.includes("string")` (returns `true` if the string includes the specified string)
 			* `stringName.replace("string", "newString")` (replaces the first occurrence of the string with the new string)
+			* `stringName.replaceAll("string", "newString")` (replaces the all occurrences of the string with the new string)
 			* `stringName.search("string")` (returns the index of the first occurrence of the string)
 			* `stringName.startsWith("string")` (returns `true` if the string starts with the specified string)
 			* Slicing and splitting are same as for arrays. Or:
@@ -1847,6 +1848,34 @@ console.log(rangeOfNumbers(1, 5)); // [ 1, 2, 3, 4, 5 ]
 			* `stringName.toLowerCase()` (converts to lowercase)
 			* `stringName.toUpperCase()` (converts to uppercase)
 			* `stringName.trim()` (removes whitespace from both ends of the string)
+
+#### Chaining Array and String methods to generate HTML text
+
+Chaining `array.map()` + `.join()` can be useful for generating strings in a desired format (e.g. csv): 
+
+```javascript
+const users = [{
+    id: 1,
+    name: "Sam Doe"
+}, {
+    id: 2,
+    name: "Alex Blue"
+}];
+
+const csv = users.map(user => user.name).join(", ");
+console.log(csv); // "Sam Doe, Alex Blue"
+```
+
+**This is frequently used in frameworks like React to generate HTML text:**  
+
+```javascript
+const html = `<ul>
+    ${users.map(user => `<li>${user.name}</li>`).join("")}
+    </ul>`;
+console.log(html); // <ul> <li>Sam Doe</li><li>Alex Blue</li> </ul>
+```
+
+Why is the `.join("")` necessary? It's because the browser automatically calls `.toString()` on the array returned by `.map()` --> `"<ul> <li>Sam Doe</li>,<li>Alex Blue</li> </ul>"`, which you want to preempt using the `.join("")`.  
 
 ### ES6
 
