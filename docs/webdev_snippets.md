@@ -1775,6 +1775,10 @@ console.log(rangeOfNumbers(1, 5)); // [ 1, 2, 3, 4, 5 ]
 			* `arrayName.slice(2, 5)` (returns the 3rd, 4th, and 5th elements of the array)
 			* `arrayName.sort()` (sorts the array)
 			* `arrayName.reverse()` (reverses the order of the array)
+			* `arrayName.every(`[conditionExpressedAsCallback]`)` (returns true if all elements meet specified condition)
+				* e.g. `numbersArray.every(number => number >= 10)`
+			* `arrayName.some(`[conditionExpressedAsCallback]`)` (returns true if any elements meet specified condition)
+				* e.g. `numbersArray.some(number => number > 10)`
 			* `Math.random()` (generates a random number between 0 and 1)
 			* `Math.floor()` (rounds down to the nearest integer)
 			* `Math.ceil()` (rounds up to the nearest integer)
@@ -1877,6 +1881,42 @@ console.log(html); // <ul> <li>Sam Doe</li><li>Alex Blue</li> </ul>
 
 Why is the `.join("")` necessary? It's because the browser automatically calls `.toString()` on the array returned by `.map()` --> `"<ul> <li>Sam Doe</li>,<li>Alex Blue</li> </ul>"`, which you want to preempt using the `.join("")`.  
 
+Another example of this **important pattern**: 
+
+```javascript
+const data = [["Carbs", "17g"], ["Protein", "19g"], ["Fat", "5g"]];
+const html = renderTableRows(data);
+const renderTableRows = rows => `<tr> 
+    ${rows.map(row => `<td>${row[0]}</td><td>${row[1]}</td> </tr>`).join("")}
+    </tr>`;
+```
+
+The broader structure is just a normal `.map(`arrowFuncDefinition`)` within a template string within an outer arrow func definition.  But. 
+Note the nesting of the backticks and implicit return with multi-line template string.  
+The `arrayParam.map().join()` is inside a parent set of backticks.  
+There are also nested `${}`s. So it's: 
+
+```javascript
+const htmlText = outerArrayParam => ${outerArrayParam.map(arrayElement => `<div>${arrayElement.toLowerCase()}</div>`).join("")};
+```
+
+Or: 
+
+```javascript
+const htmlText = outerArrayParam => `<ul>
+	${outerArrayParam.map(arrayElement => `<li>${arrayElement.toLowerCase()}</li>`).join("")}
+	</ul>`
+```
+
+One final example to nail in the pattern: 
+
+```javascript
+const countries = ["Netherlands", "Japan", "Mongolia"];
+const html = getDropdown(countries);
+const getDropdown = (countries) => `<option value="">Please select</option>
+    ${countries.map(country => `<option value=${country.toLowerCase()}>${country}</option>`).join("")}`
+```
+
 ### ES6
 
 
@@ -1959,13 +1999,49 @@ const isLegal = age => age >= 18;
 const isEven = n => n % 2 === 0;
 ```
 
-Here the function definitions are: 
+**KEY** Callback functions can be expressed as: 
 
 ```javascript
 n => n * n;
 age => age >= 18;
 n => n % 2 === 0;
 ```
+
+Or: 
+
+```javascript
+function(n) {
+	return n * n;
+}
+
+function(age) {
+	return age >= 18;
+}
+
+function(n) {
+	return n % 2 === 0;
+}
+```
+
+Or: 
+
+```javascript
+const square = function(n) {
+	return n * n;
+}
+
+const isLegal = function(age) {
+	return age >= 18;
+}
+
+const isEven = function(n) {
+	return n % 2 === 0;
+}
+```
+
+The key is that: 
+* if you exclude either the `function` keyword or the curly braces, you must exclude both. 
+* if you exclude both, you can exclude the `return` keyword and put everything on one line. 
 
 #### More detail on arrow functions:
 
