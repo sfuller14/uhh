@@ -1302,8 +1302,7 @@ console.log(myDog.legs); // or myDog["legs"]
 console.log(myDog.tails); // 1
 console.log(myDog.friends); // [ 'Rover', 'Fido' ]
 
-let nameToCheck = "Spot";
-console.log(myDog[nameToCheck]); // Spot
+console.log(myDog.name); // Spot
 ```
 
 ##### Updating Object Properties
@@ -1327,6 +1326,28 @@ delete myDog.bark;
 console.log(myDog.bark); // undefined
 ```
 
+##### Accessing Object Properties with Variables
+
+Note 1: JS objects aren't exactly like python dicts because the properties (keys) are not enclosed in quotes.  
+Note 2: Note that so far we have been accessing property values explicitly providing the property name (key) via dot notation 
+  
+In order to access a property value using a variable, we have to use bracket notation: 
+
+```javascript
+let propertyName = "friends";
+console.log(myDog[propertyName]); // [ 'Rover', 'Fido' ]
+```
+
+##### Object.keys()
+
+Note 3: Another difference from python dicts -- to get an object's keys, we call call the `.keys()` method of the built-in global variable `Object` 
+
+```javascript
+console.log(Object.keys(myDog)); // [ 'name', 'legs', 'tails', 'friends' ]
+```
+
+We've seen this before with `Number.parseInt()`, `Math.random()`, `console.log()`, etc.
+
 ##### Using Objects for Lookups
 
 ```javascript
@@ -1348,6 +1369,8 @@ function phoneticLookup(val) {
 
 	return result;
 }
+
+console.log(phoneticLookup("charlie")); // Chicago
 ```
 
 ##### Testing Objects for Properties
@@ -1398,6 +1421,58 @@ let myPlants = [
 
 let secondTree = myPlants[1].list[1];
 console.log(secondTree); // pine
+```
+
+##### Optional Chaining
+
+If you try to access a property of an object that doesn't exist, you will get an error.  
+This can be avoided by using the optional chaining operator (`?.`)  
+This is similar to `my_dict.get("key")` in python...it's a try...except on a dict lookup where the except returns `undefined` (`None` in python)
+
+```javascript
+const user = {
+    details: {
+        name: {
+            firstName: "Sam"
+        }
+    },
+    data: null
+}
+
+user.details?.name?.firstName; // "Sam"
+user?.details?.name?.firstName; // "Sam" -- use this if you don't know if user is an object. however this will return undefined if user doesn't exist.
+user.data?.id; // undefined
+user.children?.names; // undefined
+user.details?.parent?.firstName; // undefined
+```
+
+##### Nullish Coalescing Operator
+
+Similar to the optional chaining operator, the nullish coalescing operator (`??`) returns the right-hand side operand if the left-hand side operand is `null` or `undefined`.  
+
+```javascript
+const getName = name => {
+    return name ?? "N/A";
+}
+
+console.log(getName("Sam")); // "Sam"
+console.log(getName(undefined)); // "N/A"
+console.log(getName(null)); // "N/A"
+```
+
+Note that this employs "short-circuiting" -- if the left-hand side operand is not `null` or `undefined`, the right-hand side operand is not evaluated.  
+
+```javascript
+const getPlaceholder = () => {
+    console.log("getPlaceholder called");
+    return "N/A";
+}
+
+const sayHello = name => {
+    return `Hello ${name ?? getPlaceholder()}`;
+}
+
+console.log(sayHello("Sam")); // "Hello Sam"
 ```
 
 #### Looping
