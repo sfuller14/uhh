@@ -1887,7 +1887,16 @@ console.log(rangeOfNumbers(1, 5)); // [ 1, 2, 3, 4, 5 ]
 				* `stringName.length`
 				* `stringName[0]` (returns the first character)
 					* Or `stringName.charAt(0)`
-				* `stringName.concat(" ", "is", " ", "a", " ", "string")` (concatenates strings)
+				* `concat` (concatenates strings)
+					* Usage:
+					
+						```javascript
+						let string1 = "Hello ";
+						let string2 = "World!";
+						let string3 = string1.concat(string2);
+						console.log(string3); // Hello World!
+						```
+					
 				* `stringName.endsWith("string")` (returns `true` if the string ends with the specified string)
 				* `stringName.includes("string")` (returns `true` if the string includes the specified string)
 				* `stringName.replace("string", "newString")` (replaces the first occurrence of the string with the new string)
@@ -2395,6 +2404,21 @@ console.log(sum(1, 2, 3)); // 6
 
 #### Use the Spread Operator to Evaluate Arrays In-Place
 
+Expands an array in places where zero or more items are expected (e.g. multi-parameter function calls).  
+This is necessary in cases where, e.g., a function is expecting multiple arguments but you want to pass it an array -- e.g. `Math.max(...myArray)`  
+
+```javascript
+function sum(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+console.log(sum(...numbers));
+```
+
+In the following example, the spread operator is used to copy the contents of `arr1` into `arr2` in order to initialize `arr2` while avoiding mutating `arr1`.  
+`arr2 = [...arr1]` is an example of an array literal.  
+
 ```javascript
 const arr1 = ["JAN", "FEB", "MAR", "APR", "MAY"];
 let arr2; // variable can be declared without being initialized
@@ -2408,10 +2432,40 @@ function spreadArray(arr1, arr2) {
 console.log(spreadArray(arr1, arr2)); // [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY' ]
 ```
 
-* This is necessary in cases where, e.g., a function is expecting an array
-	* Another example is `Math.max(...myArray)`
+#### Rest syntax vs. Spread syntax
 
-#### Use Destructuring Assignment to Extract Values from Objects
+* Rest syntax looks exactly like spread syntax. But in a way, they are exact opposites.
+	* Spread syntax $\approx$ unpacking, while Rest syntax $\approx$ packing.
+* Spread syntax "expands" an array into its elements, while rest syntax collects multiple elements and "condenses" them into a single element. 
+* Spread syntax UNPACKS array for function calls (where function is individual elements) while rest syntax PACKS individual parameters for function definitions (where function works with array of parameters as a whole)  
+	* Think "Whether invoking or defining, I always want to work with an array rather than its elements"
+	* SPREAD (unpack): `myFunction(...myArray)`
+	* REST (pack): `function myFunction(...args) {...}`
+
+```javascript
+// Spread syntax in a function call
+function myFunction(x, y, z) { ... }
+myFunction([1, 2, 3]); // unpacks iterableObj into its elements. myFunction expects multiple arguments.
+
+// Rest syntax in a function definition
+function myFunction(...args) { // packs all arguments into a single array called args. invocation of myFunction can pass any number of arguments.
+	console.log(args.length); // 3
+	console.log(args); // [ 1, 2, 3 ]
+}
+myFunction(1, 2, 3);
+```
+
+```javascript
+// Spread syntax in array literals
+const origArr = [1, 2, 3];
+const sameArr = [...origArr]; // unpacks iterableObj into its elements. sameArr is an array literal.
+
+// Rest syntax in array literals
+const [a, b, ...iterableObj] = [1, 2, 3, 4, 5]; // packs all elements after the first two into iterableObj. iterableObj is an array literal.
+console.log(iterableObj); // [3, 4, 5]
+```
+
+#### Destructuring Assignment
 
 Destructuring is a way to extract values from objects and arrays.  
 $\text{Destructuring}_{\text{js}} \approx \text{Unpacking}_{\text{python}}$ 
@@ -2420,57 +2474,74 @@ $\text{Destructuring}_{\text{js}} \approx \text{Unpacking}_{\text{python}}$
 	* You can tell destructuring is being used when you see square brackets `[]` on the left side of the assignment operator `=`
 	* Example without destructuring:
 
-	```javascript
-	const dimensions = [20, 5]
+		```javascript
+		const dimensions = [20, 5]
 
-	const width = dimensions[0];
-	const height = dimensions[1];
-	```
+		const width = dimensions[0];
+		const height = dimensions[1];
+		```
 
 	* Main use cases with arrays:
 		* Example with destructuring:
 
-		```javascript
-		const dimensions = [20, 5]
-		const [width, height] = dimensions;
-		```
+			```javascript
+			const dimensions = [20, 5]
+			const [width, height] = dimensions;
+			```
 
 		* You can also skip elements:
 
-		```javascript
-		const [a, , , b] = [1, 2, 3, 4, 5, 6];
-		console.log(a, b); // 1 4
-		```
+			```javascript
+			const [a, , , b] = [1, 2, 3, 4, 5, 6];
+			console.log(a, b); // 1 4
+			```
+
+		* Concatenate/merge arrays using the spread operator:
+
+			```javascript
+			const arr1 = [1, 2, 3];
+			const arr2 = [4, 5, 6];
+
+			const arr3 = [...arr1, ...arr2];
+			console.log(arr3); // [ 1, 2, 3, 4, 5, 6 ]
+			```
+
+			```javascript
+			const items = ["Tissues", "Oranges"];
+
+			const otherItems = [...items, "Tomatoes"];
+			console.log(otherItems); // ["Tissues", "Oranges", "Tomatoes"]
+			```
 
 	* Other use cases with arrays:
 		* You can also use the rest operator:
 
-		```javascript
-		const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
-		console.log(a, b); // 1 2
-		console.log(arr); // [ 3, 4, 5, 7 ]
-		```
+			```javascript
+			const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
+			console.log(a, b); // 1 2
+			console.log(arr); // [ 3, 4, 5, 7 ]
+			```
 
 		* You can also use destructuring to assign variables from nested arrays:
 
-		```javascript
-		const [a, b, [c, d]] = [1, 2, [3, 4]];
-		console.log(a, b, c, d); // 1 2 3 4
-		```
+			```javascript
+			const [a, b, [c, d]] = [1, 2, [3, 4]];
+			console.log(a, b, c, d); // 1 2 3 4
+			```
 
 
 		* You can also use destructuring to swap variables:
 
-		```javascript
-		let a = 8, b = 6;
-		console.log(a); // 8
-		console.log(b); // 6
+			```javascript
+			let a = 8, b = 6;
+			console.log(a); // 8
+			console.log(b); // 6
 
-		(() => [a, b] = [b, a])();
+			(() => [a, b] = [b, a])();
 
-		console.log(a); // 6
-		console.log(b); // 8
-		```
+			console.log(a); // 6
+			console.log(b); // 8
+			```
 
 * Destructuring from objects relies on properties (i.e. keys) to extract their values into variables
 	* You can tell destructuring is being used when you see curly braces `{}` on the left side of the assignment operator `=`
@@ -2491,110 +2562,110 @@ $\text{Destructuring}_{\text{js}} \approx \text{Unpacking}_{\text{python}}$
 	* Main use cases:
 		* Example with destructuring:
 
-		```javascript
-		const HIGH_TEMPERATURES = {
-			yesterday: 75,
-			today: 77,
-			tomorrow: 80,
-		};
+			```javascript
+			const HIGH_TEMPERATURES = {
+				yesterday: 75,
+				today: 77,
+				tomorrow: 80,
+			};
 
-		// destructure into variables with the same names as the object properties
-		const { today, tomorrow } = HIGH_TEMPERATURES;
-		console.log(tomorrow); // 80
-		// OR - destructure into variables with different names than the object properties
-		const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES;
-		console.log(highToday); // 77
-		```
+			// destructure into variables with the same names as the object properties
+			const { today, tomorrow } = HIGH_TEMPERATURES;
+			console.log(tomorrow); // 80
+			// OR - destructure into variables with different names than the object properties
+			const { today: highToday, tomorrow: highTomorrow } = HIGH_TEMPERATURES;
+			console.log(highToday); // 77
+			```
 		
 	* Other use cases:
 		* You can also use the rest operator:
 
-		```javascript
-		const HIGH_TEMPERATURES = {
-			yesterday: 75,
-			today: 77,
-			tomorrow: 80,
-		};
+			```javascript
+			const HIGH_TEMPERATURES = {
+				yesterday: 75,
+				today: 77,
+				tomorrow: 80,
+			};
 
-		const { yesterday, ...restOfHighTemperatures } = HIGH_TEMPERATURES;
-		console.log(yesterday); // 75
-		console.log(restOfHighTemperatures); // { today: 77, tomorrow: 80 }
-		```
+			const { yesterday, ...restOfHighTemperatures } = HIGH_TEMPERATURES;
+			console.log(yesterday); // 75
+			console.log(restOfHighTemperatures); // { today: 77, tomorrow: 80 }
+			```
 
 		* You can also use destructuring to assign variables from nested objects:
 
-		```javascript
-		const LOCAL_FORECAST = {
-			yesterday: { low: 61, high: 75 },
-			today: { low: 64, high: 77 },
-			tomorrow: { low: 68, high: 80 },
-		};
+			```javascript
+			const LOCAL_FORECAST = {
+				yesterday: { low: 61, high: 75 },
+				today: { low: 64, high: 77 },
+				tomorrow: { low: 68, high: 80 },
+			};
 
-		const { today: { low: lowToday, high: highToday } } = LOCAL_FORECAST;
-		console.log(lowToday); // 64
-		```
+			const { today: { low: lowToday, high: highToday } } = LOCAL_FORECAST;
+			console.log(lowToday); // 64
+			```
 
 		* Common usage pattern 1 - using destructuring to assign variables from objects passed as function parameters:
 
-		```javascript
-		const LOCAL_FORECAST = {
-			yesterday: { low: 61, high: 75 },
-			today: { low: 64, high: 77 },
-			tomorrow: { low: 68, high: 80 },
-		};
+			```javascript
+			const LOCAL_FORECAST = {
+				yesterday: { low: 61, high: 75 },
+				today: { low: 64, high: 77 },
+				tomorrow: { low: 68, high: 80 },
+			};
 
-		function forecast({ today }) {
-			return today;
-		}
+			function forecast({ today }) {
+				return today;
+			}
 
-		console.log(forecast(LOCAL_FORECAST)); // { low: 64, high: 77 }
-		```
+			console.log(forecast(LOCAL_FORECAST)); // { low: 64, high: 77 }
+			```
 
 		* Common usage pattern 2 - using destructuring to assign variables from objects returned by functions:
 
-		```javascript
-		const LOCAL_FORECAST = {
-			yesterday: { low: 61, high: 75 },
-			today: { low: 64, high: 77 },
-			tomorrow: { low: 68, high: 80 },
-		};
+			```javascript
+			const LOCAL_FORECAST = {
+				yesterday: { low: 61, high: 75 },
+				today: { low: 64, high: 77 },
+				tomorrow: { low: 68, high: 80 },
+			};
 
-		function getLocalForecast() {
-			return LOCAL_FORECAST;
-		}
+			function getLocalForecast() {
+				return LOCAL_FORECAST;
+			}
 
-		const { today: { low: lowToday, high: highToday } } = getLocalForecast();
-		console.log(lowToday); // 64
-		```
+			const { today: { low: lowToday, high: highToday } } = getLocalForecast();
+			console.log(lowToday); // 64
+			```
 
 		* Common usage pattern 3 - using destructuring to assign variables from objects returned by API calls:
 
-		```javascript
-		// this is a fake API call
-		const getWeather = () => {
-			return new Promise((resolve, reject) => {
-				setTimeout(() => {
-					resolve({ // say this is the response from the API call
-						yesterday: { low: 61, high: 75 },
-						today: { low: 64, high: 77 },
-						tomorrow: { low: 68, high: 80 },
-					});
-				}, 2000);
-			});
-		};
+			```javascript
+			// this is a fake API call
+			const getWeather = () => {
+				return new Promise((resolve, reject) => {
+					setTimeout(() => {
+						resolve({ // say this is the response from the API call
+							yesterday: { low: 61, high: 75 },
+							today: { low: 64, high: 77 },
+							tomorrow: { low: 68, high: 80 },
+						});
+					}, 2000);
+				});
+			};
 
-		// this is the function that calls the API
-		const getLocalForecast = async () => {
-			const weather = await getWeather();
-			return weather;
-		};
+			// this is the function that calls the API
+			const getLocalForecast = async () => {
+				const weather = await getWeather();
+				return weather;
+			};
 
-		// this is the function that uses the API response
-		const printLocalForecast = async () => {
-			const { today: { low: lowToday, high: highToday } } = await getLocalForecast();
-			console.log(lowToday); // 64
-		};
-		```
+			// this is the function that uses the API response
+			const printLocalForecast = async () => {
+				const { today: { low: lowToday, high: highToday } } = await getLocalForecast();
+				console.log(lowToday); // 64
+			};
+			```
 
 #### Use Destructuring Assignment to Assign Variables from Objects
 
