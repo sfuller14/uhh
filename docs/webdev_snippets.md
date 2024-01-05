@@ -1283,6 +1283,177 @@ console.log(abTest(2, -2)); // undefined
 console.log(abTest(2, 8)); // 18
 ```
 
+#### !if-conditions
+
+This section uses concepts covered in [Objects](webdev_snippets.md#javascript-objects). 
+There are a number of more efficient ways to express if-conditions.  
+
+##### Falsy vs Nullish Values
+
+A value is considered falsy if it converts to  false  when evaluated in a boolean context, such as within an if  statement or after applying the logical NOT operator ( ! ).  
+
+"Nullish" typically refers to the values  null  and  undefined , which represent the absence of a meaningful value or the non-existence of a value. 
+
+All nullish values are falsy, but not all falsy values are nullish.  Non-nullish falsy values (0, false, NaN, "") do represent some sort of extant value, whereas nullish values represent the absence of a value. 
+
+* Falsy values in javascript:
+
+	```javascript
+	false;
+	0;
+	undefined;
+	null;
+	NaN;
+	"";
+	```
+
+* Nullish values in javascript:
+
+	```javascript
+	null;
+	undefined;
+	```
+
+##### Optional Chaining
+
+If you try to access a property of an object that doesn't exist, you will get an error.  
+This can be avoided by using the optional chaining operator (`?.`)  
+This is similar to `my_dict.get("key")` in python...it's a try...except on a dict lookup where the except returns `undefined` (`None` in python)
+
+```javascript
+const user = {
+    details: {
+        name: {
+            firstName: "Sam"
+        }
+    },
+    data: null
+}
+
+user.details?.name?.firstName; // "Sam"
+user?.details?.name?.firstName; // "Sam" -- use this if you don't know if user is an object. however this will return undefined if user doesn't exist.
+user.data?.id; // undefined
+user.children?.names; // undefined
+user.details?.parent?.firstName; // undefined
+```
+
+Can be used with bracket notation, but you have to use the bracket notation for the entire chain.  
+
+```javascript
+user["details"]?.["name"]?.["firstName"]; // "Sam"
+```
+
+##### Nullish Coalescing Operator
+
+Similar to the optional chaining operator, the nullish coalescing operator (`??`) returns the right-hand side operand if the left-hand side operand is `null` or `undefined`.  
+
+```javascript
+const getName = name => {
+    return name ?? "N/A";
+}
+
+console.log(getName("Sam")); // "Sam"
+console.log(getName(undefined)); // "N/A"
+console.log(getName(null)); // "N/A"
+```
+
+**In some cases this can be used in place of an if-else or the ternary operator**  
+
+```javascript
+// Example 1:
+// if-else
+const getName = name => {
+	if (name) {
+		return name;
+	} else {
+		return "N/A";
+	}
+}
+// ternary operator
+const getName = name => name ? name : "N/A";
+const getName = name => !!name ? name : "N/A";
+// nullish coalescing operator
+const getName = name => name ?? "N/A";
+
+// Example 2:
+// if-else:
+const getWelcomeMessage = user => {
+	if (user.fullName) {
+		return `Welcome ${user.fullName}`;
+	} else {
+		return "Welcome user";
+	}
+}
+// ternary operator
+const getWelcomeMessage = user => `Welcome ${user.fullName ? user.fullName : 'user'}`;
+// nullish coalescing operator
+const getWelcomeMessage = user => `Welcome ${user.fullName ?? 'user'}`;
+```
+
+Note that this employs "short-circuiting" -- if the left-hand side operand is not `null` or `undefined`, the right-hand side operand is not evaluated.  
+
+```javascript
+const getPlaceholder = () => {
+    console.log("getPlaceholder called");
+    return "N/A";
+}
+
+const sayHello = name => {
+    return `Hello ${name ?? getPlaceholder()}`;
+}
+
+console.log(sayHello("Sam")); // "Hello Sam"
+```
+
+Can be used together with optional chaining: 
+
+```javascript
+const translations = {
+    welcome: {
+        dutch: "Welkom",
+        french: "Bienvenue",
+        english: "Welcome"
+    }
+}
+
+const getTranslation = (language) => translations["welcome"]?.[language] ?? translations["welcome"].english;
+```
+
+##### Object + Nullish Coalescing 
+
+```javascript
+const getPushMessage = status => {
+    if (status === "received") {
+        return "Restaurant started working on your order.";
+    } else if (status === "prepared") {
+        return "Driver is picking up your food."
+    } else if (status === "en_route") {
+        return "Driver is cycling your way!";
+    } else if (status === "arrived") {
+        return "Enjoy your food!";
+    } else {
+        return "Unknown status";
+    }
+}
+
+console.log(getPushMessage("received")); // "Restaurant started working on your order."
+```
+
+```javascript
+const getPushMessage = status => {
+    const messages = {
+        received: "Restaurant started working on your order.",
+        prepared: "Driver is picking up your food.",
+        en_route: "Driver is cycling your way!",
+        arrived: "Enjoy your food!"
+    };
+
+    return messages[status] ?? "Unknown status";
+}
+
+console.log(getPushMessage("received")); // "Restaurant started working on your order."
+```
+
 #### JavaScript Objects
 
 * Objects are more similar to python dictionaries than to python objects
@@ -1421,58 +1592,6 @@ let myPlants = [
 
 let secondTree = myPlants[1].list[1];
 console.log(secondTree); // pine
-```
-
-##### Optional Chaining
-
-If you try to access a property of an object that doesn't exist, you will get an error.  
-This can be avoided by using the optional chaining operator (`?.`)  
-This is similar to `my_dict.get("key")` in python...it's a try...except on a dict lookup where the except returns `undefined` (`None` in python)
-
-```javascript
-const user = {
-    details: {
-        name: {
-            firstName: "Sam"
-        }
-    },
-    data: null
-}
-
-user.details?.name?.firstName; // "Sam"
-user?.details?.name?.firstName; // "Sam" -- use this if you don't know if user is an object. however this will return undefined if user doesn't exist.
-user.data?.id; // undefined
-user.children?.names; // undefined
-user.details?.parent?.firstName; // undefined
-```
-
-##### Nullish Coalescing Operator
-
-Similar to the optional chaining operator, the nullish coalescing operator (`??`) returns the right-hand side operand if the left-hand side operand is `null` or `undefined`.  
-
-```javascript
-const getName = name => {
-    return name ?? "N/A";
-}
-
-console.log(getName("Sam")); // "Sam"
-console.log(getName(undefined)); // "N/A"
-console.log(getName(null)); // "N/A"
-```
-
-Note that this employs "short-circuiting" -- if the left-hand side operand is not `null` or `undefined`, the right-hand side operand is not evaluated.  
-
-```javascript
-const getPlaceholder = () => {
-    console.log("getPlaceholder called");
-    return "N/A";
-}
-
-const sayHello = name => {
-    return `Hello ${name ?? getPlaceholder()}`;
-}
-
-console.log(sayHello("Sam")); // "Hello Sam"
 ```
 
 #### Looping
