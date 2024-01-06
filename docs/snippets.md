@@ -33,6 +33,8 @@
 
 | Command | Description |
 | :------ | :----------- |
+| `git remote add origin git@github.com:USERNAME/REPO_NAME.git` | Add remote origin (when not set) |
+| `git remote set-url origin git@github.com:USERNAME/REPO_NAME.git` | Set remote origin (overwrite existing) |
 | `git rm --cached FILE_OR_DIR_NAME`<br>`git commit -m "Removed FILE_OR_DIR_NAME from repository"`<br>`git push origin master` | Remove local already-pushed file from remote. |
 | `git config --get remote.origin.url` | Get git remote origin's URL. |
 | `git reset --hard --force` | Force-update local repo state to match remote branch (**overwrites** -- stash). |
