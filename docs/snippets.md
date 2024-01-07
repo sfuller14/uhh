@@ -37,6 +37,8 @@
 | `git remote set-url origin git@github.com:USERNAME/REPO_NAME.git` | Set remote origin (overwrite existing) |
 | `git rm --cached FILE_OR_DIR_NAME`<br>`git commit -m "Removed FILE_OR_DIR_NAME from repository"`<br>`git push origin master` | Remove local already-pushed file from remote. |
 | `git config --get remote.origin.url` | Get git remote origin's URL. |
+| `git diff --cached origin/main` | Compare committed (pre-push) local changes to remote (all contents).<br>This opens the `less` editor.<br>`n`: Next change<br>`N`: Previous change<br>`spacebar`: Pagedown<br>`b`: Pageup<br>`q`: Quit<br>`?`: Help |
+| `git diff --cached origin/main --name-only` | Compare committed (pre-push) local changes to remote (filenames only). |
 | `git reset --hard --force` | Force-update local repo state to match remote branch (**overwrites** -- stash). |
 | `git reset --soft HEAD~1` | Undo most recent _local_ commit (to staging). |
 | `git reset --mixed HEAD~1` | Undo most recent _local_ commit (to unstaged). |
