@@ -305,6 +305,7 @@ print(completion.choices[0].message.content)
 ![Chat Completions Request Args (model, tokens)](img/chatcompletions4.png)
 
 Response object fields:
+
 - `id`: the ID of the request
 - `object`: the type of object returned (e.g., `chat.completion`)
 - `created`: the timestamp of the request
@@ -624,7 +625,7 @@ print(response.choices[0])
 
 Here the model is shown two copies of the same image and can answer questions about both or each of the images independently.
 
-## Low or high fidelity image understanding
+##### Low or high fidelity image understanding
 
 By controlling the `detail` parameter, which has three options, `low`, `high`, or `auto`, you have control over how the model processes the image and generates its textual understanding. By default, the model will use the `auto` setting which will look at the image input size and decide if it should use the `low` or `high` setting.
 
@@ -657,6 +658,53 @@ response = client.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
+
+#### Error Handling
+
+```python
+import openai
+from openai import OpenAI
+client = OpenAI()
+
+try:
+  #Make your OpenAI API request here
+  response = client.completions.create(
+    prompt="Hello world",
+    model="gpt-3.5-turbo-instruct"
+  )
+except openai.APIError as e:
+  #Handle API error here, e.g. retry or log
+  print(f"OpenAI API returned an API Error: {e}")
+  pass
+except openai.APIConnectionError as e:
+  #Handle connection error here
+  print(f"Failed to connect to OpenAI API: {e}")
+  pass
+except openai.RateLimitError as e:
+  #Handle rate limit error (we recommend using exponential backoff)
+  print(f"OpenAI API request exceeded rate limit: {e}")
+  pass
+```
+
+#### Rate limits
+
+Rate limits are restrictions that our API imposes on the number of times a user or client can access our services within a specified period of time.
+
+[Rate Limits](img/Rate%20limits.png)
+
+How do these rate limits work?
+
+Rate limits are measured in five ways: **RPM** (requests per minute), **RPD** (requests per day), **TPM** (tokens per minute), **TPD** (tokens per day), and **IPM** (images per minute). Rate limits can be hit across any of the options depending on what occurs first. For example, you might send 20 requests with only 100 tokens to the ChatCompletions endpoint and that would fill your limit (if your RPM was 20), even if you did not send 150k tokens (if your TPM limit was 150k) within those 20 requests.
+
+Other important things worth noting:
+
+- Rate limits are imposed at the [organization level](https://platform.openai.com/docs/guides/production-best-practices), not user level.
+- Rate limits vary by the [model](https://platform.openai.com/docs/models/models) being used.
+- Limits are also placed on the total amount an organization can spend on the API each month. These are also known as "usage limits".
+
+
+(See [here](https://platform.openai.com/docs/guides/rate-limits/error-mitigation) for more info on rate limit & error mitigation strategies.)
+
 ---
 
 ### numpy
