@@ -167,9 +167,178 @@
 
 ---
 
+## postgres (Mac)
+
+### Table of Most Common Commands
+
+| Action | Command |
+| --- | --- |
+| Start postgres and log into main local database | `psql -U [username] -d [database]` |
+| List all tables in this db | `\dt` |
+| List all tables in all dbs | `\dt *.*` |
+| List all databases | `\l` |
+| Navigate to a different database | `\c [database]` |
+| List all schemas in this db | `\dn` |
+| Create a new database | `CREATE DATABASE [database];` |
+| Create a new schema | `CREATE SCHEMA [schema];` |
+| Create a new table | `CREATE TABLE [table] ( [column] [datatype] [constraints] );` |
+| Delete a database | `DROP DATABASE [database];` |
+| Export a database | `pg_dump -U [username] [database] > [filename].sql` |
+| Import a database | `psql -U [username] -d [database] -f [filename].sql` |
+| Exit psql | `\q` |
+
+---
+
 ## PYTHON
 
-### OpenAI API
+### New OpenAI API (v 1.7.1)
+
+#### API Key
+
+`export OPENAI_API_KEY='...'`
+
+OR
+
+save .env file in root directory with: `OPENAI_API_KEY=abc123` (be sure to add .env to .gitignore)
+
+
+#### Models
+
+| Model | Description | Context window | Training data |
+| --- | --- | --- | --- |
+| gpt-4-1106-preview | **GPT-4 Turbo** The latest GPT-4 model with improved instruction following, JSON mode, reproducible outputs, parallel function calling, and more. Returns a maximum of 4,096 output tokens. This preview model is not yet suited for production traffic. [Learn more](https://openai.com/blog/new-models-and-developer-products-announced-at-devday). | 128,000 tokens | Up to Apr 2023 |
+| gpt-4-vision-preview | **GPT-4 Turbo with vision** Ability to understand images, in addition to all other GPT-4 Turbo capabilties. Returns a maximum of 4,096 output tokens. This is a preview model version and not suited yet for production traffic. [Dev Day](https://openai.com/blog/new-models-and-developer-products-announced-at-devday). | 128,000 tokens | Up to Apr 2023 |
+| gpt-4 | Currently points to `gpt-4-0613`. See [continuous model upgrades](https://platform.openai.com/docs/models/continuous-model-upgrades). | 8,192 tokens | Up to Sep 2021 |
+| gpt-4-32k | Currently points to `gpt-4-32k-0613`. See [continuous model upgrades](https://platform.openai.com/docs/models/continuous-model-upgrades). | 32,768 tokens | Up to Sep 2021 |
+| gpt-4-0613 | Snapshot of `gpt-4` from June 13th 2023 with improved function calling support. | 8,192 tokens | Up to Sep 2021 |
+| gpt-4-32k-0613 | Snapshot of `gpt-4-32k` from June 13th 2023 with improved function calling support. | 32,768 tokens | Up to Sep 2021 |
+
+#### Chat Completions
+
+**THIS IS DEPRECATED**:
+
+```python
+import openai
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+MODEL = "gpt-4" # more expensive now
+response = openai.ChatCompletion.create(
+  ...
+)
+
+# ChatCompletion response object:
+# {
+#   "id": "chatcmpl-7UkgnSDzlevZxiy0YjZcLYdUMz5yZ",
+#   "object": "chat.completion",
+#   "created": 1687563669,
+#   "model": "gpt-4",
+#   "choices": [
+#     {
+#       "index": 0,
+#       "message": {
+#         "role": "assistant",
+#         "content": "\n\nHello there, how may I assist you today?",
+#       },
+#       "finish_reason": "stop"
+#     }
+#   ],
+#   "usage": {
+#     "prompt_tokens": 39,
+#     "completion_tokens": 3,
+#     "total_tokens": 42
+#   }
+# }
+```
+
+**THIS IS THE NEW WAY**:
+
+```python
+from openai import OpenAI
+client = OpenAI() # defaults to looking for OPENAI_API_KEY or .env file
+
+MODEL = "gpt-4-turbo" # cheaper & smarter
+completion = client.chat.completions.create(
+    model=MODEL,
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+
+        {"role": "user", "content": "Knock knock."},
+        {"role": "assistant", "content": "Who's there?"},
+        
+        {"role": "user", "content": "Orange."},
+    ],
+    temperature=0,
+)
+
+# Chat completion object:
+# {
+#   "id": "chatcmpl-123",
+#   "object": "chat.completion",
+#   "created": 1677652288,
+#   "model": "gpt-4-turbo",
+#   "system_fingerprint": "fp_44709d6fcb",
+#   "choices": [{
+#     "index": 0,
+#     "message": {
+#       "role": "assistant",
+#       "content": "Orange who?"
+#     },
+#     "logprobs": null,
+#     "finish_reason": "stop"
+#   }],
+#   "usage": {
+#     "prompt_tokens": 9,
+#     "completion_tokens": 12,
+#     "total_tokens": 21
+#   }
+# }
+
+print(completion.choices[0].message.content)
+# 'Orange who?'
+```
+
+**Chat Completions Request body fields:**
+
+![Chat Completions Request Args (messages)](img/chatcompletions.png)
+![Chat Completions Request Args (response_format)](img/chatcompletions2.png)
+![Chat Completions Request Args (functions)](img/chatcompletions3.png)
+![Chat Completions Request Args (model, tokens)](img/chatcompletions4.png)
+
+Response object fields:
+- `id`: the ID of the request
+- `object`: the type of object returned (e.g., `chat.completion`)
+- `created`: the timestamp of the request
+- `model`: the full name of the model used to generate the response
+- `usage`: the number of tokens used to generate the replies, counting prompt, completion, and total
+- `choices`: a list of completion objects (only one, unless you set `n` greater than 1)
+    - `message`: the message object generated by the model, with `role` and `content`
+    - `finish_reason`: the reason the model stopped generating text (either `stop`, or `length` if `max_tokens` limit was reached)
+    - `index`: the index of the completion in the list of choices
+
+```python
+# Example with system prompt & few-shot learning:
+
+# Faked few-shot conversation to prime the model into translating business jargon into simpler speech
+# (OPTIONAL: Use the `name` parameter in the example messages -- so the model won't refer back to them & can differentiate between participants of the same role
+completion = client.chat.completions.create(
+    model=MODEL,
+    messages=[
+        {"role": "system", "content": "You are a helpful, pattern-following assistant that translates corporate jargon into plain English."},
+        
+        {"role": "system", "name":"example_user", "content": "New synergies will help drive top-line growth."},
+        {"role": "system", "name": "example_assistant", "content": "Things working well together will increase revenue."},
+        
+        {"role": "system", "name":"example_user", "content": "Let's circle back when we have more bandwidth to touch base on opportunities for increased leverage."},
+        {"role": "system", "name": "example_assistant", "content": "Let's talk later when we're less busy about how to do better."},
+        
+        {"role": "user", "content": "This late pivot means we don't have time to boil the ocean for the client deliverable."},
+    ],
+    temperature=0,
+)
+
+print(response["choices"][0]["message"]["content"])
+# This sudden change in plans means we don't have enough time to do everything for the client's project.
+```
 
 #### Token Counts
 
@@ -186,6 +355,308 @@
     * 512,000 characters / 50 characters per line ≈ 10,240 lines of code
     * **So 128,000 tokens is roughly equivalent to 10,240 lines of code**
 
+Function to track tokens:
+
+```python
+def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0613"):
+  """Returns the number of tokens used by a list of messages."""
+  try:
+      encoding = tiktoken.encoding_for_model(model)
+  except KeyError:
+      encoding = tiktoken.get_encoding("cl100k_base")
+  if model == "gpt-3.5-turbo-0613":  # note: future models may deviate from this
+      num_tokens = 0
+      for message in messages:
+          num_tokens += 4  # every message follows <im_start>{role/name}\n{content}<im_end>\n
+          for key, value in message.items():
+              num_tokens += len(encoding.encode(value))
+              if key == "name":  # if there's a name, the role is omitted
+                  num_tokens += -1  # role is always required and always 1 token
+      num_tokens += 2  # every reply is primed with <im_start>assistant
+      return num_tokens
+  else:
+      raise NotImplementedError(f"""num_tokens_from_messages() is not presently implemented for model {model}.
+      See https://github.com/openai/openai-python/blob/main/chatml.md for information on how messages are converted to tokens.""")
+```
+
+#### JSON Mode
+
+A common way to use Chat Completions is to instruct the model to always return a JSON object that makes sense for your use case, by specifying this in the system message. While this does work in some cases, occasionally the models may generate output that does not parse to valid JSON objects.
+
+To prevent these errors and improve model performance, when calling `gpt-4-1106-preview` or `gpt-3.5-turbo-1106`, you can set [response\_format](https://platform.openai.com/docs/api-reference/chat/create#chat-create-response_format) to `{ "type": "json_object" }` to enable JSON mode. When JSON mode is enabled, the model is constrained to only generate strings that parse into valid JSON object.
+
+Important notes:
+
+- When using JSON mode, **always** instruct the model to produce JSON via some message in the conversation, for example via your system message. If you don't include an explicit instruction to generate JSON, the model may generate an unending stream of whitespace and the request may run continually until it reaches the token limit. To help ensure you don't forget, the API will throw an error if the string `"JSON"` does not appear somewhere in the context.
+- The JSON in the message the model returns may be partial (i.e. cut off) if `finish_reason` is `length`, which indicates the generation exceeded `max_tokens` or the conversation exceeded the token limit. To guard against this, check `finish_reason` before parsing the response.
+- JSON mode will not guarantee the output matches any specific schema, only that it is valid and parses without errors.
+
+```python
+from openai import OpenAI
+client = OpenAI()
+
+response = client.chat.completions.create(
+  model="gpt-3.5-turbo-1106",
+  response_format={ "type": "json_object" },
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant designed to output JSON."},
+    {"role": "user", "content": "Who won the world series in 2020?"}
+  ]
+)
+print(response.choices[0].message.content)
+```
+
+In this example, the response includes a JSON object that looks something like the following:
+
+`"content": "{\"winner\": \"Los Angeles Dodgers\"}"`
+
+**Note that JSON mode is always enabled when the model is generating arguments as part of function calling.**
+
+#### Streaming Chat Completions
+
+```python
+from openai import OpenAI
+client = OpenAI()
+
+completion = client.chat.completions.create(
+  model="gpt-4-1106-preview",
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Hello!"}
+  ],
+  stream=True
+)
+
+for chunk in completion:
+  print(chunk.choices[0].delta)
+
+
+# ..........
+# {
+#     "id": "chatcmpl-123",
+#     "object": "chat.completion.chunk",
+#     "created": 1694268190,
+#     "model": "gpt-3.5-turbo-0613",
+#     "system_fingerprint": "fp_44709d6fcb",
+#     "choices": [
+#         {
+#             "index": 0,
+#             "delta": {
+#                 "content": " today"
+#             },
+#             "logprobs": null,
+#             "finish_reason": null
+#         }
+#     ]
+# }
+
+# {
+#     "id": "chatcmpl-123",
+#     "object": "chat.completion.chunk",
+#     "created": 1694268190,
+#     "model": "gpt-3.5-turbo-0613",
+#     "system_fingerprint": "fp_44709d6fcb",
+#     "choices": [
+#         {
+#             "index": 0,
+#             "delta": {
+#                 "content": "?"
+#             },
+#             "logprobs": null,
+#             "finish_reason": null
+#         }
+#     ]
+# }
+
+# {
+#     "id": "chatcmpl-123",
+#     "object": "chat.completion.chunk",
+#     "created": 1694268190,
+#     "model": "gpt-3.5-turbo-0613",
+#     "system_fingerprint": "fp_44709d6fcb",
+#     "choices": [
+#         {
+#             "index": 0,
+#             "delta": {},
+#             "logprobs": null,
+#             "finish_reason": "stop" <---- stop here
+#         }
+#     ]
+# }
+```
+
+#### Function Calling
+
+```python
+from openai import OpenAI
+client = OpenAI()
+
+tools = [
+  {
+    "type": "function",
+    "function": {
+      "name": "get_current_weather",
+      "description": "Get the current weather in a given location",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "The city and state, e.g. San Francisco, CA",
+          },
+          "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
+        },
+        "required": ["location"],
+      },
+    }
+  }
+]
+messages = [{"role": "user", "content": "What's the weather like in Boston today?"}]
+completion = client.chat.completions.create(
+  model="gpt-4-1106-preview",
+  messages=messages,
+  tools=tools,
+  tool_choice="auto"
+)
+
+print(completion)
+
+# {
+#   "id": "chatcmpl-abc123",
+#   "object": "chat.completion",
+#   "created": 1699896916,
+#   "model": "gpt-3.5-turbo-0613",
+#   "choices": [
+#     {
+#       "index": 0,
+#       "message": {
+#         "role": "assistant",
+#         "content": null,
+#         "tool_calls": [
+#           {
+#             "id": "call_abc123",
+#             "type": "function",
+#             "function": {
+#               "name": "get_current_weather",
+#               "arguments": "{\n\"location\": \"Boston, MA\"\n}"
+#             }
+#           }
+#         ]
+#       },
+#       "logprobs": null,
+#       "finish_reason": "tool_calls"
+#     }
+#   ],
+#   "usage": {
+#     "prompt_tokens": 82,
+#     "completion_tokens": 17,
+#     "total_tokens": 99
+#   }
+# }
+
+```
+
+#### Image Input Chat Completions
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.chat.completions.create(
+    model="gpt-4-vision-preview",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "What’s in this image?"},
+                {
+                    "type": "image_url",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg",
+                },
+            ],
+        }
+    ],
+    max_tokens=300,
+)
+
+print(response.choices[0])
+```
+
+##### Multiple Images
+
+
+The Chat Completions API is capable of taking in and processing multiple image inputs in both base64 encoded format or as an image URL. The model will process each image and use the information from all of them to answer the question.
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+response = client.chat.completions.create(
+  model="gpt-4-vision-preview",
+  messages=[
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "What are in these images? Is there any difference between them?",
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg",
+          },
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg",
+          },
+        },
+      ],
+    }
+  ],
+  max_tokens=300,
+)
+print(response.choices[0])
+```
+
+Here the model is shown two copies of the same image and can answer questions about both or each of the images independently.
+
+## Low or high fidelity image understanding
+
+By controlling the `detail` parameter, which has three options, `low`, `high`, or `auto`, you have control over how the model processes the image and generates its textual understanding. By default, the model will use the `auto` setting which will look at the image input size and decide if it should use the `low` or `high` setting.
+
+- `low` will disable the “high res” model. The model will receive a low-res 512px x 512px version of the image, and represent the image with a budget of 65 tokens. This allows the API to return faster responses and consume fewer input tokens for use cases that do not require high detail.
+- `high` will enable “high res” mode, which first allows the model to see the low res image and then creates detailed crops of input images as 512px squares based on the input image size. Each of the detailed crops uses twice the token budget (65 tokens) for a total of 129 tokens.
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.chat.completions.create(
+  model="gpt-4-vision-preview",
+  messages=[
+    {
+      "role": "user",
+      "content": [
+        {"type": "text", "text": "What’s in this image?"},
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg",
+            "detail": "high"
+          },
+        },
+      ],
+    }
+  ],
+  max_tokens=300,
+)
+
+print(response.choices[0].message.content)
+```
 ---
 
 ### numpy
