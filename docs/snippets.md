@@ -102,15 +102,19 @@
 
 | Command | Description |
 | --- | --- |
-| `cd [folder]` | Change directory e.g. cd Documents |
-| `cd` | Home directory |
 | `cd /` | Root of drive |
 | `cd -` | Previous directory |
-| `ls` | Short listing |
 | `ls -l` | Long listing |
 | `ls -a` | Listing including hidden files |
 | `ls -lh` | Long listing with human-readable file sizes |
 | `ls -R` | Entire content of folder recursively |
+| `find [folder] -name [search_pattern]` | Search for files/dirs, e.g., `find . -name "*.txt"` (searches recursively) |
+| `find [folder] -name [search_pattern] -type d` | Search for directories only |
+| `find [folder] -name [search_pattern] -type f` | Search for files only |
+| `find . -maxdepth 1 -name [search_pattern]` | Search non-recursively |
+| `grep [search_pattern] [dir]` | Search all files in the specified directory for all lines that contain the pattern |
+| `grep [search_pattern] [file]` | Search file for all lines that contain the pattern, e.g., `grep "Tom" file.txt` |
+| `grep -r [search_pattern] [dir]` | Recursively search in all files in the specified directory for all lines that contain the pattern |
 | `sudo [command]` | Run command with the security privileges of the superuser (Super User DO) |
 | `open [file]` | Opens a file (as if you double-clicked it) |
 | `top` | Displays active processes. Press q to quit |
@@ -165,6 +169,160 @@
 | man [command] | Show the help manual for [command] |
 | whatis [command] | Gives a one-line description of [command] |
 | apropos [search-pattern] | Searches for command with keywords in description |
+
+---
+
+## Docker
+
+- Docker Image: a read-only template with instructions for creating a Docker container
+- Docker Container: a runnable instance of a Docker image
+- Dockerfile: a text file that contains all the commands a user could call on the command line to assemble an image.
+  - `FROM`: the base image to build upon
+  - `WORKDIR`: set the working directory
+  - `RUN`: execute a command in the container
+  - `COPY`: copy files from the host to the container
+  - `ADD`: copy files from the host to the container (can also download files from the internet and copy them to the container)
+  - `ARG`: set build-time variables
+  - `ENV`: set environment variables
+  - `EXPOSE`: expose a port
+  - `CMD`: the command to run when the container starts
+  - `ENTRYPOINT`: the command to run when the container starts (can be overridden by `CMD`)
+  - `HEALTHCHECK`: check the health of the container
+- Common Docker commands:
+  - `docker build -t [image-name] .`: build the Docker image (`-t` is the tag name)
+    - Use with `--file` to specify a Dockerfile other than the default `Dockerfile`
+    - Use with `--build-arg [arg-name]=[arg-value]` to pass build-time variables
+    - Use with `--platform` to specify the platform (e.g., `linux/amd64`, `linux/arm64`, `linux/arm/v7`)
+  - `docker run -it [image-name]`: run the Docker container
+  - `docker tag [image-name] [username]/[repo-name]:[tag]`: tag the Docker image
+  - `docker push [username]/[repo-name]:[tag]`: push the Docker image to Docker Hub (or ECR, etc.)
+  - `docker login --username [username] --password [password]`: log in to Docker Hub (or ECR, etc.)
+- Docker Compose: a tool for defining and running multi-container Docker applications
+  - `docker-compose up`: start the Docker containers
+  - `docker-compose down`: stop the Docker containers
+  - `docker-compose build`: build the Docker containers
+  - `docker-compose push`: push the Docker containers to Docker Hub (or ECR, etc.)
+  - `docker-compose pull`: pull the Docker containers from Docker Hub (or ECR, etc.)
+  - `docker-compose config`: validate and view the Docker Compose file
+  - `docker-compose logs`: view the logs of the Docker containers
+  - `docker-compose ps`: view the status of the Docker containers
+  - `docker-compose top`: view the processes running in the Docker containers
+  - `docker-compose exec [service-name] [command]`: execute a command in a running container
+  - `docker-compose run [service-name] [command]`: run a one-off command in a new container
+  - `docker-compose restart [service-name]`: restart a container
+  - `docker-compose stop [service-name]`: stop a container
+  - `docker-compose rm [service-name]`: remove a container
+  - `docker-compose kill [service-name]`: kill a container
+  - `docker-compose down --rmi all`: remove all containers and images
+  - `docker-compose down --volumes`: remove all volumes
+  - `docker-compose down --remove-orphans`: remove all orphaned containers
+- docker-compose.yaml: a YAML file that defines the Docker Compose configuration
+  - `version`: the version of the Docker Compose file format
+  - `services`: the services to run
+  - `networks`: the networks to create
+  - `volumes`: the volumes to create
+  - `configs`: the configs to create
+  - `secrets`: the secrets to create
+  - `deploy`: the deployment configuration
+  - `build`: the build configuration
+  - `image`: the image configuration
+  - `container_name`: the container name
+  - `command`: the command to run
+  - `entrypoint`: the entrypoint to run
+  - `environment`: the environment variables to set
+  - `env_file`: the environment variables to set from a file
+  - `ports`: the ports to expose
+  - `volumes`: the volumes to mount
+  - `depends_on`: the services to depend on
+  - `networks`: the networks to connect to
+  - `network_mode`: the network mode to use
+  - `restart`: the restart policy
+  - `logging`: the logging configuration
+  - `labels`: the labels to set
+  - `configs`: the configs to mount
+  - `secrets`: the secrets to mount
+  - `deploy`: the deployment configuration
+  - `build`: the build configuration
+  - `image`: the image configuration
+  - `container_name`: the container name
+  - `command`: the command to run
+  - `entrypoint`: the entrypoint to run
+  - `environment`: the environment variables to set
+  - `env_file`: the environment variables to set from a file
+  - `ports`: the ports to expose
+  - `volumes`: the volumes to mount
+  - `depends_on`: the services to depend on
+  - `networks`: the networks to connect to
+  - `network_mode`: the network mode to use
+  - `restart`: the restart policy
+  - `logging`: the logging configuration
+  - `labels`: the labels to set
+  - `configs`: the configs to mount
+  - `secrets`: the secrets to mount
+  - `deploy`: the deployment configuration
+  - `build`: the build configuration
+  - `image`: the image configuration
+  - `container_name`: the container name
+- Makefile: a text file that contains a set of tasks to be executed by the `make` command
+  - Used to automate the build process
+  - Used in conjunction with Docker Compose to automate the deployment process
+  - `deploy`: deploy the Docker containers using the following commands...
+- End-to-End workflow using Dockerfile, docker-compose.yaml, and Makefile:
+  1) In Dockerfile, specify the base image to build upon, the working directory, and the commands to run in order to build the image in the container
+  2) In docker-compose.yaml, specify version, services (and their configs/ports/etc.)
+  3) In Makefile, specify the commands to run to build and deploy the Docker containers
+  4) Run `make deploy` to build and deploy the Docker containers
+- Dockerfile example:
+  ```dockerfile
+  FROM python:3.8.5-slim-buster
+
+  WORKDIR /app
+
+  RUN apt-get update && apt-get install -y \
+      build-essential \
+      libpq-dev \
+      libssl-dev \
+      libffi-dev \
+      python3-dev \
+      python3-pip \
+      python3-setuptools \
+      python3-wheel \
+      && rm -rf /var/lib/apt/lists/*
+
+  COPY requirements.txt requirements.txt
+  RUN pip3 install -r requirements.txt
+
+  COPY . .
+
+  CMD ["python3", "app.py"]
+  ```
+- Simple docker-compose.yaml example:
+  ```yaml
+  version: "3.8"
+
+  services:
+    app:
+      build: .
+      ports:
+        - "5000:5000"
+    db:
+      image: postgres:13.3
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: postgres
+      ports:
+        - "5432:5432"
+  ```
+- Makefile example:
+  ```makefile
+  .PHONY: deploy
+  deploy:
+      docker-compose build
+      docker-compose push
+      docker-compose pull
+      docker-compose up -d
+  ```
 
 ---
 
