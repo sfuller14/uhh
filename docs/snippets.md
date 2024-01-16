@@ -75,9 +75,10 @@
 ### Shortcuts (zsh)
 | Key/Command | Description |
 | --- | --- |
-| `Ctrl + A` | Go to the beginning of the line you are currently typing on. This also works for most text input fields system wide. |
-| `Ctrl + E` | Go to the end of the line you are currently typing on. This also works for most text input fields system wide. |
-| `Ctrl + L` | Clears the Screen |
+| `Ctrl + a` | Go to the beginning of the line you are currently typing on. This also works for most text input fields system wide. |
+| `Ctrl + e` | Go to the end of the line you are currently typing on. This also works for most text input fields system wide. |
+| `Ctrl + w` | Go to the beginning of the line you are currently typing on. This also works for most text input fields system wide. |
+| `Ctrl + l` | Clears the Screen |
 | `Cmd + K` | Clears the Screen |
 | `Ctrl + U` | Cut everything backwards to beginning of line |
 | `Ctrl + K` | Cut everything forward to end of line |
@@ -147,7 +148,7 @@
 ### Piping Commands
 | Command | Description |
 | --- | --- |
-| find [dir] -name [search_pattern] | Search for files, e.g., find /Users -name "file.txt" |
+| find [dir] -name [search_pattern] | Search for files, e.g., `find /Users -name "file.txt"` (searches recursively) |
 | grep [search_pattern] [file] | Search for all lines that contain the pattern, e.g., grep "Tom" file.txt |
 | grep -r [search_pattern] [dir] | Recursively search in all files in the specified directory for all lines that contain the pattern |
 | grep -v [search_pattern] [file] | Search for all lines that do NOT contain the pattern |
