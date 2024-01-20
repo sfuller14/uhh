@@ -51,6 +51,25 @@
 | `git clean -fd` | Force-remove untracked directories. |
 | `cd subdirectory`<br>`sudo rm -rf .git` | Force-remove subdirectory's sub-git repo. |
 | `git branch new-branch`<br>`git checkout new-branch`<br>[make changes]<br>`git add -A`<br>`git commit -m "commit message"`<br>`git push origin new-branch`<br>`git branch -d new-branch` | Create new branch, make changes, push, and delete branch locally. |
+| `git log irigin/<branch-name>..HEAD` | View local commits not yet pushed to remote. |
+
+### less editor
+
+| Shortcut | Action |
+| :------ | :----------- |
+| `Space`  or  `f` | Scroll forward one window (or screen) |
+| `b` | Scroll backward one window (or screen) |
+| `d` | Scroll forward half a window |
+| `u` | Scroll backward half a window |
+| `Enter`  or  `e` | Scroll forward one line |
+| `y`  or  `k` | Scroll backward one line |
+| `g` | Go to the start of the document |
+| `G` | Go to the end of the document |
+| `/` | Search forward for a pattern |
+| `?` | Search backward for a pattern |
+| `n` | Repeat the previous search (in the same direction) |
+| `N` | Repeat the previous search (in the opposite direction) |
+| `q` | Quit  less  and return to the command line |
 
 ### ghh CLI
 
