@@ -3081,6 +3081,218 @@ The DOM is a tree of nodes. HTML elements are nodes, and the document itself is 
 | `<input>` | `.value` | `.querySelector()` | `.onkeyup` | `document.querySelector('#input').onkeyup = function() {...}` |
 | `<input>` | `.value` | `.querySelectorAll()` | `.onkeyup` | `document.querySelectorAll('.input')[0].onkeyup = function() {...}` |
 
+---
+
+## The DOM (take 2)
+
+---
+
+### DOM Selection I
+
+JavaScript makes your pages more dynamic as HTML elements can now react to a user's click, a certain condition & more. The DOM (Document Object Model) is a JavaScript object & API (a set of functions) that represents the HTML of your page. It lets you interact from JavaScript with the elements on your page. You can read and change text, add and delete items, and a lot more. 
+
+---
+
+##### `document.querySelector("<CSS selector>")`
+
+**Selecting** elements from your HTML (one element at a time for now): 
+
+You can access the DOM in JavaScript with the `document` variable:
+
+![Alt text](img/doc.png)
+
+
+You can select a single item from the page using the `document.querySelector` method:
+
+```javascript
+document.querySelector("your-CSS-selector-here");
+```
+
+
+The `querySelector` (note the capital `S` character) method expects a CSS selector. That's the same as the selectors you'd write in your CSS file.
+
+If there are multiple items that satisfy the CSS selector that you specified, ***only the first one is returned***. Later on, we'll see how you can select more than 1 item at a time.
+
+Let's take a look at some of the most common selectors:
+
+* By HTML tag (`("<tag>")`)
+
+	```html
+	<h1>Big heading</h1>
+	<script>
+		const title = document.querySelector("h1");
+	</script>
+	```
+
+	Other tags include `p`, `div`, `span`, `ul`, `li`, `a`, `img`, `button`, etc.
+
+* By class (dot: `(".<class>")`)
+
+	```html
+	<div class="item"></div>
+	<script>
+		// "dot" (.) for class
+		const item = document.querySelector(".item");
+	</script>
+	```
+
+* By ID (hashtag: `("#<id>")`)
+
+	```html
+	<div id="navbar"></div>
+	<script>
+		// "hash" (#) for ID
+		const navbar = document.querySelector("#navbar");
+	</script>
+	```
+
+	`document.querySelector("#navbar")` is equivalent to `document.getElementById("navbar")`.  
+	* `document.querySelect("#<id>")` is preferred
+	* Never use `getElementsByTagName` or `getElementsByClassName`. 
+
+* By Descendant (space: `("<parent> <child>")`)
+
+	```html
+	<div id="banner">
+		<div class="item"></div>
+	</div>
+	<script>
+		// "space character" ( ) for descendant
+		const item = document.querySelector("#banner .item");
+	</script>
+	```
+
+	**IMPT:** A descendent is an element that is *inside* the body of its parent element. Not to be confused with an attribute (which is a property of an element -- there is only one element to select). So use a space to move "into" a node in the DOM tree. Use a dot to move "across" a node in the DOM tree to specify with more granularity.
+
+	Assuming the following HTML:
+
+	```html
+	<a href="/contact-us" class="menu-link">Contact us</a>
+	<script>
+		const incorrect = document.querySelector("a .menu-link")
+		const correct = document.querySelector("a.menu-link")
+	</script>
+	```
+
+	The first selector will **not** work because `a .menu-link` means that there is an `a` element and then **inside** of it you should find an element with `class="menu-link"`. This is **incorrect**.
+
+	This is because the `a` and the element that has the `class="menu-link"` are the **same** element.  
+	In that case, the correct selector is `a.menu-link` (without spaces between them).
+
+	You can read it as: select the item that is of type `a` and has the class `menu-link`.
+
+	Similarly, you can select an item that has several classes, for example, `.menu-link.active` will select the item that has both classes `menu-link` and `active`.
+
+* By Attribute (brackets: `("[<attribute>]")`)
+
+	```html
+	<input type="text" placeholder="Your name here" disabled>
+	<script>
+		// find the element with the disabled attribute
+		document.querySelector("[disabled]");
+	</script>
+	```
+
+Selectors game
+If you'd like to practice CSS selectors in a fun game, then check out [flukeout.github.io](https://flukeout.github.io).
+
+`document.querySelector("<CSS-selector>")` returns an object which is an instance of `HTMLElement`. `HTMLElement` is the parent class that every single HTML element in your page inherits from. **This means that every element on your page is an instance of a single class which is `HTMLElement`.**
+
+---
+
+##### `Element.textContent`
+
+The following sections will focus more generally on properties and methods you can call on the result of `document.querySelector("<CSS-selector>")`. This section is focused specifically on the `textContent` property, which works on most elements (`HTMLElement` instances) that contain text ***inside of them***. Some examples are `h1`, `p`, `div`, `span`, `a`, `button`, etc.
+
+```html
+<div>Hello world</div>
+<script>
+	const div = document.querySelector("div");
+	console.log(div.textContent); // "Hello world"
+</script>
+```
+
+Note that `document.querySelector("<CSS-selector>")` returns an object which is an instance of `HTMLElement`. However if it cannot find any element that matches the CSS selector you specified, it will return `null` instead.
+
+```html
+<div>Hello world</div>
+<script>
+	const paragraph = document.querySelector("p");
+	console.log(paragraph.textContent); // TypeError: Cannot read property 'textContent' of null
+</script>
+```
+
+So you should always check that the element you're trying to access exists before trying to access its properties or methods.
+
+```html
+<div>Hello world</div>
+<script>
+	const paragraph = document.querySelector("p");
+	// option 1
+	if (paragraph) {
+		console.log(paragraph.textContent); 
+	}
+	// option 2
+	console.log(paragraph?.textContent);
+	// option 3 (with nullish coalescing operator)
+	console.log(paragraph?.textContent ?? "default value");
+</script>
+```
+
+---
+
+### DOM Selection II
+
+Selecting multiple DOM elements  
+NodeList  
+
+---
+
+##### `document.querySelectorAll("<CSS-selector>")`
+
+```html
+<p id="first">First paragraph</p>
+<p id="second">Second paragraph</p>
+
+<script>
+	document.querySelectorAll("p"); // NodeList(2) [p#first, p#second]
+</script>
+```
+
+#### NodeList
+
+A `NodeList` is an array-like object that contains a collection of DOM elements (e.g. all the elements that match the CSS selector you specified). 
+* If no elements match the CSS selector you specified, it will return an empty `NodeList` (i.e. a `NodeList` with a length of 0). 
+* This is not an array...
+* ...but is an array-like object. 
+	* has `.length` property 
+	* can access its elements with square brackets
+	* can iterate over its elements using `.forEach()`
+	* BUT it does not have all the methods that an array has (like `map`, `filter`, `reduce`, etc.)
+
+```js
+const paragraphs = document.querySelectorAll("p");
+
+console.log(paragraphs.textContent); // undefined (bc the NodeList does not have a textContent property...only the individual elements do)
+
+paragraphs.forEach(paragraph => {
+    console.log(paragraph.textContent); // logs every paragraph's text
+});
+```
+
+#### Converting NodeList to Array
+
+Recall the spread operator `...` and the pattern `[...iterableObj]` to unpack an iterable object to an array.
+
+```js
+const links = [...document.querySelectorAll("a")]; // Array
+console.log(links.filter(link => link.textContent.includes("Home")));
+```
+
+This is useful, but generally it's simpler to just update the HTML to add a class to the elements you want to select. Then you can use `document.querySelectorAll(".my-class")` to select all the elements with that class.
+
+---
+
 ## jQuery
 
 ### Raison Detre
