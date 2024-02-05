@@ -56,9 +56,10 @@
 
 | Command | Description |
 | :------ | :----------- |
+| `git checkout dev`<br>`git pull`<br>`git checkout -b feature-1`<br>[make changes]<br>`git commit -am "feature changes"`<br>`git push origin feature-1`<br>`git checkout dev`<br>`git rebase feature-1`<br>`git push`<br>`git checkout main`<br>`git pull`<br>`git merge dev`<br>`git push` | Gitflow -- rebase feature branches into dev<br>Then merge dev into main |
 | `git remote add origin git@github.com:USERNAME/REPO_NAME.git` | Add remote origin (when not set) |
 | `git remote set-url origin git@github.com:USERNAME/REPO_NAME.git` | Set remote origin (overwrite existing) |
-| `git rm --cached FILE_OR_DIR_NAME`<br>`git commit -m "Removed FILE_OR_DIR_NAME from repository"`<br>`git push origin master` | Remove local already-pushed file from remote. |
+| `git rm --cached FILE_OR_DIR_NAME`<br>`git commit -m "Removed FILE_OR_DIR_NAME from repository"`<br>`git push origin master` | Remove local already-pushed file from remote.<br>**Be careful if you mess with .gitignore, change branches, then merge<br>Local files will get deleted** |
 | `git config --get remote.origin.url` | Get git remote origin's URL. |
 | `git diff --cached origin/main` | Compare committed (pre-push) local changes to remote (all contents).<br>This opens the `less` editor.<br>`n`: Next change<br>`N`: Previous change<br>`spacebar`: Pagedown<br>`b`: Pageup<br>`q`: Quit<br>`?`: Help |
 | `git diff --cached origin/main --name-only` | Compare committed (pre-push) local changes to remote (filenames only). |
@@ -74,7 +75,7 @@
 | `git clean -fd` | Force-remove untracked directories. |
 | `cd subdirectory`<br>`sudo rm -rf .git` | Force-remove subdirectory's sub-git repo. |
 | `git branch new-branch`<br>`git checkout new-branch`<br>[make changes]<br>`git add -A`<br>`git commit -m "commit message"`<br>`git push origin new-branch`<br>`git branch -d new-branch` | Create new branch, make changes, push, and delete branch locally. |
-| `git log irigin/<branch-name>..HEAD` | View local commits not yet pushed to remote. |
+| `git log origin/<branch-name>..HEAD` | View local commits not yet pushed to remote. |
 
 ### less editor
 
