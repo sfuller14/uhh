@@ -118,21 +118,20 @@
 ### Shortcuts (zsh)
 | Key/Command | Description |
 | --- | --- |
-| `Ctrl + a` | Go to the beginning of the line you are currently typing on. This also works for most text input fields system wide. |
-| `Ctrl + e` | Go to the end of the line you are currently typing on. This also works for most text input fields system wide. |
-| `Ctrl + w` | Go to the beginning of the line you are currently typing on. This also works for most text input fields system wide. |
+| `Ctrl + a` | Go to the beginning of the line you are currently typing on. |
+| `Ctrl + e` | Go to the end of the line you are currently typing on. |
+| `Ctrl + _` | Undo the last command. |
 | `Ctrl + l` | Clears the Screen |
 | `Cmd + K` | Clears the Screen |
 | `Ctrl + U` | Cut everything backwards to beginning of line |
 | `Ctrl + K` | Cut everything forward to end of line |
 | `Ctrl + W` | Cut one word backwards using white space as delimiter |
 | `Ctrl + Y` | Paste whatever was cut by the last cut command |
+| `Ctrl + Z` | Puts whatever you are running into a suspended background process. fg restores it |
 | `Ctrl + H` | Same as backspace |
 | `Ctrl + C` | Kill whatever you are running. Also clears everything on current line |
 | `Ctrl + D` | Exit the current shell when no process is running, or send EOF to a the running process |
-| `Ctrl + Z` | Puts whatever you are running into a suspended background process. fg restores it |
 | `Ctrl + T` | Swap the last two characters before the cursor |
-| `Ctrl + _` | Undo the last command. |
 | `Ctrl + F` | Move cursor one character forward |
 | `Ctrl + B` | Move cursor one character backward |
 | `Option + →` | Move cursor one word forward |
@@ -168,6 +167,9 @@
 | `unzip path/to/your/file.zip` | General unzip |
 | `unzip path/to/your/file.zip -d path/to/destination/folder` | Unzip to specific path |
 | `zip -r compressed_filename.zip foldername` | General zip |
+| `zip -r compressed_filename.zip foldername` | General zip |
+| `lsof -i -P -n \| grep LISTEN` | Show all active ports being used by user processes | 
+| `sudo lsof -i -P -n \| grep LISTEN` | Show all active ports, including system | 
 
 ### Chaining Commands
 | Command | Description |
